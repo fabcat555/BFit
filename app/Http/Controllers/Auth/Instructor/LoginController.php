@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Auth\Instructor;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -23,25 +23,37 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/home';
-
-    /**
      * Create a new controller instance.
      *
      * @return void
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest:instructor')->except('logout');
+    }
+
+    public function showLoginForm()
+    {
+        return view('auth.instructor.login');
+    }
+
+    public function login(Request $request)
+    {
+        $this->validate($request, [
+            'email' => 'required|email',
+            'password' => 'required|min:6'
+        ]);
+
+        if (Auth::guard('instructor')->attempt(['email' => $request->get('email'), 'password' => $request->get('password')], $request->get('remember'))) {
+            return redirect()->intended(route('instructor.dashboard'));
+        }
+
+        return redirect()->back()->withInput($request->only('email', 'remember'));
     }
 
     public function logout()
     {
-        Auth::guard('athlete')->logout();
+        Auth::guard('instructor')->logout();
 
         return redirect('/');
     }

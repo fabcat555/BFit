@@ -21,8 +21,8 @@ class CreateExerciseProgressesTable extends Migration
             $table->timestamps();
 
             $table->foreign('workout_exercise_id')
-                ->references('workout_exercises')
-                ->on('id')
+                ->references('id')
+                ->on('workout_exercises')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
         });

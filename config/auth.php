@@ -14,8 +14,8 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
-        'passwords' => 'users',
+        'guard' => 'athlete',
+        'passwords' => 'athletes',
     ],
 
     /*
@@ -36,14 +36,22 @@ return [
     */
 
     'guards' => [
-        'web' => [
+        'athlete' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'athletes',
+        ],
+        'instructor' => [
+            'driver' => 'session',
+            'provider' => 'instructors',
+        ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
         ],
 
         'api' => [
             'driver' => 'token',
-            'provider' => 'users',
+            'provider' => 'athletes',
         ],
     ],
 
@@ -65,9 +73,17 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'athletes' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => App\Athlete::class,
+        ],
+        'instructors' => [
+            'driver' => 'eloquent',
+            'model' => App\Instructor::class,
+        ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Admin::class,
         ],
 
         // 'users' => [
@@ -92,8 +108,18 @@ return [
     */
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
+        'athletes' => [
+            'provider' => 'athletes',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'instructors' => [
+            'provider' => 'instructors',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'admins' => [
+            'provider' => 'admins',
             'table' => 'password_resets',
             'expire' => 60,
         ],

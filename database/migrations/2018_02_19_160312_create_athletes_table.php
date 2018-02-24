@@ -20,16 +20,16 @@ class CreateAthletesTable extends Migration
             $table->date('birth_date');
             $table->char('gender');
             $table->integer('height');
-            $table->text('notes');
-            $table->integer('instructor_id');
+            $table->text('notes')->nullable();
+            $table->integer('instructor_id')->nullable();
             $table->string('email')->unique();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
 
             $table->foreign('instructor_id')
-                ->references('instructors')
-                ->on('id')
+                ->references('id')
+                ->on('instructors')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
         });

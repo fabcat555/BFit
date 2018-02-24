@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Athlete;
 use App\User;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -41,7 +43,7 @@ class RegisterController extends Controller
     }
 
     /**
-     * Get a validator for an incoming registration request.
+     * Get a validator for an incoming registration request.e
      *
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
@@ -50,7 +52,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|email|max:255|unique:athletes',
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
@@ -63,8 +65,12 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
+        return Athlete::create([
+            'first_name' => $data['name'],
+            'last_name' => 'Cognome',
+            'birth_date' => Carbon::now(),
+            'gender' => 'm',
+            'height' => 180,
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);

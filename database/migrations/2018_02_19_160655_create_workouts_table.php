@@ -28,8 +28,8 @@ class CreateWorkoutsTable extends Migration
                 ->onDelete('cascade');
 
             $table->foreign('type_id')
-                ->references('workout_types')
-                ->on('id')
+                ->references('id')
+                ->on('workout_types')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
         });

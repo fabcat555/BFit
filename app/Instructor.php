@@ -4,10 +4,13 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Notifications\Instructor\ResetPasswordNotification;
 
 class Instructor extends Authenticatable
 {
     use Notifiable;
+
+    protected $guard = 'instructor';
 
     /**
      * The attributes that are mass assignable.
@@ -26,4 +29,9 @@ class Instructor extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
+    }
 }

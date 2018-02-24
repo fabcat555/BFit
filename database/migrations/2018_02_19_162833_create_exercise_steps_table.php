@@ -20,8 +20,8 @@ class CreateExerciseStepsTable extends Migration
             $table->timestamps();
 
             $table->foreign('exercise_id')
-                ->references('exercises')
-                ->on('id')
+                ->references('id')
+                ->on('exercises')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
         });

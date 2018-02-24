@@ -26,8 +26,8 @@ class CreateBodyMeasurementsTable extends Migration
             $table->timestamps();
 
             $table->foreign('athlete_id')
-                ->references('athletes')
-                ->on('id')
+                ->references('id')
+                ->on('athletes')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
         });

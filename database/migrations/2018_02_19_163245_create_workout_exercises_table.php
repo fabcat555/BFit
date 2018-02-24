@@ -25,20 +25,20 @@ class CreateWorkoutExercisesTable extends Migration
             $table->timestamps();
 
             $table->foreign('exercise_id')
-                ->references('exercises')
-                ->on('id')
+                ->references('id')
+                ->on('exercises')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
             $table->foreign('workout_id')
-                ->references('workouts')
-                ->on('id')
+                ->references('id')
+                ->on('workouts')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
             $table->foreign('exercise_technique_id')
-                ->references('exercise_techniques')
-                ->on('id')
+                ->references('id')
+                ->on('exercise_techniques')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 

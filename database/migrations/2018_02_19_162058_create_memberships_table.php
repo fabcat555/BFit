@@ -23,14 +23,14 @@ class CreateMembershipsTable extends Migration
             $table->timestamps();
 
             $table->foreign('athlete_id')
-                ->references('athletes')
-                ->on('id')
+                ->references('id')
+                ->on('athletes')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
             $table->foreign('type_id')
-                ->references('membership_types')
-                ->on('id')
+                ->references('id')
+                ->on('membership_types')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
         });
