@@ -12,7 +12,31 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('athlete.dashboard');
+});
+
+Route::get('/history', function () {
+    return view('athlete.workout-history');
+});
+
+Route::get('/workout', function () {
+    return view('athlete.workout');
+});
+
+Route::get('/body', function () {
+    return view('athlete.body-measurements');
+});
+
+Route::get('/bmnew', function () {
+    return view('athlete.body-measurements-create');
+});
+
+Route::get('/exercise', function () {
+    return view('athlete.exercise-progress');
+});
+
+Route::get('/technique', function () {
+    return view('athlete.technique');
 });
 
 // Auth routes
