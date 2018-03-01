@@ -17,8 +17,8 @@ class CreateAthletesTable extends Migration
             $table->increments('id');
             $table->string('first_name');
             $table->string('last_name');
-            $table->date('birth_date');
-            $table->char('gender');
+            $table->timestamp('birth_date');
+            $table->char('gender', 1);
             $table->integer('height');
             $table->text('notes')->nullable();
             $table->integer('instructor_id')->nullable();

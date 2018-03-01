@@ -3,7 +3,7 @@
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
     </div>
     <!--logo start-->
-    <a href="index.html" class="logo"><b>BFIT</b></a>
+    <a href="{{route('dashboard')}}" class="logo"><b>BFIT</b></a>
     <!--logo end-->
     <div class="nav notify-row" id="top_menu">
         <!--  notification start -->
@@ -149,8 +149,9 @@
         <!--  notification end -->
     </div>
     <div class="top-menu">
-        <ul class="nav pull-right top-menu">
-            <li><a class="logout" href="login.html">Logout</a></li>
-        </ul>
+        <form action="{{route('logout')}}" method="POST">
+            {{ csrf_field() }}
+           <button type="submit" class="btn btn-theme pull-right logout-btn">Logout</button>
+        </form>
     </div>
 </header>

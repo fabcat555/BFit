@@ -21,6 +21,10 @@ class Instructor extends Authenticatable
         'first_name', 'last_name', 'birth_date', 'email', 'password'
     ];
 
+    protected $dates = [
+        'birth_date', 'created_at', 'updated_at'
+    ];
+
     /**
      * The attributes that should be hidden for arrays.
      *

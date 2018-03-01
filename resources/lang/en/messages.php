@@ -50,7 +50,7 @@ return [
     'MembershipValidity' => 'Valid until',
     'MembershipStartYear' => 'MEMBER SINCE',
     'MembershipCost' => 'MEMBERSHIP COST',
-    'AssignedWorkout' => 'ASSIGNED WORKOUT',
+    'AssignedWorkoutHeading' => 'ASSIGNED WORKOUT',
     'BodyMeasurementsHeading' => 'BODY MEASUREMENTS',
     'ViewHistory' => 'View History',
     'StartDate' => 'Start date',
@@ -68,4 +68,13 @@ return [
 
     // Techniques
     'Techniques' => 'Exercise techniques',
+
+    // Body measurement
+    'Weight' => 'Weight',
+    'Chest' => 'Chest',
+    'Waist' => 'Waist',
+    'Hips' => 'Hips',
+    'Thighs' => 'Thighs',
+    'Calves' => 'Calves',
+    'Biceps' => 'Biceps',
 ];

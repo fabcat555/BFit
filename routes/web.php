@@ -11,33 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('athlete.dashboard');
-});
-
-Route::get('/history', function () {
-    return view('athlete.workout-history');
-});
-
-Route::get('/workout', function () {
-    return view('athlete.workout');
-});
-
-Route::get('/body', function () {
-    return view('athlete.body-measurements');
-});
-
-Route::get('/bmnew', function () {
-    return view('athlete.body-measurements-create');
-});
-
-Route::get('/exercise', function () {
-    return view('athlete.exercise-progress');
-});
-
-Route::get('/technique', function () {
-    return view('athlete.technique');
-});
+// Route::get('/', function () {
+//     return view('athlete.dashboard');
+// });
 
 // Auth routes
 Auth::routes();
@@ -64,16 +40,17 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/password/reset/{token}', 'Auth\Admin\ResetPasswordController@showResetForm')->name('admin.password.reset');
 });
 
+// Athlete routes
+Route::get('/{url?}', 'AthleteController@index')->where('url', 'dashboard')->name('dashboard');
+Route::get('/my-workout', 'AthleteWorkoutController@index')->name('workout');
+Route::get('/my-workout-history', 'AthleteWorkoutController@viewHistory')->name('workout.history');
+Route::get('/body-measurements', 'AthleteBodyMeasurementsController@index')->name('bodymeasurements');
+Route::get('/getMeasurements/{measure?}', 'AthleteBodyMeasurementsController@getMeasurements')->name('bodymeasurements.get');
+Route::get('/progress/{exercise}', 'ExerciseProgressController@show')->name('progress.show');
+Route::post('/progress/{exercise}', 'ExerciseProgressController@store')->name('progress.store');
+Route::get('/technique/{technique}', 'ExerciseTechniqueController@show')->name('technique.show');
+Route::get('/exercise/{exerciseId}', 'ExerciseController@show')->name('exercise.show');
 
-//// Athlete routes
-Route::get('/dashboard', 'AthleteController@index')->name('dashboard');
-//Route::get('/dashboard', 'ProfileController@index');
-//Route::get('/my-workout', 'ProfileController@viewWorkout');
-//Route::get('/my-workout-history', 'AthleteWorkoutController@viewWorkoutHistory');
-//Route::get('/body-measurements', 'AthleteWorkoutController@viewBodyMeasurements');
-//Route::get('/progress/{exercise?}', 'ExerciseProgressController@show');
-//Route::post('/progress/{exercise?}', 'ExerciseProgressController@store');
-//
 //// Instructor routes
 //Route::resource('workout', 'WorkoutsController');
 //Route::resource('exercise', 'ExercisesController');

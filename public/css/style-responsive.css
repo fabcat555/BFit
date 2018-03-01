@@ -13,7 +13,14 @@
         margin-bottom: 40px;
     }
 
-    /*chat room*/
+
+}
+
+@media (min-width: 1200px) {
+
+    .bm-weight-chart {
+        margin-top: 30px;
+    }
 
 
 }

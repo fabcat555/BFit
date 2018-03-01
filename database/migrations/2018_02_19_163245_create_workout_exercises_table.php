@@ -20,8 +20,8 @@ class CreateWorkoutExercisesTable extends Migration
             $table->integer('sets');
             $table->integer('reps');
             $table->integer('rest');
-            $table->integer('exercise_technique_id');
-            $table->text('notes');
+            $table->integer('exercise_technique_id')->nullable();
+            $table->text('notes')->nullable();
             $table->timestamps();
 
             $table->foreign('exercise_id')

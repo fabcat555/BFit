@@ -66,4 +66,13 @@ return [
 
     // Techniques
     'Techniques' => 'Tecniche di allenamento',
+
+     // Body measurement
+    'Weight' => 'Peso',
+    'Chest' => 'Petto',
+    'Waist' => 'Vita',
+    'Hips' => 'Fianchi',
+    'Thighs' => 'Coscia',
+    'Calves' => 'Polpaccio',
+    'Biceps' => 'Bicipite',   
 ];

@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-lg-12 main-chart">
                 <div class="row">
-                    <div class="col-md-12 col-sm-12 mb">
+                    <div class="col-md-12 mb">
                         <!-- WORKOUT PANEL -->
                         <div class="grey-panel pn">
                             <div class="grey-header">
@@ -19,15 +19,15 @@
                                 <tbody>
                                     <tr>
                                         <th scope="row">@lang('messages.Type')</th>
-                                        <td>Monthly</td>
+                                        <td>{{ $workout->type->name }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">@lang('messages.StartDate')</th>
-                                        <td>Active</td>
+                                        <td>{{ $workout->start_date->format('d/m/y') }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">@lang('messages.EndDate')</th>
-                                        <td>23/02/2018</td>
+                                        <td>{{ $workout->end_date->format('d/m/y') }}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -43,39 +43,28 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($workout->workoutExercises as $woExercise)
                                     <tr>
-                                        <td>Squat</td>
-                                        <td>3</td>
-                                        <td>8</td>
-                                        <td>90</td>
-                                        <td>Superset</td>
                                         <td>
-                                            <button class="btn btn-warning btn-xs"><i class="fa fa-bar-chart-o"></i></button>
-                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                            <a href="{{route('exercise.show', ['exerciseId' => $woExercise->exercise->id])}}">{{$woExercise->exercise->name}}</a>
+                                        </td>
+                                        <td>{{$woExercise->sets}}</td>
+                                        <td>{{$woExercise->reps}}</td>
+                                        <td>{{$woExercise->rest}}</td>
+                                        <td>
+                                            @if (isset($woExercise->exerciseTechnique))
+                                                <a href="{{route('technique.show', ['technique' => $woExercise->exerciseTechnique->id])}}">
+                                                    {{$woExercise->exerciseTechnique->name}}
+                                                </a>
+                                            @else
+                                                -
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('progress.show', ['exercise' => $woExercise->id]) }}" class="btn btn-warning btn-xs"><i class="fa fa-bar-chart-o"></i></a>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>Squat</td>
-                                        <td>3</td>
-                                        <td>8</td>
-                                        <td>90</td>
-                                        <td>Superset</td>
-                                        <td>
-                                            <button class="btn btn-warning btn-xs"><i class="fa fa-bar-chart-o"></i></button>
-                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Squat</td>
-                                        <td>3</td>
-                                        <td>8</td>
-                                        <td>90</td>
-                                        <td>Superset</td>
-                                        <td>
-                                            <button class="btn btn-warning btn-xs"><i class="fa fa-bar-chart-o"></i></button>
-                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                                        </td>
-                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                             <br>

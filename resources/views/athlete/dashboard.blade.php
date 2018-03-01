@@ -1,5 +1,4 @@
 @extends('layouts.master') 
-
 @section('sidebar')
     @include('athlete.sidebar')
 @endsection
@@ -8,46 +7,43 @@
 <section id="main-content">
     <section class="wrapper">
         <div class="row">
-            <div class="col-lg-12 main-chart">
+            <div class="col-lg-12">
                 <!-- First row -->
                 <div class="row mt">
-                    <div class="col-md-6 col-sm-6 mb">
-                        <div class="white-panel pn">
+                    <div class="col-md-12 col-lg-6 mb">
+                        <div class="white-panel pn personal-panel">
                             <div class="white-header">
                                 <h5 class="personal-data-heading black-heading">@lang('messages.PersonalData')</h5>
-                                <button class="btn btn-primary btn-xs edit-personal">
-                                    <i class="fa fa-pencil"></i>
-                                </button>
                             </div>
                             <table class="table table-borderless table-personal">
                                 <tbody>
                                     <tr>
                                         <th scope="row">@lang('messages.FirstName')</th>
-                                        <td>Fabio</td>
+                                        <td>{{ $athlete->first_name }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">@lang('messages.LastName')</th>
-                                        <td>Catuogno</td>
+                                        <td>{{ $athlete->last_name }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">@lang('messages.BirthDate')</th>
-                                        <td>12/12/1990</td>
+                                        <td>{{ $athlete->birth_date->format('d/m/y') }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">@lang('messages.Gender')</th>
-                                        <td>M</td>
+                                        <td>{{ $athlete->gender }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">@lang('messages.Height')</th>
-                                        <td>180</td>
+                                        <td>{{ $athlete->height }}</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                    <div class="col-md-6 col-sm-6 mb">
+                    <div class="col-md-12 col-lg-6 mb">
                         <!-- WHITE PANEL - TOP USER -->
-                        <div class="white-panel pn">
+                        <div class="white-panel pn membership-panel">
                             <div class="white-header">
                                 <h5 class="black-heading">@lang('messages.MembershipHeading')</h5>
                             </div>
@@ -55,26 +51,36 @@
                                 <tbody>
                                     <tr>
                                         <th scope="row">@lang('messages.Type')</th>
-                                        <td>Monthly</td>
+                                        <td>{{ $membership->type->name }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">@lang('messages.MembershipStatus')</th>
-                                        <td>Active</td>
+                                        <td>{{ $membership->status ? 'Active' : 'Inactive' }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">@lang('messages.MembershipValidity')</th>
-                                        <td>23/02/2018</td>
+                                        <td>{{ $membership->end_date->format('d/m/y') }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">@lang('messages.Instructor')</th>
+                                        <td>
+                                            @if (isset($athlete->instructor)) 
+                                                {{ $athlete->instructor->first_name . ' ' . $athlete->instructor->last_name }} 
+                                            @else 
+                                                -
+                                            @endif
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
                             <div class="row">
                                 <div class="col-md-6">
                                     <p class="small mt">@lang('messages.MembershipStartYear')</p>
-                                    <p>2012</p>
+                                    <p>{{ $athlete->memberships->first()->created_at->year }}</p>
                                 </div>
                                 <div class="col-md-6">
                                     <p class="small mt">@lang('messages.MembershipCost')</p>
-                                    <p>$ 47,60</p>
+                                    <p>$ {{ $membership->type->price }}</p>
                                 </div>
                             </div>
                         </div>
@@ -85,26 +91,31 @@
                 <!-- Second row -->
                 <div class="row">
                     <!-- /col-md-4 -->
-                    <div class="col-md-6 col-sm-6 mb">
+                    <div class="col-md-12 col-lg-6 mb">
                         <!-- INSTAGRAM PANEL -->
                         <div class="grey-panel pn workout-panel">
                             <div class="grey-header">
-                                <h5 class="wo-heading black-heading">@lang('messages.AssignedWorkout')</h5>
-                                <button type="button" class="btn btn-primary btn-xs dashboard-btn">@lang('messages.ViewHistory')</button>
+                                <h5 class="wo-panel-heading black-heading">@lang('messages.AssignedWorkoutHeading')</h5>
+                                <a href="{{route('workout.history')}}" class="btn btn-primary btn-xs dashboard-btn">
+                                    @lang('messages.ViewHistory')
+                                </a>
+                                <a href="{{route('workout')}}" class="btn btn-primary btn-xs dashboard-btn">
+                                    @lang('messages.ViewAll')
+                                </a>
                             </div>
                             <table class="table table-borderless table-description">
                                 <tbody>
                                     <tr>
                                         <th scope="row">@lang('messages.Type')</th>
-                                        <td>Monthly</td>
+                                        <td>{{ $athlete->currentWorkout()->type->name }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">@lang('messages.StartDate')</th>
-                                        <td>Active</td>
+                                        <td>{{ $athlete->currentWorkout()->start_date->format('d/m/y') }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">@lang('messages.EndDate')</th>
-                                        <td>23/02/2018</td>
+                                        <td>{{ $athlete->currentWorkout()->end_date->format('d/m/y') }}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -119,66 +130,30 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($athlete->currentWorkout()->workoutExercises as $woExercise)
                                     <tr>
-                                        <td>Squat</td>
-                                        <td>3</td>
-                                        <td>8</td>
-                                        <td>90</td>
-                                        <td>Superset</td>
+                                        <td>{{$woExercise->exercise->name}}</td>
+                                        <td>{{$woExercise->sets}}</td>
+                                        <td>{{$woExercise->reps}}</td>
+                                        <td>{{$woExercise->rest}}</td>
+                                        <td>
+                                            @if (isset($woExercise->exerciseTechnique)) {{$woExercise->exerciseTechnique->name}} @else - @endif
+                                        </td>
                                     </tr>
-                                   <tr>
-                                        <td>Squat</td>
-                                        <td>3</td>
-                                        <td>8</td>
-                                        <td>90</td>
-                                        <td>Superset</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Squat</td>
-                                        <td>3</td>
-                                        <td>8</td>
-                                        <td>90</td>
-                                        <td>Superset</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Squat</td>
-                                        <td>3</td>
-                                        <td>8</td>
-                                        <td>90</td>
-                                        <td>Superset</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Squat</td>
-                                        <td>3</td>
-                                        <td>8</td>
-                                        <td>90</td>
-                                        <td>Superset</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Squat</td>
-                                        <td>3</td>
-                                        <td>8</td>
-                                        <td>90</td>
-                                        <td>Superset</td>
-                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                             <br>
                         </div>
                     </div>
                     <!-- /col-md-4 -->
-                    <div class="col-md-6 col-sm-6 mb">
-                        <!-- REVENUE PANEL -->
+                    <div class="col-md-12 col-lg-6 mb">
                         <div class="darkblue-panel pn bm-panel">
                             <div class="darkblue-header">
-                                <h5 class="wo-heading">@lang('messages.BodyMeasurementsHeading')</h5>
-                                <button type="button" class="btn btn-primary btn-xs dashboard-btn">@lang('messages.New')</button>
-                                <button type="button" class="btn btn-primary btn-xs dashboard-btn">@lang('messages.ViewAll')</button>
+                                <h5 class="bm-panel-heading">@lang('messages.BodyMeasurementsHeading')</h5>
+                                <a href="{{route('bodymeasurements')}}" class="btn btn-primary btn-xs dashboard-btn">@lang('messages.ViewAll')</a>
                             </div>
-                            <div class="panel-body">
-                                <div id="hero-bar" class="graph"></div>
-                            </div>
-                            <p class="mt">Peso</p>
+                            <canvas id="myChart" class="bm-weight-chart" width="400" height="250"></canvas>
                         </div>
                     </div>
                     <!-- /col-md-4 -->
@@ -190,3 +165,53 @@
     </section>
 </section>
 @endsection
+ 
+@push('script')
+<script>
+    var ctx = document.getElementById("myChart").getContext('2d');
+    Chart.defaults.global.defaultFontColor = 'white';
+    Chart.defaults.global.defaultFontFamily = 'Ruda';
+    
+    var config = {
+        type: 'line',
+        data: {
+            labels: @json(array_keys($weightMeasurement)),
+            datasets: [{
+                label: "Peso",
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: @json(array_values($weightMeasurement)),
+                fill: false,
+                }]
+        },
+        options: {
+            responsive: true,
+            tooltips: {
+            mode: 'index',
+            intersect: false
+            },
+            hover: {
+            mode: 'nearest',
+            intersect: true
+            },
+            scales: {
+            xAxes: [{
+                display: true,
+                scaleLabel: {
+                display: true,
+                labelString: 'Month'
+                }
+            }],
+            yAxes: [{
+                display: true,
+                scaleLabel: {
+                display: true,
+                labelString: 'Value'
+                }
+            }]
+            }
+        }
+    };
+    var myChart = new Chart(ctx, config);
+</script>
+@endpush

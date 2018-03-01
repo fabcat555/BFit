@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Carbon\Carbon;
 
 class Athlete extends Authenticatable
 {
@@ -25,6 +26,10 @@ class Athlete extends Authenticatable
         'password', 'remember_token',
     ];
 
+    protected $dates = [
+        'birth_date', 'created_at', 'updated_at'
+    ];
+
     public function workouts() {
         return $this->hasMany('App\Workout');
     }
@@ -39,5 +44,13 @@ class Athlete extends Authenticatable
 
     public function instructor() {
         return $this->belongsTo('App\Instructor');
+    }
+
+    public function activeMembership() {
+        return $this->memberships()->where('status', true)->first();
+    }
+
+    public function currentWorkout() {
+        return $this->workouts()->where('end_date', '>', Carbon::now())->first();
     }
 }

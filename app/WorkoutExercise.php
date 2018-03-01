@@ -16,4 +16,12 @@ class WorkoutExercise extends Model
     public function exerciseProgresses() {
         return $this->hasMany('App\ExerciseProgress');
     }
+
+    public function exercise() {
+        return $this->belongsTo('App\Exercise');
+    }
+
+    public function exerciseTechnique() {
+        return $this->belongsTo('App\ExerciseTechnique');
+    }
 }

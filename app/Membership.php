@@ -13,8 +13,12 @@ class Membership extends Model
      */
     protected $guarded = ['id'];
 
-    public function membershipType() {
-        return $this->belongsTo('App\MembershipType');
+    protected $dates = [
+        'start_date', 'end_date', 'created_at', 'updated_at'
+    ];
+
+    public function type() {
+        return $this->belongsTo('App\MembershipType', 'type_id');
     }
 
     public function athlete() {

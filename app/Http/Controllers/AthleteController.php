@@ -25,6 +25,10 @@ class AthleteController extends Controller
      */
     public function index()
     {
-        return view('athlete.dashboard');
+        foreach(Auth::guard('athlete')->user()->bodyMeasurements->sortBy('created_at')->all() as $bm) {
+            $weightMeasurements[$bm->created_at->format('d-m-y')] = $bm->weight;
+        }
+        
+        return view('athlete.dashboard')->with(['weightMeasurement' => $weightMeasurements]);   
     }
 }

@@ -1,6 +1,6 @@
 @extends('layouts.master') 
 @section('sidebar')
-    @include('athlete.sidebar')
+    @include('instructor.sidebar')
 @endsection
  
 @section('content')

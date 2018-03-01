@@ -9,7 +9,8 @@
         <div class="row">
             <div class="col-lg-12 main-chart">
                 <div class="row">
-                    <div class="col-md-6 col-sm-6 mb">
+                    @foreach ($workouts as $wo)
+                    <div class="col-md-12 col-lg-6 mb">
                         <!-- WORKOUT PANEL -->
                         <div class="grey-panel pn">
                             <div class="grey-header">
@@ -19,15 +20,15 @@
                                 <tbody>
                                     <tr>
                                         <th scope="row">@lang('messages.Type')</th>
-                                        <td>Monthly</td>
+                                        <td>{{ $wo->type->name }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">@lang('messages.StartDate')</th>
-                                        <td>Active</td>
+                                        <td>{{ $wo->start_date->format('d/m/y') }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">@lang('messages.EndDate')</th>
-                                        <td>23/02/2018</td>
+                                        <td>{{ $wo->end_date->format('d/m/y') }}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -42,209 +43,27 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($wo->workoutExercises as $woExercise)
                                     <tr>
-                                        <td>Squat</td>
-                                        <td>3</td>
-                                        <td>8</td>
-                                        <td>90</td>
-                                        <td>Superset</td>
+                                        <td>{{$woExercise->exercise->name}}</td>
+                                        <td>{{$woExercise->sets}}</td>
+                                        <td>{{$woExercise->reps}}</td>
+                                        <td>{{$woExercise->rest}}</td>
+                                        <td>
+                                            @if (isset($woExercise->exerciseTechnique)) 
+                                                {{$woExercise->exerciseTechnique->name}} 
+                                            @else 
+                                                - 
+                                            @endif
+                                        </td>
                                     </tr>
-                                    <tr>
-                                        <td>Squat</td>
-                                        <td>3</td>
-                                        <td>8</td>
-                                        <td>90</td>
-                                        <td>Superset</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Squat</td>
-                                        <td>3</td>
-                                        <td>8</td>
-                                        <td>90</td>
-                                        <td>Superset</td>
-                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                             <br>
                         </div>
                     </div>
-                    <div class="col-md-6 col-sm-6 mb">
-                        <!-- WORKOUT PANEL -->
-                        <div class="grey-panel pn">
-                            <div class="grey-header">
-                                <h5 class="black-heading">@lang('messages.AssignedWorkout')</h5>
-                            </div>
-                            <table class="table table-borderless table-description">
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">@lang('messages.Type')</th>
-                                        <td>Monthly</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">@lang('messages.StartDate')</th>
-                                        <td>Active</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">@lang('messages.EndDate')</th>
-                                        <td>23/02/2018</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <table class="table table-hover table-workout">
-                                <thead>
-                                    <tr>
-                                        <th>@lang('messages.Exercise')</th>
-                                        <th>@lang('messages.Sets')</th>
-                                        <th>@lang('messages.Reps')</th>
-                                        <th>@lang('messages.Rest')</th>
-                                        <th>@lang('messages.Technique')</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Squat</td>
-                                        <td>3</td>
-                                        <td>8</td>
-                                        <td>90</td>
-                                        <td>Superset</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Squat</td>
-                                        <td>3</td>
-                                        <td>8</td>
-                                        <td>90</td>
-                                        <td>Superset</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Squat</td>
-                                        <td>3</td>
-                                        <td>8</td>
-                                        <td>90</td>
-                                        <td>Superset</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <br>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-sm-6 mb">
-                        <!-- WORKOUT PANEL -->
-                        <div class="grey-panel pn">
-                            <div class="grey-header">
-                                <h5 class="black-heading">@lang('messages.AssignedWorkout')</h5>
-                            </div>
-                            <table class="table table-borderless table-description">
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">@lang('messages.Type')</th>
-                                        <td>Monthly</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">@lang('messages.StartDate')</th>
-                                        <td>Active</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">@lang('messages.EndDate')</th>
-                                        <td>23/02/2018</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <table class="table table-hover table-workout">
-                                <thead>
-                                    <tr>
-                                        <th>@lang('messages.Exercise')</th>
-                                        <th>@lang('messages.Sets')</th>
-                                        <th>@lang('messages.Reps')</th>
-                                        <th>@lang('messages.Rest')</th>
-                                        <th>@lang('messages.Technique')</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Squat</td>
-                                        <td>3</td>
-                                        <td>8</td>
-                                        <td>90</td>
-                                        <td>Superset</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Squat</td>
-                                        <td>3</td>
-                                        <td>8</td>
-                                        <td>90</td>
-                                        <td>Superset</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Squat</td>
-                                        <td>3</td>
-                                        <td>8</td>
-                                        <td>90</td>
-                                        <td>Superset</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <br>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-sm-6 mb">
-                        <!-- WORKOUT PANEL -->
-                        <div class="grey-panel pn">
-                            <div class="grey-header">
-                                <h5 class="black-heading">@lang('messages.AssignedWorkout')</h5>
-                            </div>
-                            <table class="table table-borderless table-description">
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">@lang('messages.Type')</th>
-                                        <td>Monthly</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">@lang('messages.StartDate')</th>
-                                        <td>Active</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">@lang('messages.EndDate')</th>
-                                        <td>23/02/2018</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <table class="table table-hover table-workout">
-                                <thead>
-                                    <tr>
-                                        <th>@lang('messages.Exercise')</th>
-                                        <th>@lang('messages.Sets')</th>
-                                        <th>@lang('messages.Reps')</th>
-                                        <th>@lang('messages.Rest')</th>
-                                        <th>@lang('messages.Technique')</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Squat</td>
-                                        <td>3</td>
-                                        <td>8</td>
-                                        <td>90</td>
-                                        <td>Superset</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Squat</td>
-                                        <td>3</td>
-                                        <td>8</td>
-                                        <td>90</td>
-                                        <td>Superset</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Squat</td>
-                                        <td>3</td>
-                                        <td>8</td>
-                                        <td>90</td>
-                                        <td>Superset</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <br>
-                        </div>
-                    </div>
+                    @endforeach
                     <!-- /col-md-12 -->
                 </div>
                 <!-- /row -->

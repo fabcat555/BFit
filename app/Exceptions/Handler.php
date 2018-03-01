@@ -64,16 +64,18 @@ class Handler extends ExceptionHandler
         if ($request->expectsJson())
             response()->json(['message' => $exception->getMessage()], 401);
 
-        $guard = array_get($exception, 0);
+        $guard = array_get($exception->guards(), 0);
 
         switch ($guard) {
-            case 'athlete':
-            default:
-                $login = 'login';
             case 'instructor':
                 $login = 'instructor.login';
+                break;
             case 'admin':
                 $login = 'admin.login';
+                break;
+            default:
+                $login = 'login';
+                break;
         }
 
         return redirect()->guest(route($login));
