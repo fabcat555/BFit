@@ -17,7 +17,6 @@ class MembershipsTableSeeder extends Seeder
             'athlete_id' => 1,
             'start_date' => Carbon::now()->subMonth(),
             'end_date' => Carbon::now()->addMonth(),
-            'status' => true,
             'type_id' => 1
         ]);
     }

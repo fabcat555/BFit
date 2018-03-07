@@ -9,7 +9,6 @@
         <h3 class="bm-section-heading">
             <i class="fa fa-angle-right"></i> @lang('messages.ExerciseProgress')
         </h3>
-        <button type="button" class="btn btn-primary">@lang('messages.New')</button>
         <!-- page start-->
         <div class="row mt">
             <div class="col-lg-12">
@@ -26,12 +25,12 @@
         <div class="row mt">
             <div class="col-lg-12">
                 <div class="form-panel ep-form">
-                    <h4 class="mb bm-heading"><i class="fa fa-angle-right"></i> Register Progress</h4>
+                    <h4 class="mb bm-heading"><i class="fa fa-angle-right"></i> @lang('messages.NewExerciseProgress')</h4>
                     <form class="form-horizontal style-form" method="post">
                         {{ csrf_field() }}
                         <div class="form-group">\
                             <div class="col-sm-2">
-                                <input name="weight" placeholder="Weight" type="text" class="form-control">
+                                <input name="weight" required placeholder="Weight" type="text" class="form-control">
                             </div>
                         </div>
                         <div class="form-group">
@@ -39,7 +38,7 @@
                                 <textarea name="notes" placeholder="Notes" class="form-control"></textarea>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Register</button>
+                        <button type="submit" class="btn btn-primary">@lang('messages.Register')</button>
                     </form>
                 </div>
             </div>
@@ -109,6 +108,6 @@
         };
         window.myChart = new Chart(ctx, config);
     }
-    initChart(@json(array_keys($progress)), @json(array_values($progress)), 'Weight');
+    initChart(@json(array_keys($progress)), @json(array_values($progress)), "{{__('messages.Weight')}}");
 </script>
 @endpush

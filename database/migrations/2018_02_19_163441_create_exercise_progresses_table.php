@@ -17,7 +17,7 @@ class CreateExerciseProgressesTable extends Migration
             $table->increments('id');
             $table->integer('workout_exercise_id');
             $table->double('weight');
-            $table->text('notes');
+            $table->text('notes')->nullable();
             $table->timestamps();
 
             $table->foreign('workout_exercise_id')

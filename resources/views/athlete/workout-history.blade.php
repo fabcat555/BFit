@@ -10,11 +10,11 @@
             <div class="col-lg-12 main-chart">
                 <div class="row">
                     @foreach ($workouts as $wo)
-                    <div class="col-md-12 col-lg-6 mb">
+                    <div class="col-md-12 mb">
                         <!-- WORKOUT PANEL -->
                         <div class="grey-panel pn">
                             <div class="grey-header">
-                                <h5 class="black-heading">@lang('messages.AssignedWorkout')</h5>
+                                <h5 class="black-heading">@lang('messages.Workout')</h5>
                             </div>
                             <table class="table table-borderless table-description">
                                 <tbody>
@@ -32,6 +32,8 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            @foreach($wo->workoutExercises->groupBy('day') as $day => $woExercises)
+                            <h5>@lang('messages.Day') {{$day}}</h5>
                             <table class="table table-hover table-workout">
                                 <thead>
                                     <tr>
@@ -43,7 +45,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($wo->workoutExercises as $woExercise)
+                                    @foreach ($woExercises as $woExercise)
                                     <tr>
                                         <td>{{$woExercise->exercise->name}}</td>
                                         <td>{{$woExercise->sets}}</td>
@@ -60,6 +62,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            @endforeach
                             <br>
                         </div>
                     </div>

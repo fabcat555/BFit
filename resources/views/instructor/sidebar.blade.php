@@ -2,12 +2,11 @@
     <div id="sidebar" class="nav-collapse">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
-            <p class="centered"><a href="profile.html"><img src="{{ asset('img/ui-sam.jpg') }}" class="img-circle" width="60"></a></p>
-            {{-- <h5 class="centered">{{ Auth::guard('instructor')->user()->name }}</h5> --}}
-            <h5 class="centered">Fabio Catuogno</h5>
+            <p class="centered"><a href="{{route('instructor.dashboard')}}"><img src="{{ asset('img/ui-sam.jpg') }}" class="img-circle" width="60"></a></p>
+            <h5 class="centered">{{ Auth::guard('instructor')->user()->first_name }} {{ Auth::guard('instructor')->user()->last_name }}</h5>
             <h6 class="centered">@lang('messages.Instructor')</h6>
             <li class="mt">
-                <a class="active" href="index.html">
+                <a class="active" href="{{route('instructor.dashboard')}}">
                   <i class="fa fa-dashboard"></i>
                   <span>@lang('messages.Dashboard')</span>
               </a>
@@ -18,8 +17,8 @@
                   <span>@lang('messages.Workout')</span>
               </a>
                 <ul class="sub">
-                    <li><a href="general.html">@lang('messages.NewWorkout')</a></li>
-                    <li><a href="buttons.html">@lang('messages.ManageWOTypes')</a></li>
+                    <li><a href={{route('workouts.create')}}>@lang('messages.NewWorkout')</a></li>
+                    <li><a href="{{route('workout-types.index')}}">@lang('messages.ManageWOTypes')</a></li>
                 </ul>
             </li>
             <li class="sub-menu">
@@ -28,8 +27,8 @@
                   <span>@lang('messages.Athletes')</span>
               </a>
                 <ul class="sub">
-                    <li><a href="calendar.html">@lang('messages.ViewAssignedAthletes')</a></li>
-                    <li><a href="gallery.html">@lang('messages.NewAthlete')</a></li>
+                    <li><a href="{{route('instructor.athletes.index', Auth::guard('instructor')->user()->id)}}">@lang('messages.ViewAssignedAthletes')</a></li>
+                    <li><a href="{{route('instructor.athletes.create', Auth::guard('instructor')->user()->id)}}">@lang('messages.NewAthlete')</a></li>
                 </ul>
             </li>
             <li class="sub-menu">
@@ -38,9 +37,9 @@
                   <span>@lang('messages.Exercises')</span>
               </a>
                 <ul class="sub">
-                    <li><a href="blank.html">@lang('messages.ManageTechniques')</a></li>
-                    <li><a href="login.html">@lang('messages.ViewExercises')</a></li>
-                    <li><a href="lock_screen.html">@lang('messages.NewExercise')</a></li>
+                    <li><a href="{{route('exercise-techniques.index')}}">@lang('messages.ManageTechniques')</a></li>
+                    <li><a href="{{route('exercises.index')}}">@lang('messages.ViewExercises')</a></li>
+                    <li><a href="{{route('exercises.create')}}">@lang('messages.NewExercise')</a></li>
                 </ul>
             </li>
         </ul>

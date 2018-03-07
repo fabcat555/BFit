@@ -7,88 +7,184 @@
 <section id="main-content">
     <section class="wrapper">
         <div class="row">
-            <div class="col-lg-12 main-chart">
+            <div class="col-lg-12">
                 <!-- First row -->
                 <div class="row mt">
-                    <div class="col-md-6 col-sm-6 mb">
-                        <div class="white-panel pn donut-chart">
+                    <div class="col-md-12 col-lg-6 mb">
+                        <div class="white-panel pn personal-panel">
                             <div class="white-header">
-                                <h5>SERVER LOAD</h5>
+                                <h5 class="personal-data-heading">@lang('messages.PersonalData')</h5>
                             </div>
-                            <div class="row">
-                                <div class="col-sm-6 col-xs-6 goleft">
-                                    <p><i class="fa fa-database"></i> 70%</p>
-                                </div>
-                            </div>
-                            <canvas id="serverstatus01" height="120" width="120"></canvas>
-                            <script>
-                                var doughnutData = [
-                                                {
-                                                    value: 70,
-                                                    color:"#68dff0"
-                                                },
-                                                {
-                                                    value : 30,
-                                                    color : "#fdfdfd"
-                                                }
-                                            ];
-                                            var myDoughnut = new Chart(document.getElementById("serverstatus01").getContext("2d")).Doughnut(doughnutData);
-                            </script>
+                            <table class="table table-borderless table-personal">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">@lang('messages.FirstName')</th>
+                                        <td>{{ $admin->first_name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">@lang('messages.LastName')</th>
+                                        <td>{{ $admin->last_name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">@lang('messages.BirthDate')</th>
+                                        <td>{{ $admin->birth_date->format('d/m/y') }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">@lang('messages.Email')</th>
+                                        <td>{{ $admin->email }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">@lang('messages.MembershipStartDate')</th>
+                                        <td>{{ $admin->created_at->format('d/m/y') }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                    <div class="col-md-6 col-sm-6 mb">
+                    <div class="col-md-12 col-lg-6 mb">
                         <!-- WHITE PANEL - TOP USER -->
-                        <div class="white-panel pn">
+                        <div class="white-panel pn membership-panel">
                             <div class="white-header">
-                                <h5>TOP USER</h5>
-                            </div>
-                            <p><img src="{{ asset('img/ui-zac.jpg') }}" class="img-circle" width="80"></p>
-                            <p><b>Zac Snider</b></p>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <p class="small mt">MEMBER SINCE</p>
-                                    <p>2012</p>
-                                </div>
-                                <div class="col-md-6">
-                                    <p class="small mt">TOTAL SPEND</p>
-                                    <p>$ 47,60</p>
+                                <h5 class="panel-header">@lang('messages.MembershipTypesHeading')</h5>
+                                <div class="db-btn-group">
+                                    <a href="{{route('membership-types.create')}}" class="btn btn-primary btn-xs dashboard-btn">
+                                        @lang('messages.New')
+                                    </a>
+                                    <a href="{{route('membership-types.index')}}" class="btn btn-primary btn-xs dashboard-btn">
+                                        @lang('messages.ViewAll')
+                                    </a>
                                 </div>
                             </div>
+                            <table class="table table-hover table-workout">
+                                <thead>
+                                    <tr>
+                                        <th>@lang('messages.Membership')</th>
+                                        <th>@lang('messages.Validity')</th>
+                                        <th>@lang('messages.Price')</th>
+                                </thead>
+                                <tbody>
+                                    @foreach ($membershipTypes as $membershipType)
+                                    <tr>
+                                        <td>{{$membershipType->name}}</td>
+                                        <td>{{$membershipType->validity}}</td>
+                                        <td>{{$membershipType->price}}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                     <!-- /col-md-6 -->
                 </div>
-                <!-- /First row -->
+                <!-- /row -->
                 <!-- Second row -->
-                <div class="row">
-                    <!-- /col-md-4 -->
-                    <div class="col-md-6 col-sm-6 mb">
-                        <!-- INSTAGRAM PANEL -->
-                        <div class="instagram-panel pn">
-                            <i class="fa fa-instagram fa-4x"></i>
-                            <p>@THISISYOU<br/> 5 min. ago
-                            </p>
-                            <p><i class="fa fa-comment"></i> 18 | <i class="fa fa-heart"></i> 49</p>
+                <div class="row mt">
+                    <div class="col-md-12 mb">
+                        <!-- WHITE PANEL - TOP USER -->
+                        <div class="white-panel pn membership-panel">
+                            <div class="white-header">
+                                <h5 class="panel-header">@lang('messages.MembershipsHeading')</h5>
+                                <div class="db-btn-group">
+                                    <a href="{{route('memberships.create')}}" class="btn btn-primary btn-xs dashboard-btn">
+                                        @lang('messages.New')
+                                    </a>
+                                    <a href="{{route('memberships.index')}}" class="btn btn-primary btn-xs dashboard-btn">
+                                        @lang('messages.ViewAll')
+                                    </a>
+                                    <a href="{{route('memberships.report.view')}}" class="btn btn-primary btn-xs dashboard-btn">
+                                        @lang('messages.ViewReport')
+                                    </a>
+                                </div>
+                            </div>
+                            <table class="table table-hover table-workout">
+                                <thead>
+                                    <tr>
+                                        <th>@lang('messages.Athlete')</th>
+                                        <th>@lang('messages.Type')</th>
+                                        <th>@lang('messages.StartDate')</th>
+                                        <th>@lang('messages.EndDate')</th>
+                                </thead>
+                                <tbody>
+                                    @foreach ($memberships as $membership)
+                                    <tr>
+                                        <td>{{$membership->athlete->first_name}} {{$membership->athlete->last_name}}</td>
+                                        <td>{{$membership->type->name}}</td>
+                                        <td>{{$membership->start_date->format('d/m/y')}}</td>
+                                        <td>{{$membership->end_date->format('d/m/y')}}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                    <!-- /col-md-4 -->
-                    <div class="col-md-6 col-sm-6 mb">
-                        <!-- REVENUE PANEL -->
-                        <div class="darkblue-panel pn">
-                            <div class="darkblue-header">
-                                <h5>REVENUE</h5>
-                            </div>
-                            <div class="chart mt">
-                                <div class="sparkline" data-type="line" data-resize="true" data-height="75" data-width="90%" data-line-width="1" data-line-color="#fff"
-                                    data-spot-color="#fff" data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="4"
-                                    data-data="[200,135,667,333,526,996,564,123,890,464,655]"></div>
-                            </div>
-                            <p class="mt"><b>$ 17,980</b><br/>Month Income</p>
-                        </div>
-                    </div>
-                    <!-- /col-md-4 -->
+                    <!-- /col-md-6 -->
                 </div>
-                <!-- /Second row -->
+                <!-- /row -->
+                <!-- Second row -->
+                <div class="row mt">
+                    <div class="col-md-12 col-lg-6 mb">
+                        <!-- WHITE PANEL - TOP USER -->
+                        <div class="white-panel pn membership-panel">
+                            <div class="white-header">
+                                <h5 class="panel-header">@lang('messages.AthletesHeading')</h5>
+                                <div class="db-btn-group">
+                                    <a href="{{route('athletes.create')}}" class="btn btn-primary btn-xs dashboard-btn">
+                                            @lang('messages.New')
+                                        </a>
+                                    <a href="{{route('athletes.index')}}" class="btn btn-primary btn-xs dashboard-btn">
+                                            @lang('messages.ViewAll')
+                                        </a>
+                                </div>
+                            </div>
+                            <table class="table table-hover table-workout">
+                                <thead>
+                                    <tr>
+                                        <th>@lang('messages.Name')</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($athletes as $athlete)
+                                    <tr>
+                                        <td>{{$athlete->first_name}} {{$athlete->last_name}}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6 mb">
+                        <!-- WHITE PANEL - TOP USER -->
+                        <div class="white-panel pn membership-panel">
+                            <div class="white-header">
+                                <h5 class="panel-header">@lang('messages.InstructorsHeading')</h5>
+                                <div class="db-btn-group">
+                                    <a href="{{route('instructors.create')}}" class="btn btn-primary btn-xs dashboard-btn">
+                                    @lang('messages.New')
+                                </a>
+                                    <a href="{{route('instructors.index')}}" class="btn btn-primary btn-xs dashboard-btn">
+                                    @lang('messages.ViewAll')
+                                </a>
+                                </div>
+                            </div>
+                            <table class="table table-hover table-workout">
+                                <thead>
+                                    <tr>
+                                        <th>@lang('messages.Name')</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($instructors as $instructor)
+                                    <tr>
+                                        <td>{{$instructor->first_name}} {{$instructor->last_name}}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- /col-md-6 -->
+                </div>
+                <!-- /row -->
             </div>
             <!-- /col-lg-12 END SECTION MIDDLE -->
         </div>

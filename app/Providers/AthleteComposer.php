@@ -14,9 +14,9 @@ class AthleteComposer extends ServiceProvider
      */
     public function boot()
     {
-        View::composer(
-            'athlete.dashboard', 'App\Http\ViewComposers\AthleteViewComposer'
-        );
+        // View::composer(
+        //     'athlete.dashboard', 'App\Http\ViewComposers\AthleteViewComposer'
+        // );
 
     }
 

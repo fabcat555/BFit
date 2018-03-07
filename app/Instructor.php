@@ -34,6 +34,10 @@ class Instructor extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function athletes() {
+        return $this->hasMany('App\Athlete');
+    }
+
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPasswordNotification($token));

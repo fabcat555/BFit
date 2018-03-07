@@ -103,7 +103,7 @@
         
         myChart.destroy();
         $.ajax({
-            url: 'getMeasurements/' + measure,
+            url: '/getMeasurements/' + {{Auth::guard('athlete')->user()->id}} + '/' + measure,
             success: function(data) {
                 initChart(Object.keys(data), Object.values(data), capitalizeFirstLetter(measure));
                 $("#bm-heading-span").text(capitalizeFirstLetter(measure))

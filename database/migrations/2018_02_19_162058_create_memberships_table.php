@@ -18,7 +18,6 @@ class CreateMembershipsTable extends Migration
             $table->integer('athlete_id');
             $table->timestamp('start_date');
             $table->timestamp('end_date');
-            $table->boolean('status');
             $table->integer('type_id');
             $table->timestamps();
 

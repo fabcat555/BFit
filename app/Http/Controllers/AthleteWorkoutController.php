@@ -13,7 +13,13 @@ class AthleteWorkoutController extends Controller
     }
 
     public function index() {
-        return view('athlete.workout')->with('workout', Auth::guard('athlete')->user()->currentWorkout());
+        $workout = Auth::guard('athlete')->user()->currentWorkout();
+        $workoutDays = $workout->workoutExercises->groupBy('day');
+        
+        return view('athlete.workout')->with([
+            'workout' => $workout,
+            'workoutDays' => $workoutDays
+        ]);
     }
 
     public function viewHistory() {

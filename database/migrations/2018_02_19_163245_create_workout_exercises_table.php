@@ -17,6 +17,7 @@ class CreateWorkoutExercisesTable extends Migration
             $table->increments('id');
             $table->integer('exercise_id');
             $table->integer('workout_id');
+            $table->integer('day');
             $table->integer('sets');
             $table->integer('reps');
             $table->integer('rest');

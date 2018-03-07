@@ -13,7 +13,7 @@
                     <div class="col-md-12 col-lg-6 mb">
                         <div class="white-panel pn personal-panel">
                             <div class="white-header">
-                                <h5 class="personal-data-heading black-heading">@lang('messages.PersonalData')</h5>
+                                <h5 class="personal-data-heading ">@lang('messages.PersonalData')</h5>
                             </div>
                             <table class="table table-borderless table-personal">
                                 <tbody>
@@ -45,7 +45,7 @@
                         <!-- WHITE PANEL - TOP USER -->
                         <div class="white-panel pn membership-panel">
                             <div class="white-header">
-                                <h5 class="black-heading">@lang('messages.MembershipHeading')</h5>
+                                <h5 class="">@lang('messages.MembershipHeading')</h5>
                             </div>
                             <table class="table table-borderless table-description">
                                 <tbody>
@@ -55,7 +55,7 @@
                                     </tr>
                                     <tr>
                                         <th scope="row">@lang('messages.MembershipStatus')</th>
-                                        <td>{{ $membership->status ? 'Active' : 'Inactive' }}</td>
+                                        <td>{{ $membership->end_date > Carbon\Carbon::now() ? __('messages.Active') : __('messages.Expired') }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">@lang('messages.MembershipValidity')</th>
@@ -89,19 +89,22 @@
                 </div>
                 <!-- /row -->
                 <!-- Second row -->
-                <div class="row">
+                <div class="row mt">
                     <!-- /col-md-4 -->
                     <div class="col-md-12 col-lg-6 mb">
                         <!-- INSTAGRAM PANEL -->
                         <div class="grey-panel pn workout-panel">
                             <div class="grey-header">
-                                <h5 class="wo-panel-heading black-heading">@lang('messages.AssignedWorkoutHeading')</h5>
-                                <a href="{{route('workout.history')}}" class="btn btn-primary btn-xs dashboard-btn">
-                                    @lang('messages.ViewHistory')
-                                </a>
-                                <a href="{{route('workout')}}" class="btn btn-primary btn-xs dashboard-btn">
-                                    @lang('messages.ViewAll')
-                                </a>
+                                <h5 class="panel-header">@lang('messages.AssignedWorkoutHeading')</h5>
+                                <div class="db-btn-group">
+                                    <a href="{{route('workout.history')}}" class="btn btn-primary btn-xs dashboard-btn">
+                                        @lang('messages.ViewHistory')
+                                    </a>
+                                    <a href="{{route('workout')}}" class="btn btn-primary btn-xs dashboard-btn">
+                                        @lang('messages.ViewAll')
+                                    </a>
+                                </div>
+                               
                             </div>
                             <table class="table table-borderless table-description">
                                 <tbody>
@@ -119,6 +122,7 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            <h5>@lang('messages.Day') 1</h5>
                             <table class="table table-hover table-workout">
                                 <thead>
                                     <tr>
@@ -130,7 +134,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($athlete->currentWorkout()->workoutExercises as $woExercise)
+                                    @foreach ($workoutDays[1] as $woExercise)
                                     <tr>
                                         <td>{{$woExercise->exercise->name}}</td>
                                         <td>{{$woExercise->sets}}</td>
@@ -150,8 +154,10 @@
                     <div class="col-md-12 col-lg-6 mb">
                         <div class="darkblue-panel pn bm-panel">
                             <div class="darkblue-header">
-                                <h5 class="bm-panel-heading">@lang('messages.BodyMeasurementsHeading')</h5>
-                                <a href="{{route('bodymeasurements')}}" class="btn btn-primary btn-xs dashboard-btn">@lang('messages.ViewAll')</a>
+                                <h5 class="panel-header">@lang('messages.BodyMeasurementsHeading')</h5>
+                                <div class="db-btn-group">
+                                    <a href="{{route('bodymeasurements')}}" class="btn btn-primary btn-xs dashboard-btn">@lang('messages.ViewAll')</a>
+                                </div>
                             </div>
                             <canvas id="myChart" class="bm-weight-chart" width="400" height="250"></canvas>
                         </div>
@@ -177,7 +183,7 @@
         data: {
             labels: @json(array_keys($weightMeasurement)),
             datasets: [{
-                label: "Peso",
+                label: "{{ __('messages.Weight') }}" ,
                 backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgb(255, 99, 132)',
                 data: @json(array_values($weightMeasurement)),

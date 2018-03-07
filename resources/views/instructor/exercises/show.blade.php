@@ -1,6 +1,10 @@
 @extends('layouts.master') 
 @section('sidebar')
-    @include('athlete.sidebar')
+    @if(Auth::guard('instructor')->check())
+        @include('instructor.sidebar')
+    @else
+        @include('athlete.sidebar')
+    @endif
 @endsection
  
 @section('content')

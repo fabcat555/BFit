@@ -23,6 +23,13 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     /**
+     * Where to redirect users after login.
+     *
+     * @var string
+     */
+    protected $redirectTo = '/instructor/dashboard';
+
+    /**
      * Create a new controller instance.
      *
      * @return void
@@ -48,13 +55,13 @@ class LoginController extends Controller
             return redirect()->intended(route('instructor.dashboard'));
         }
 
-        return redirect()->back()->withInput($request->only('email', 'remember'));
+        return redirect()->back()->withInput($request->only('email', 'remember'))->withErrors();
     }
 
     public function logout()
     {
         Auth::guard('instructor')->logout();
 
-        return redirect('/');
+        return redirect('/instructor/login');
     }
 }

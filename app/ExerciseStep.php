@@ -12,4 +12,8 @@ class ExerciseStep extends Model
      * @var array
      */
     protected $guarded = ['id'];
+
+    public function exercise() {
+        return $this->belongsTo('App\Exercise');
+    }
 }

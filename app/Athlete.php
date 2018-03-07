@@ -47,7 +47,7 @@ class Athlete extends Authenticatable
     }
 
     public function activeMembership() {
-        return $this->memberships()->where('status', true)->first();
+        return $this->memberships()->where('end_date', '>', Carbon::now())->first();
     }
 
     public function currentWorkout() {

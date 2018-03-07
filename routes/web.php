@@ -11,10 +11,6 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('athlete.dashboard');
-// });
-
 // Auth routes
 Auth::routes();
 Route::group(['prefix' => 'instructor'], function () {
@@ -45,21 +41,24 @@ Route::get('/{url?}', 'AthleteController@index')->where('url', 'dashboard')->nam
 Route::get('/my-workout', 'AthleteWorkoutController@index')->name('workout');
 Route::get('/my-workout-history', 'AthleteWorkoutController@viewHistory')->name('workout.history');
 Route::get('/body-measurements', 'AthleteBodyMeasurementsController@index')->name('bodymeasurements');
-Route::get('/getMeasurements/{measure?}', 'AthleteBodyMeasurementsController@getMeasurements')->name('bodymeasurements.get');
+Route::get('/getMeasurements/{athleteId}/{measure?}', 'AthleteBodyMeasurementsController@getMeasurements')->name('bodymeasurements.get');
 Route::get('/progress/{exercise}', 'ExerciseProgressController@show')->name('progress.show');
 Route::post('/progress/{exercise}', 'ExerciseProgressController@store')->name('progress.store');
-Route::get('/technique/{technique}', 'ExerciseTechniqueController@show')->name('technique.show');
-Route::get('/exercise/{exerciseId}', 'ExerciseController@show')->name('exercise.show');
 
-//// Instructor routes
-//Route::resource('workout', 'WorkoutsController');
-//Route::resource('exercise', 'ExercisesController');
-//Route::resource('exercise-technique', 'ExerciseTechniquesController');
-//Route::resource('workout-type', 'WorkoutTypesController');
-//Route::resource('athletes', 'AthletesController');
-//Route::resource('athletes.body-measurement', 'BodyMeasurementsController');
-//
-//// Admin routes
-//Route::resource('instructor', 'InstructorsController');
-//Route::resource('membership-types', 'MembershipsController');
-//Route::get('memberships/{timeRange?}', 'MembershipsController@viewReport');
+// Instructor routes
+Route::get('instructor/dashboard', 'InstructorController@index')->name('instructor.dashboard');
+Route::resource('workouts', 'Instructor\WorkoutsController');
+Route::resource('exercises', 'Instructor\ExercisesController');
+Route::resource('exercise-techniques', 'Instructor\ExerciseTechniquesController');
+Route::resource('workout-types', 'Instructor\WorkoutTypesController');
+Route::resource('instructor.athletes', 'Instructor\AthletesController');
+Route::resource('athletes.measurements', 'Instructor\BodyMeasurementsController')->only(['store']);
+
+// Admin routes
+Route::get('admin/dashboard', 'AdminController@index')->name('admin.dashboard');
+Route::resource('athletes', 'Admin\AthletesController');
+Route::resource('instructors', 'Admin\InstructorsController');
+Route::resource('memberships', 'Admin\MembershipsController')->except(['show', 'edit', 'update']);
+Route::resource('membership-types', 'Admin\MembershipTypesController');
+Route::get('memberships-report', 'Admin\MembershipsController@viewReport')->name('memberships.report.view');
+Route::get('memberships/{timeRange?}', 'Admin\MembershipsController@getReport')->name('memberships.report.get');

@@ -31,6 +31,8 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            @foreach ($workoutDays as $day => $exercises)
+                            <h5>@lang('messages.Day') {{$day}}</h5>
                             <table class="table table-hover table-workout">
                                 <thead>
                                     <tr>
@@ -42,31 +44,29 @@
                                         <th></th>
                                     </tr>
                                 </thead>
+                                @foreach($exercises as $woExercise)
                                 <tbody>
-                                    @foreach ($workout->workoutExercises as $woExercise)
                                     <tr>
                                         <td>
-                                            <a href="{{route('exercise.show', ['exerciseId' => $woExercise->exercise->id])}}">{{$woExercise->exercise->name}}</a>
+                                            <a href="{{route('exercises.show', ['id' => $woExercise->exercise->id])}}">{{$woExercise->exercise->name}}</a>
                                         </td>
                                         <td>{{$woExercise->sets}}</td>
                                         <td>{{$woExercise->reps}}</td>
                                         <td>{{$woExercise->rest}}</td>
                                         <td>
                                             @if (isset($woExercise->exerciseTechnique))
-                                                <a href="{{route('technique.show', ['technique' => $woExercise->exerciseTechnique->id])}}">
+                                            <a href="{{route('exercise-techniques.show', ['technique' => $woExercise->exerciseTechnique->id])}}">
                                                     {{$woExercise->exerciseTechnique->name}}
-                                                </a>
-                                            @else
-                                                -
-                                            @endif
+                                                </a> @else - @endif
                                         </td>
                                         <td>
                                             <a href="{{ route('progress.show', ['exercise' => $woExercise->id]) }}" class="btn btn-warning btn-xs"><i class="fa fa-bar-chart-o"></i></a>
                                         </td>
                                     </tr>
-                                    @endforeach
                                 </tbody>
+                                @endforeach
                             </table>
+                            @endforeach
                             <br>
                         </div>
                     </div>

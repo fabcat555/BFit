@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 
+use App\Athlete;
+
 class AthleteBodyMeasurementsController extends Controller
 {
     /**
@@ -14,7 +16,7 @@ class AthleteBodyMeasurementsController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:athlete');
+        $this->middleware('auth:athlete,instructor');
     }
 
     public function index() {
@@ -25,8 +27,8 @@ class AthleteBodyMeasurementsController extends Controller
         return view('athlete.body-measurements')->with(['weightMeasurement' => $weightMeasurements]);
     }
 
-    public function getMeasurements($measure = 'weight') {
-        foreach(Auth::guard('athlete')->user()->bodyMeasurements->sortBy('created_at')->all() as $bm) {
+    public function getMeasurements($athleteId, $measure = 'weight') {
+        foreach(Athlete::findOrFail($athleteId)->bodyMeasurements->sortBy('created_at')->all() as $bm) {
             $measurements[$bm->created_at->format('d-m-y')] = $bm->$measure;
         }
 

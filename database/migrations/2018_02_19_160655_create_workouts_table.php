@@ -15,10 +15,11 @@ class CreateWorkoutsTable extends Migration
     {
         Schema::create('workouts', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
             $table->integer('athlete_id')->nullable();
             $table->timestamp('start_date')->nullable();
             $table->timestamp('end_date')->nullable();
-            $table->integer('type_id');
+            $table->integer('type_id')->nullable();
             $table->timestamps();
 
             $table->foreign('athlete_id')
