@@ -23,7 +23,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">@lang('messages.FirstName')</label>
                                     <div class="col-sm-12">
-                                        <input name="name" type="text" class="form-control" value="{{ $exercise->name }}">
+                                        <input name="name" required type="text" class="form-control" value="{{ $exercise->name }}">
                                     </div>
                                 </div>
                                 @foreach ($exercise->exerciseSteps as $step)

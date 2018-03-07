@@ -20,7 +20,7 @@
                         <div class="form-group">
                             <label class="col-sm-1 control-label">@lang('messages.Name')</label>
                             <div class="col-sm-4">
-                                <input name="name" value="{{$workout->name}}" type="text" class="form-control">
+                                <input name="name" required value="{{$workout->name}}" type="text" class="form-control">
                             </div>
                         </div>
                         @foreach($workout->workoutExercises as $key => $workoutExercise)
@@ -49,15 +49,15 @@
                                 <div class="form-group">
                                     <label class="col-sm-1 control-label">@lang('messages.Sets')</label>
                                     <div class="col-sm-2">
-                                        <input name="workoutExercises[{{$workoutExercise->id}}][sets]" value="{{$workoutExercise->sets}}" type="text" class="form-control">
+                                        <input name="workoutExercises[{{$workoutExercise->id}}][sets]" required value="{{$workoutExercise->sets}}" type="text" class="form-control">
                                     </div>
                                     <label class="col-sm-1 control-label">@lang('messages.Reps')</label>
                                     <div class="col-sm-2">
-                                        <input name="workoutExercises[{{$workoutExercise->id}}][reps]" value="{{$workoutExercise->reps}}" type="text" class="form-control">
+                                        <input name="workoutExercises[{{$workoutExercise->id}}][reps]" required value="{{$workoutExercise->reps}}" type="text" class="form-control">
                                     </div>
                                     <label class="col-sm-1 control-label">@lang('messages.Rest')</label>
                                     <div class="col-sm-2">
-                                        <input name="workoutExercises[{{$workoutExercise->id}}][rest]" value="{{$workoutExercise->rest}}" type="text" class="form-control">
+                                        <input name="workoutExercises[{{$workoutExercise->id}}][rest]" required value="{{$workoutExercise->rest}}" type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group">

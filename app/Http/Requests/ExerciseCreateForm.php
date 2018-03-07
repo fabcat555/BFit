@@ -25,7 +25,7 @@ class ExerciseCreateForm extends FormRequest
     {
         return [
             'name' => 'required|min:2',
-            'steps' => 'array'
+            'steps' => 'array|min:1'
         ];
     }
 }

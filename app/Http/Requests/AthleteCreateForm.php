@@ -28,7 +28,7 @@ class AthleteCreateForm extends FormRequest
             'last_name' => 'required|min:2',
             'birth_date' => 'date',
             'email' => 'required|email|unique:athletes',
-            'password' => 'required|min:6',
+            'password' => 'required|confirmed|min:6',
             'gender' => 'required',
             'height' => 'integer'
         ];

@@ -23,13 +23,13 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">@lang('messages.Name')</label>
                                     <div class="col-sm-12">
-                                        <input name="name" type="text" class="form-control" value="{{ $workoutType->name }}">
+                                        <input name="name" required type="text" class="form-control" value="{{ $workoutType->name }}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">@lang('messages.Description')</label>
                                     <div class="col-sm-12">
-                                        <textarea name="description" class="form-control">{{ $workoutType->description }}</textarea>
+                                        <textarea name="description" required class="form-control">{{ $workoutType->description }}</textarea>
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary pull-right">@lang('messages.Register')</button>

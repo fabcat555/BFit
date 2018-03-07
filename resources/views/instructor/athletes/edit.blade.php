@@ -25,26 +25,26 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">@lang('messages.FirstName')</label>
                                     <div class="col-sm-12">
-                                    <input name="first_name" type="text" class="form-control" value="{{ old('first_name', $athlete->first_name) }}">
+                                    <input name="first_name" type="text" required class="form-control" value="{{ old('first_name', $athlete->first_name) }}">
                                     </div>
                                 </div>
                                 <input type="hidden" name="athlete_id" value={{ $athlete->id }}>
                                 <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">@lang('messages.LastName')</label>
                                     <div class="col-sm-12">
-                                        <input name="last_name" type="text" class="form-control" value="{{ old('last_name', $athlete->last_name) }}">
+                                        <input name="last_name" type="text" required class="form-control" value="{{ old('last_name', $athlete->last_name) }}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">@lang('messages.BirthDate')</label>
                                     <div class="col-sm-12">
-                                        <input name="birth_date" type="date" class="form-control" value="{{ old('birth_date', $athlete->birth_date->format('Y-m-d')) }}">
+                                        <input name="birth_date" type="date" required class="form-control" value="{{ old('birth_date', $athlete->birth_date->format('Y-m-d')) }}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">@lang('messages.Email')</label>
                                     <div class="col-sm-12">
-                                        <input name="email" type="email" class="form-control" value="{{ old('email', $athlete->email) }}">
+                                        <input name="email" type="email" required class="form-control" value="{{ old('email', $athlete->email) }}">
                                     </div>
                                 </div>
                                 <div class="form-group gender-input">
@@ -58,7 +58,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">@lang('messages.Height')</label>
                                     <div class="col-sm-12">
-                                        <input name="height" type="number" class="form-control" value="{{ old('height', $athlete->height) }}">
+                                        <input name="height" type="number" required class="form-control" value="{{ old('height', $athlete->height) }}">
                                     </div>
                                 </div>
                                 <div class="form-group">

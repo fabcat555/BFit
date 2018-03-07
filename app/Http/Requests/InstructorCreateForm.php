@@ -27,8 +27,8 @@ class InstructorCreateForm extends FormRequest
             'first_name' => 'required|min:2',
             'last_name' => 'required|min:2',
             'birth_date' => 'date',
-            'email' => 'required|email|unique:athletes',
-            'password' => 'required|min:6'
+            'email' => 'required|email|unique:instructors',
+            'password' => 'required|confirmed|min:6'
         ];
     }
 }

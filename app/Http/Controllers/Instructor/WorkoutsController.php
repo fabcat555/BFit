@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Instructor;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\WorkoutCreateForm;
 use App\Http\Controllers\Controller;
 
 use App\Athlete;
@@ -45,7 +46,7 @@ class WorkoutsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(WorkoutCreateForm $request)
     {
         $workout = Workout::create($request->only(['name', 'athlete_id', 'start_date', 'end_date', 'type_id']));
         $workout->save();
@@ -58,6 +59,7 @@ class WorkoutsController extends Controller
                 'sets' => $workoutExercise['sets'],
                 'reps' => $workoutExercise['reps'],
                 'rest' => $workoutExercise['rest'],
+                'day' => $workoutExercise['day'],
                 'notes' => $workoutExercise['notes'],
                 'exercise_technique_id' => $workoutExercise['exercise_technique_id'],
             ])->save();
@@ -101,7 +103,7 @@ class WorkoutsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(WorkoutCreateForm $request, $id)
     {
         $workout = Workout::findOrFail($id);
         $workout->fill($request->only(['name', 'athlete_id', 'start_date', 'end_date', 'type_id']))->save();

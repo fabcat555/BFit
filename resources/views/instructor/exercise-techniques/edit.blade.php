@@ -23,7 +23,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">@lang('messages.Name')</label>
                                     <div class="col-sm-12">
-                                        <input name="name" type="text" class="form-control" value="{{ $technique->name }}">
+                                        <input name="name" required type="text" class="form-control" value="{{ $technique->name }}">
                                     </div>
                                 </div>
                                 <div class="form-group">

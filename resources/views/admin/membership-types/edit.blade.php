@@ -24,20 +24,20 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">@lang('messages.Name')</label>
                                     <div class="col-sm-12">
-                                    <input name="name" type="text" class="form-control" value="{{ old('name', $membershipType->name) }}">
+                                    <input name="name" required type="text" class="form-control" value="{{ old('name', $membershipType->name) }}">
                                     </div>
                                 </div>
                                 <input type="hidden" name="athlete_id" value={{ $membershipType->validity }}>
                                 <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">@lang('messages.Validity')</label>
                                     <div class="col-sm-12">
-                                        <input name="validity" type="number" class="form-control" value="{{ old('validity', $membershipType->validity) }}">
+                                        <input name="validity" required type="number" class="form-control" value="{{ old('validity', $membershipType->validity) }}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">@lang('messages.Price')</label>
                                     <div class="col-sm-12">
-                                        <input name="price" type="number" class="form-control" value="{{ old('price', $membershipType->price) }}">
+                                        <input name="price" required type="number" class="form-control" value="{{ old('price', $membershipType->price) }}">
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary pull-right">@lang('messages.Register')</button>

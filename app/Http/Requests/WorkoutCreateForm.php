@@ -13,7 +13,7 @@ class WorkoutCreateForm extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,12 @@ class WorkoutCreateForm extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|min:2',
+            'athlete_id' => 'nullable|numeric|exists:athletes,id',
+            'type_id' => 'nullable|numeric|exists:workout_types,id',
+            'start_date' => 'nullable|date',
+            'end_date' => 'nullable|date',
+            'workoutExercises' => 'array|min:1',
         ];
     }
 }

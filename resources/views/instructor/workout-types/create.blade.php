@@ -22,13 +22,13 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">@lang('messages.Name')</label>
                                     <div class="col-sm-12">
-                                        <input name="name" type="text" class="form-control">
+                                        <input name="name" required type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">@lang('messages.Description')</label>
                                     <div class="col-sm-12">
-                                        <textarea name="description" class="form-control"></textarea>
+                                        <textarea name="description" required class="form-control"></textarea>
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary pull-right">@lang('messages.Register')</button>

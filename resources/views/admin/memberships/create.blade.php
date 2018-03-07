@@ -22,7 +22,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">@lang('messages.Athlete')</label>
                                     <div class="col-sm-6">
-                                        <select name="athlete_id" class="form-control">
+                                        <select name="athlete_id" required class="form-control">
                                             @foreach($athletes as $athlete)
                                             <option value="{{$athlete->id}}">{{$athlete->first_name}} {{$athlete->last_name}}</option>
                                             @endforeach
@@ -32,7 +32,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">@lang('messages.Exercise')</label>
                                     <div class="col-sm-6">
-                                        <select name="type_id" class="form-control">
+                                        <select name="type_id" required class="form-control">
                                             @foreach($membershipTypes as $membershipType)
                                             <option value="{{$membershipType->id}}">{{$membershipType->name}}</option>
                                             @endforeach

@@ -24,26 +24,26 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">@lang('messages.FirstName')</label>
                                     <div class="col-sm-12">
-                                    <input name="first_name" type="text" class="form-control" value="{{ old('first_name', $instructor->first_name) }}">
+                                    <input name="first_name" required type="text" class="form-control" value="{{ old('first_name', $instructor->first_name) }}">
                                     </div>
                                 </div>
                                 <input type="hidden" name="athlete_id" value={{ $instructor->id }}>
                                 <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">@lang('messages.LastName')</label>
                                     <div class="col-sm-12">
-                                        <input name="last_name" type="text" class="form-control" value="{{ old('last_name', $instructor->last_name) }}">
+                                        <input name="last_name" required type="text" class="form-control" value="{{ old('last_name', $instructor->last_name) }}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">@lang('messages.BirthDate')</label>
                                     <div class="col-sm-12">
-                                        <input name="birth_date" type="date" class="form-control" value="{{ old('birth_date', $instructor->birth_date->format('Y-m-d')) }}">
+                                        <input name="birth_date" required type="date" class="form-control" value="{{ old('birth_date', $instructor->birth_date->format('Y-m-d')) }}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">@lang('messages.Email')</label>
                                     <div class="col-sm-12">
-                                        <input name="email" type="email" class="form-control" value="{{ old('email', $instructor->email) }}">
+                                        <input name="email" required type="email" class="form-control" value="{{ old('email', $instructor->email) }}">
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary pull-right">@lang('messages.Register')</button>

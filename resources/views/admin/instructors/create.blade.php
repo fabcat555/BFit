@@ -23,37 +23,37 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">@lang('messages.FirstName')</label>
                                     <div class="col-sm-12">
-                                        <input name="first_name" type="text" class="form-control">
+                                        <input name="first_name" required type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">@lang('messages.LastName')</label>
                                     <div class="col-sm-12">
-                                        <input name="last_name" type="text" class="form-control">
+                                        <input name="last_name" required type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">@lang('messages.BirthDate')</label>
                                     <div class="col-sm-12">
-                                        <input name="birth_date" type="date" class="form-control">
+                                        <input name="birth_date" required type="date" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">@lang('messages.Email')</label>
                                     <div class="col-sm-12">
-                                        <input name="email" type="email" class="form-control">
+                                        <input name="email" required type="email" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">@lang('messages.Password')</label>
                                     <div class="col-sm-12">
-                                        <input name="password" type="password" class="form-control">
+                                        <input name="password" required type="password" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">@lang('messages.PasswordConfirmation')</label>
                                     <div class="col-sm-12">
-                                        <input name="password_confirmation" type="password" class="form-control">
+                                        <input name="password_confirmation" required type="password" class="form-control">
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary pull-right">Register</button>
