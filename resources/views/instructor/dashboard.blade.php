@@ -2,6 +2,9 @@
 @section('sidebar')
     @include('instructor.sidebar')
 @endsection
+@section('topbar')
+    @include('instructor.topbar')
+@endsection 
  
 @section('content')
 <section id="main-content">
@@ -11,6 +14,7 @@
                 <!-- First row -->
                 <div class="row mt">
                     <div class="col-md-12 col-lg-6 mb">
+                         <!-- PERSONAL PANEL -->
                         <div class="white-panel pn personal-panel">
                             <div class="white-header">
                                 <h5 class="personal-data-heading">@lang('messages.PersonalData')</h5>
@@ -42,7 +46,7 @@
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 mb">
-                        <!-- WHITE PANEL - TOP USER -->
+                        <!-- ATHLETES PANEL -->
                         <div class="white-panel pn membership-panel">
                             <div class="white-header">
                                 <h5 class="panel-header">@lang('messages.AssignedAthletes')</h5>
@@ -55,6 +59,7 @@
                                 </a>
                                 </div>
                             </div>
+                            @if(isset($athletes))
                             <table class="table table-hover table-workout">
                                 <thead>
                                     <tr>
@@ -69,6 +74,9 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            @else
+                                <h5>@lang('messages.NoAthletes')</h5>
+                            @endif
                         </div>
                     </div>
                     <!-- /col-md-6 -->
@@ -77,6 +85,7 @@
                 <!-- Second row -->
                 <div class="row mt">
                     <div class="col-md-12 col-lg-6 mb">
+                        <!-- EXERCISES PANEL -->
                         <div class="white-panel pn personal-panel">
                             <div class="white-header">
                                 <h5 class="personal-data-heading panel-header">@lang('messages.ExercisesHeading')</h5>
@@ -89,6 +98,7 @@
                                     </a>
                                 </div>
                             </div>
+                            @if(isset($exercises))
                             <table class="table table-hover table-workout">
                                 <thead>
                                     <tr>
@@ -103,10 +113,13 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            @else
+                                <h5>@lang('messages.NoExercises')</h5>
+                            @endif
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 mb">
-                        <!-- WHITE PANEL - TOP USER -->
+                        <!-- PREDEFINED WORKOUTS PANEL -->
                         <div class="white-panel pn membership-panel">
                             <div class="white-header">
                                 <h5 class="panel-header">@lang('messages.PredefinedWorkouts')</h5>
@@ -119,6 +132,7 @@
                                 </a>
                                 </div>
                             </div>
+                            @if(isset($workouts))
                             <table class="table table-hover table-workout">
                                 <thead>
                                     <tr>
@@ -133,6 +147,9 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            @else
+                                <h5>@lang('messages.NoWorkouts')</h5>
+                            @endif
                         </div>
                     </div>
                     <!-- /col-md-6 -->
@@ -141,6 +158,7 @@
                 <!-- Third row -->
                 <div class="row mt">
                     <div class="col-md-12 col-lg-6 mb">
+                        <!-- WORKOUT TYPES PANEL -->
                         <div class="white-panel pn personal-panel">
                             <div class="white-header">
                                 <h5 class="personal-data-heading panel-header">@lang('messages.WorkoutTypesHeading')</h5>
@@ -153,6 +171,7 @@
                                 </a>
                                 </div>
                             </div>
+                            @if (isset($workoutTypes))
                             <table class="table table-hover table-workout">
                                 <thead>
                                     <tr>
@@ -167,10 +186,13 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            @else
+                                <h5>@lang('messages.NoWorkoutTypes')</h5>
+                            @endif
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 mb">
-                        <!-- WHITE PANEL - TOP USER -->
+                        <!-- EXERCISE TECHNIQUES PANEL -->
                         <div class="white-panel pn membership-panel">
                             <div class="white-header">
                                 <h5 class="panel-header">@lang('messages.ExerciseTechniques')</h5>
@@ -183,6 +205,7 @@
                                     </a>
                                 </div>
                             </div>
+                            @if (isset($exerciseTecniques))
                             <table class="table table-hover table-workout">
                                 <thead>
                                     <tr>
@@ -197,6 +220,9 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            @else
+                                <h5>@lang('messages.NoTechniques')</h5>
+                            @endif
                         </div>
                     </div>
                     <!-- /col-md-6 -->

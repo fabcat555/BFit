@@ -26,7 +26,12 @@ class AthleteController extends Controller
     public function index()
     {
         $athlete = Auth::guard('athlete')->user();
-        $workoutDays = $athlete->currentWorkout()->workoutExercises->groupBy('day');
+        $currentWorkout = $athlete->currentWorkout();
+        $workoutDays = [];
+        $weightMeasurements = [];
+
+        if ($currentWorkout)
+            $workoutDays = $currentWorkout->workoutExercises->groupBy('day');
 
         foreach($athlete->bodyMeasurements->sortBy('created_at')->all() as $bm) {
             $weightMeasurements[$bm->created_at->format('d-m-y')] = $bm->weight;
@@ -35,6 +40,7 @@ class AthleteController extends Controller
         return view('athlete.dashboard')->with([
             'athlete' => $athlete,
             'membership' => $athlete->activeMembership(),
+            'workout' => $currentWorkout,
             'workoutDays' => $workoutDays,
             'weightMeasurement' => $weightMeasurements
         ]);   

@@ -20,6 +20,8 @@ class AthleteBodyMeasurementsController extends Controller
     }
 
     public function index() {
+        $weightMeasurements = [];
+        
         foreach(Auth::guard('athlete')->user()->bodyMeasurements->sortBy('created_at')->all() as $bm) {
             $weightMeasurements[$bm->created_at->format('d-m-y')] = $bm->weight;
         }

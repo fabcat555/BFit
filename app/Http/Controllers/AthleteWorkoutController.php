@@ -14,7 +14,10 @@ class AthleteWorkoutController extends Controller
 
     public function index() {
         $workout = Auth::guard('athlete')->user()->currentWorkout();
-        $workoutDays = $workout->workoutExercises->sortBy('day')->groupBy('day');
+        $workoutDays = [];
+        
+        if($workout)
+            $workoutDays = $workout->workoutExercises->sortBy('day')->groupBy('day');
         
         return view('athlete.workout')->with([
             'workout' => $workout,
@@ -24,7 +27,7 @@ class AthleteWorkoutController extends Controller
 
     public function viewHistory() {
         $workouts = Workout::where('athlete_id', Auth::guard('athlete')->user()->id)->take(5)->orderBy('created_at', 'desc')->skip(1)->get();
-
+  
         return view('athlete.workout-history')->with('workouts', $workouts);
     }
 }

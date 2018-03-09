@@ -17,7 +17,7 @@
                         <!-- WHITE PANEL - TOP USER -->
                         <div class="white-panel pn">
                             <div class="white-header">
-                                <h5 class="panel-header">@lang('messages.WorkoutType')</h5>
+                                <h5 class="panel-header">@lang('messages.Techniques')</h5>
                                 <div class="db-btn-group">
                                     <a href="{{route('exercise-techniques.create')}}" class="btn btn-primary btn-xs dashboard-btn">
                                         @lang('messages.New')
@@ -32,7 +32,7 @@
                             <table id="exercise-techniques" class="table table-hover table-workout">
                                 <thead>
                                     <tr>
-                                        <th>@lang('messages.WorkoutType')</th>
+                                        <th>@lang('messages.Technique')</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -72,7 +72,7 @@
 @push('script')
 <script>
     $(document).ready(function(){
-        var table = $('#athletes').DataTable( {
+        var table = $('#exercise-techniques').DataTable( {
             info: false,
             language: {
                 url: "{{ App::isLocale('it') ? asset('js/datatables/i18n/Italian.json') : '' }}"

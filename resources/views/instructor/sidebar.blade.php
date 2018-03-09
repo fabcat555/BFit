@@ -37,8 +37,8 @@
                   <span>@lang('messages.Exercises')</span>
               </a>
                 <ul class="sub">
+                    <li><a href="{{route('exercises.index')}}">@lang('messages.ManageExercises')</a></li>
                     <li><a href="{{route('exercise-techniques.index')}}">@lang('messages.ManageTechniques')</a></li>
-                    <li><a href="{{route('exercises.index')}}">@lang('messages.ViewExercises')</a></li>
                     <li><a href="{{route('exercises.create')}}">@lang('messages.NewExercise')</a></li>
                 </ul>
             </li>

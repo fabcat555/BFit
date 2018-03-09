@@ -16,6 +16,7 @@
                 <!-- First row -->
                 <div class="row mt">
                     <div class="col-md-12 col-lg-6 mb">
+                        <!-- PERSONAL DATA PANEL -->
                         <div class="white-panel pn personal-panel">
                             <div class="white-header">
                                 <h5 class="personal-data-heading ">@lang('messages.PersonalData')</h5>
@@ -47,11 +48,12 @@
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 mb">
-                        <!-- WHITE PANEL - TOP USER -->
+                        <!-- MEMBERSHIP PANEL -->
                         <div class="white-panel pn membership-panel">
                             <div class="white-header">
                                 <h5 class="">@lang('messages.MembershipHeading')</h5>
                             </div>
+                            @if(isset($membership))
                             <table class="table table-borderless table-description">
                                 <tbody>
                                     <tr>
@@ -78,14 +80,23 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            @else
+                                <h5>@lang('messages.NoMembership')</h5>
+                            @endif
                             <div class="row">
                                 <div class="col-md-6">
                                     <p class="small mt">@lang('messages.MembershipStartYear')</p>
-                                    <p>{{ $athlete->memberships->first()->created_at->year }}</p>
+                                    <p>{{ $athlete->created_at->year }}</p>
                                 </div>
                                 <div class="col-md-6">
                                     <p class="small mt">@lang('messages.MembershipCost')</p>
-                                    <p>$ {{ $membership->type->price }}</p>
+                                    <p>
+                                        @if (isset($athlete->instructor)) 
+                                            $ {{ $membership->type->price }}
+                                        @else 
+                                            -
+                                        @endif
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -97,10 +108,11 @@
                 <div class="row mt">
                     <!-- /col-md-4 -->
                     <div class="col-md-12 col-lg-6 mb">
-                        <!-- INSTAGRAM PANEL -->
+                        <!-- WORKOUT PANEL -->
                         <div class="grey-panel pn workout-panel">
                             <div class="grey-header">
                                 <h5 class="panel-header">@lang('messages.AssignedWorkoutHeading')</h5>
+                                @isset($workout)
                                 <div class="db-btn-group">
                                     <a href="{{route('workout.history')}}" class="btn btn-primary btn-xs dashboard-btn">
                                         @lang('messages.ViewHistory')
@@ -109,21 +121,22 @@
                                         @lang('messages.ViewAll')
                                     </a>
                                 </div>
-                               
+                                @endisset
                             </div>
+                            @if (isset($workout))
                             <table class="table table-borderless table-description">
                                 <tbody>
                                     <tr>
                                         <th scope="row">@lang('messages.Type')</th>
-                                        <td>{{ $athlete->currentWorkout()->type->name }}</td>
+                                        <td>{{ $workout->type->name }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">@lang('messages.StartDate')</th>
-                                        <td>{{ $athlete->currentWorkout()->start_date->format('d/m/y') }}</td>
+                                        <td>{{ $workout->start_date->format('d/m/y') }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">@lang('messages.EndDate')</th>
-                                        <td>{{ $athlete->currentWorkout()->end_date->format('d/m/y') }}</td>
+                                        <td>{{ $workout->end_date->format('d/m/y') }}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -152,11 +165,15 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            @else
+                                <h5>@lang('messages.NoWorkout')</h5>
+                            @endif
                             <br>
                         </div>
                     </div>
-                    <!-- /col-md-4 -->
+                    <!-- /col-md-6 -->
                     <div class="col-md-12 col-lg-6 mb">
+                        <!-- BODY MEASUREMENTS PANEL -->
                         <div class="darkblue-panel pn bm-panel">
                             <div class="darkblue-header">
                                 <h5 class="panel-header">@lang('messages.BodyMeasurementsHeading')</h5>
@@ -164,7 +181,11 @@
                                     <a href="{{route('bodymeasurements')}}" class="btn btn-primary btn-xs dashboard-btn">@lang('messages.ViewAll')</a>
                                 </div>
                             </div>
-                            <canvas id="myChart" class="bm-weight-chart" width="400" height="250"></canvas>
+                            @if(isset($weightMeasurements))
+                                <canvas id="myChart" class="bm-weight-chart" width="400" height="250"></canvas>
+                            @else
+                                <h5>@lang('messages.NoMeasurement')</h5>
+                            @endif
                         </div>
                     </div>
                     <!-- /col-md-4 -->
@@ -193,7 +214,7 @@
                 borderColor: 'rgb(255, 99, 132)',
                 data: @json(array_values($weightMeasurement)),
                 fill: false,
-                }]
+            }]
         },
         options: {
             responsive: true,

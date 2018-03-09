@@ -31,7 +31,11 @@
                         <i class="fa fa-angle-right"></i> <span id="bm-heading-span">@lang('messages.Weight')</span>
                     </h4>
                     <div class="panel-body">
-                        <canvas id="myChart" width="800" height="200"></canvas>
+                        @if(isset($bodyMeasurements))
+                            <canvas id="myChart" width="800" height="200"></canvas>
+                        @else
+                            <h5>@lang('messages.NoMeasurement')</h5>
+                        @endif
                     </div>
                 </div>
             </div>

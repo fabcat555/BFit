@@ -72,7 +72,7 @@
 @push('script')
 <script>
     $(document).ready(function(){
-        var table = $('#athletes').DataTable( {
+        var table = $('#exercises').DataTable( {
             info: false,
             language: {
                 url: "{{ App::isLocale('it') ? asset('js/datatables/i18n/Italian.json') : '' }}"

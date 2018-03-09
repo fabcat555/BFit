@@ -76,6 +76,9 @@ return [
     'ViewAll' => 'Guarda tutti',
     'Active' => 'Attivo',
     'Expired' => 'Scaduto',
+    'NoMembership' => 'Nessun abbonamento attivo!',
+    'NoWorkout' => 'Nessun allenamento assegnato!',
+    'NoMeasurement' => 'Nessuna misurazione corporea effettuata!',
 
     // Instructor Dashboard
     'Email' => 'Email',
@@ -85,6 +88,11 @@ return [
     'WorkoutTypesHeading' => 'TIPI ALLENAMENTO',
     'ExerciseTechniques' => 'TECNICHE ESERCIZI',
     'WorkoutType' => 'Tipo Allenamento',
+    'NoAthletesAssigned' => 'Nessun atleta assegnato!',
+    'NoExercises' => 'Nessun esercizio trovato!',
+    'NoPredefinedWorkouts' => 'Nessun allenamento predefinito trovato!',
+    'NoWorkoutTypes' => 'Nessun tipo workout!',
+    'NoTechniques' => 'Nessuna tecnica esercizio trovata!',
 
     // Admin Dashboard
     'Membership' => 'Abbonamento',
@@ -95,9 +103,15 @@ return [
     'MembershipsHeading' => 'ABBONAMENTI',
     'AthletesHeading' => 'ATLETI',
     'InstructorsHeading' => 'ISTRUTTORI',
+    'NoMembershipTypes' => 'Nessun tipo abbonamento trocato!',
+    'NoMemberships' => 'Nessun abbonamento sottoscritto!',
+    'NoInstructors' => 'Nessun istruttore trovato!',
 
     // Workout show
     'Day' => 'Giorno',
+
+    // Workout history
+    'NoWorkouts' => 'Nessun workout precedente.',
 
     // Membership Types index
     'MembershipTypes' => 'Tipi di abbonamento',

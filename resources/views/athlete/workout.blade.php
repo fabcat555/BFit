@@ -20,6 +20,7 @@
                             <div class="grey-header">
                                 <h5 class="black-heading">@lang('messages.AssignedWorkout')</h5>
                             </div>
+                            @if (isset($workout))
                             <table class="table table-borderless table-description">
                                 <tbody>
                                     <tr>
@@ -84,6 +85,9 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            @else
+                                <h5>@lang('messages.NoWorkout')</h5>
+                            @endif
                             <br>
                         </div>
                     </div>

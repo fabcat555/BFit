@@ -43,8 +43,8 @@ return [
     'NewAthlete' => 'New Athlete',
     'Exercises' => 'Exercises',
     'ExercisesHeading' => 'EXERCISES',
-    'ManageTechniques' => 'Manage Exercises Techniques',
-    'ViewExercises' => 'View All Exercises',
+    'ManageTechniques' => 'Manage Techniques',
+    'ManageExercises' => 'Manage Exercises',
     'NewExercise' => 'New Exercise',
 
     // Admin sidebar
@@ -80,7 +80,10 @@ return [
     'New' => 'New',
     'ViewAll' => 'View all',
     'Active' => 'Active',
-    'Expired' => 'Expired',
+    'Expired' => 'Expired',    
+    'NoMembership' => 'No active membership!',
+    'NoWorkout' => 'No workout assigned!',
+    'NoMeasurement' => 'No body measurement taken!',
 
     // Instructor Dashboard
     'Email' => 'Email',
@@ -90,6 +93,11 @@ return [
     'WorkoutTypesHeading' => 'WORKOUT TYPES',
     'ExerciseTechniques' => 'EXERCISE TECHNIQUES',
     'WorkoutType' => 'Workout Type',
+    'NoAthletesAssigned' => 'No athletes assigned!',
+    'NoExercises' => 'No exercises found!',
+    'NoPredefinedWorkouts' => 'No predefined workouts found!',
+    'NoWorkoutTypes' => 'No workout types found!',
+    'NoTechniques' => 'No exercise techniques found!',
 
     // Admin Dashboard
     'Membership' => 'Membership',
@@ -100,9 +108,15 @@ return [
     'MembershipsHeading' => 'MEMBERSHIPS',
     'AthletesHeading' => 'ATHLETES',
     'InstructorsHeading' => 'INSTRUCTORS',
+    'NoMembershipTypes' => 'No membership types found!',
+    'NoMemberships' => 'No memberships subscribed!',
+    'NoInstructors' => 'No instructors found!',
 
     // Workout show
     'Day' => 'Day',
+
+    // Workout history
+    'NoWorkouts' => 'No previous workouts.',
 
     // Membership Types index
     'MembershipTypes' => 'Membership Types',

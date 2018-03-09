@@ -127,17 +127,19 @@ class MembershipsController extends Controller
                 break;
         }
 
-        $dbQuery = DB::table('memberships')
+        $membershipsPerPeriod = DB::table('memberships')
                     ->select(DB::raw('count(*) as subscriptions, type_id'))
                     ->where('start_date', '>', $date)
                     ->groupBy('type_id')
                     ->orderBy('type_id')
                     ->get();
 
-        foreach($dbQuery as $result) {
+        $report = [];
+       
+        foreach($membershipsPerPeriod as $result) {
             $report[Membership::find($result->type_id)->name] = $result->subscriptions;
         }
-
+        
         return $report;
     }
 }
