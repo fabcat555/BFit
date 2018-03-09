@@ -2,12 +2,12 @@
 @section('sidebar')
     @include('admin.sidebar')
 @endsection
+ 
 @section('topbar')
-@include('admin.topbar')
+    @include('admin.topbar')
 @endsection
-@section('title', __('messages.AthletesIndex'))
-
-
+ 
+@section('title', __('messages.AthletesIndex')) 
 @section('content')
 <section id="main-content">
     <section class="wrapper">
@@ -49,12 +49,9 @@
                                             <a href="{{ route('athletes.edit',$athlete->id) }}" class="btn btn-primary btn-xs">
                                                 <i class="fa fa-pencil"></i>
                                             </a>
-                                            <form method="POST" class="delete-athlete-form" action="{{ route('athletes.destroy', $athlete->id) }}">
-                                                @csrf {{ method_field('delete') }}
-                                                <button class="btn btn-danger btn-xs" type="submit"> 
+                                            <button data-toggle="modal" data-target="#confirm-delete-modal" data-resource-id="{{$athlete->id}}" class="btn btn-danger btn-xs"> 
                                                     <i class="fa fa-times"></i>
                                                 </button>
-                                            </form>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -69,12 +66,33 @@
         </div>
     </section>
 </section>
-@endsection
 
+<!-- Modal -->
+<div id="confirm-delete-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">@lang('messages.DeleteConfirmModalHeader')</h4>
+                </div>
+                <div class="modal-body">
+                    <p>@lang('messages.DeleteConfirmModalBody')</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">@lang('messages.CloseModal')</button>
+                    <button id="modal-confirm" type="button" class="btn btn-danger">@lang('messages.ConfirmModal')</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+@endsection
+ 
 @push('script')
 <script>
-    $(document).ready(function(){
-        var table = $('#athletes').DataTable( {
+    $(document).ready(function() {
+        var table = $('#athletes').DataTable({
             info: false,
             buttons: [
                 'copy', 'excel', 'pdf'
@@ -84,7 +102,27 @@
                      table.buttons().container().appendTo( $('.col-sm-5', table.table().container() ) );
                 }, 10 );
             }
-    } );
+    });
+    $('#confirm-delete-modal').on('show.bs.modal', function(e) {
+        $('#modal-confirm').data('resource-id', $(e.relatedTarget).data('resource-id'));
+    });
+
+    $('#modal-confirm').on('click', function(e) {
+            $.ajax({
+                type: "post",
+                data: {
+                    _method: "DELETE"
+                },
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: "/athletes/" + $(this).data('resource-id'),
+                success: function() {
+                    location.reload();
+                }
+            });
+        });
+    
 });
 </script>
 @endpush

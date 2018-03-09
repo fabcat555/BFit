@@ -153,6 +153,12 @@ return [
     'NoMemberships' => 'Nessun abbonamento sottoscritto!',
     'NoInstructors' => 'Nessun istruttore trovato!',
 
+    // Delete resource modal
+    'DeleteConfirmModalHeader' => 'Deleting resource',
+    'DeleteConfirmModalBody' => 'Are you sure you want to delete the selected resource?',
+    'CloseModal' => 'Annulla',
+    'ConfirmModal' => 'Conferma',
+
     // Workout show
     'Day' => 'Giorno',
 
@@ -189,6 +195,7 @@ return [
     // Exercise create form
     'Step' => 'Step',
     'CreatedExercise' => 'Hai creato un nuovo esercizio!',
+    'AddExerciseStep' => 'Aggiungi nuovo step',    
 
     // Workout Type create form
     'CreatedWorkoutType' => 'Hai creato un nuovo tipo di allenamento!',

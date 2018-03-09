@@ -106,7 +106,8 @@ class MembershipsController extends Controller
     {
         Membership::destroy($membership->id);
 
-        return redirect(route('memberships.index'))->with('status', __('messages.DeletedResource'));
+        request()->session()->flash('status', __('messages.DeletedResource'));
+        return response()->json(['status' => 'ok']);
     }
 
     public function viewReport() {

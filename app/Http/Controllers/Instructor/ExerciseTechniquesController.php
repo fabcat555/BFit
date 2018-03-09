@@ -89,6 +89,7 @@ class ExerciseTechniquesController extends Controller
     {
         ExerciseTechnique::destroy($id);
 
-        return redirect(route('exercise-techniques.index'))->with('status', __('messages.DeletedResource'));
+        request()->session()->flash('status', __('messages.DeletedResource'));
+        return response()->json(['status' => 'ok']);
     }
 }

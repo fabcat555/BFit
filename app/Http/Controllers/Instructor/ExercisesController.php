@@ -47,7 +47,9 @@ class ExercisesController extends Controller
         $exercise->save();
 
         foreach($request->get('steps') as $step) {
-            ExerciseStep::create(['description' => $step, 'exercise_id' => $exercise->id]);
+            if ($step) {
+                ExerciseStep::create(['description' => $step, 'exercise_id' => $exercise->id]);
+            }
         }
 
         return redirect(route('exercises.index'))->with('status', __('messages.CreatedExercise'));
@@ -102,10 +104,11 @@ class ExercisesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($exercise)
     {
-        Exercise::destroy($id);
+        Exercise::destroy($exercise);
 
-        return redirect()->back()->with('status', __('messages.DeletedResource'));
+        request()->session()->flash('status', __('messages.DeletedResource'));
+        return response()->json(['status' => 'ok']);
     }
 }

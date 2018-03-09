@@ -161,6 +161,11 @@ return [
     'NoMemberships' => 'No memberships subscribed!',
     'NoInstructors' => 'No instructors found!',
 
+    'DeleteConfirmModalHeader' => 'Cancella risorsa',
+    'DeleteConfirmModalBody' => 'Sei sicuro di voler cancellare la risorsa selezionata?',
+    'CloseModal' => 'Close',
+    'ConfirmModal' => 'Confirm',
+
     // Workout show
     'Day' => 'Day',
 
@@ -197,6 +202,7 @@ return [
     // Exercise create form
     'Step' => 'Step',
     'CreatedExercise' => 'Successfully created a new exercise!',
+    'AddExerciseStep' => 'Add new step',
 
     // Workout Type create form
     'CreatedWorkoutType' => 'Successfully created a new workout type!',

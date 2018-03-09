@@ -53,13 +53,9 @@
                                                                         'athlete' => $athlete]) }}" class="btn btn-primary btn-xs">
                                                 <i class="fa fa-pencil"></i>
                                             </a>
-                                            <form method="POST" class="delete-athlete-form" action="{{ route('instructor.athletes.destroy', ['instructor' => Auth::guard('instructor')->user(), 
-                                                'athlete' => $athlete]) }}">
-                                                @csrf {{ method_field('delete') }}
-                                                <button class="btn btn-danger btn-xs" type="submit"> 
+                                            <button data-toggle="modal" data-target="#confirm-delete-modal" data-resource-id="{{$athlete->id}}" class="btn btn-danger btn-xs"> 
                                                     <i class="fa fa-times"></i>
                                                 </button>
-                                            </form>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -74,6 +70,27 @@
         </div>
     </section>
 </section>
+
+<!-- Modal -->
+<div id="confirm-delete-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">@lang('messages.DeleteConfirmModalHeader')</h4>
+                </div>
+                <div class="modal-body">
+                    <p>@lang('messages.DeleteConfirmModalBody')</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">@lang('messages.CloseModal')</button>
+                    <button id="modal-confirm" type="button" class="btn btn-danger">@lang('messages.ConfirmModal')</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @endsection
  
 @push('script')
@@ -94,6 +111,25 @@
             }
             });
        
+            $('#confirm-delete-modal').on('show.bs.modal', function(e) {
+            $('#modal-confirm').data('resource-id', $(e.relatedTarget).data('resource-id'));
+        });
+
+        $('#modal-confirm').on('click', function(e) {
+            $.ajax({
+                type: "post",
+                data: {
+                    _method: "DELETE",
+                },
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: "/athletes/" + $(this).data('resource-id'),
+                success: function() {
+                    location.reload();
+                }
+            });
+        });
 });
 </script>
 @endpush

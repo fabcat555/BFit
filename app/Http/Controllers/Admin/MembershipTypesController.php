@@ -89,6 +89,7 @@ class MembershipTypesController extends Controller
     {
         MembershipType::destroy($membershipType->id);
 
-        return redirect(route('membership-types.index'))->with('status', __('messages.DeletedResource'));
+        request()->session()->flash('status', __('messages.DeletedResource'));
+        return response()->json(['status' => 'ok']);
     }
 }

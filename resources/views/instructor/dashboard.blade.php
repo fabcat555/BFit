@@ -8,7 +8,7 @@
     @include('instructor.topbar')
 @endsection 
 
-@section('title', __('messages.InstructoDashboard'))
+@section('title', __('messages.InstructorDashboard'))
  
 @section('content')
 <section id="main-content">
