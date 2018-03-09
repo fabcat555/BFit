@@ -6,13 +6,15 @@
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
     <title>BFit - Gym management system</title>
     <!-- Bootstrap core CSS -->
-    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <!--external css-->
     <link href="{{ asset('font-awesome/css/font-awesome.css') }}" rel="stylesheet">
     <link href="{{ asset('css/zabuto_calendar.css') }}" rel="stylesheet">
     <link href="{{ asset('js/gritter/css/jquery.gritter.css') }}" rel="stylesheet">
     <link href="{{ asset('lineicons/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap-select.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/jszip-2.5.0/dt-1.10.16/b-1.5.1/b-flash-1.5.1/b-html5-1.5.1/datatables.min.css"/>
     <!-- Custom styles for this template -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style-responsive.css') }}" rel="stylesheet">

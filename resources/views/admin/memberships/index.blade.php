@@ -26,7 +26,7 @@
                                 <strong>{{ session('status') }}</strong>
                             </div>
                             @endif
-                            <table class="table table-hover table-workout">
+                            <table id="memberships" class="table table-hover table-workout">
                                 <thead>
                                     <tr>
                                         <th>@lang('messages.Athlete')</th>
@@ -67,3 +67,21 @@
     </section>
 </section>
 @endsection
+
+@push('script')
+<script>
+    $(document).ready(function(){
+        var table = $('#memberships').DataTable( {
+            info: false,
+            buttons: [
+                'copy', 'excel', 'pdf'
+            ],
+            initComplete: function () {
+                setTimeout( function () {
+                     table.buttons().container().appendTo( $('.col-sm-5', table.table().container() ) );
+                }, 10 );
+            }
+    } );
+});
+</script>
+@endpush

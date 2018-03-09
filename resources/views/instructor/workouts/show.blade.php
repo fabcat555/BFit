@@ -38,34 +38,53 @@
                                 </tbody>
                             </table>
                             <table class="table table-hover table-workout">
-                                <thead>
-                                    <tr>
-                                        <th>@lang('messages.Exercise')</th>
-                                        <th>@lang('messages.Sets')</th>
-                                        <th>@lang('messages.Reps')</th>
-                                        <th>@lang('messages.Rest')</th>
-                                        <th>@lang('messages.Technique')</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($workout->workoutExercises as $woExercise)
-                                    <tr>
-                                        <td>
-                                            <a href="{{route('exercises.show', ['id' => $woExercise->exercise->id])}}">{{$woExercise->exercise->name}}</a>
-                                        </td>
-                                        <td>{{$woExercise->sets}}</td>
-                                        <td>{{$woExercise->reps}}</td>
-                                        <td>{{$woExercise->rest}}</td>
-                                        <td>
-                                            @if (isset($woExercise->exerciseTechnique))
-                                            <a href="{{route('exercise-techniques.show', ['technique' => $woExercise->exerciseTechnique->id])}}">
-                                                    {{$woExercise->exerciseTechnique->name}}
-                                                </a> @else - @endif
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>@lang('messages.Exercise')</th>
+                                            <th>@lang('messages.Sets')</th>
+                                            <th>@lang('messages.Reps')</th>
+                                            <th>@lang('messages.Rest')</th>
+                                            <th>@lang('messages.Technique')</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($workoutDays as $day => $exercises)
+                                            <tr>
+                                                <th colspan="7" scope="colgroup">
+                                                    @lang('messages.Day') {{$day}}
+                                                </th>
+                                                <th style="display: none;"></th>
+                                                <th style="display: none;"></th>
+                                                <th style="display: none;"></th>
+                                                <th style="display: none;"></th>
+                                                <th style="display: none;"></th>
+                                                <th style="display: none;"></th>
+                                            </tr>
+                                            @foreach($exercises as $key => $woExercise)
+                                                <tr>
+                                                    <td>{{$key+1}}</td>
+                                                    <td>
+                                                        <a href="{{route('exercises.show', ['id' => $woExercise->exercise->id])}}">{{$woExercise->exercise->name}}</a>
+                                                    </td>
+                                                    <td>{{$woExercise->sets}}</td>
+                                                    <td>{{$woExercise->reps}}</td>
+                                                    <td>{{$woExercise->rest}}</td>
+                                                    <td>
+                                                        @if (isset($woExercise->exerciseTechnique))
+                                                        <a href="{{route('exercise-techniques.show', ['technique' => $woExercise->exerciseTechnique->id])}}">
+                                                                {{$woExercise->exerciseTechnique->name}}
+                                                            </a> @else - @endif
+                                                    </td>
+                                                    <td>
+                                                        <a href="{{ route('progress.show', ['exercise' => $woExercise->id]) }}" class="btn btn-warning btn-xs"><i class="fa fa-bar-chart-o"></i></a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        @endforeach
+                                    </tbody>
+                                </table>
                             <br>
                         </div>
                     </div>
@@ -78,3 +97,26 @@
     </section>
 </section>
 @endsection
+
+@push('script')
+<script>
+    $(document).ready(function() {
+        var workoutTable = $('.table-workout').DataTable( {
+            ordering: false,
+            info: false,
+            paging: false,
+            lengthChange: false,
+            searching: false,
+            buttons: [
+                'copy', 'excel', 'pdf'
+            ],
+            initComplete: function () {
+                setTimeout( function () {
+                    workoutTable.buttons().container().appendTo( $('.col-sm-6:eq(1) ') );
+                }, 10 );
+            }
+            });
+        });
+});
+</script>
+@endpush

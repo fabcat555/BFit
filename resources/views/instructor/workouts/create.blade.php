@@ -25,7 +25,7 @@
                                     </div>
                                     <label class="col-sm-1 control-label">@lang('messages.Athlete')</label>
                                     <div class="col-sm-2">
-                                        <select name="athlete_id" class="form-control">
+                                        <select class="selectpicker" data-live-search="true" name="athlete_id">
                                             <option label=" "></option>
                                             @foreach($athletes as $athlete)
                                             <option value="{{$athlete->id}}">{{$athlete->first_name}} {{$athlete->last_name}}</option>
@@ -34,7 +34,7 @@
                                     </div>
                                     <label class="col-sm-1 control-label">@lang('messages.WorkoutType')</label>
                                     <div class="col-sm-2">
-                                        <select name="type_id" class="form-control">
+                                        <select name="type_id" class="selectpicker" data-live-search="true">
                                             <option label=" "></option>
                                             @foreach($workoutTypes as $wt)
                                             <option value="{{$wt->id}}">{{$wt->name}}</option>
@@ -61,7 +61,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-1 control-label">@lang('messages.Exercise')</label>
                                     <div class="col-sm-4">
-                                        <select name="workoutExercises[0][exercise_id]" class="form-control">
+                                        <select name="workoutExercises[0][exercise_id]" class="selectpicker" data-live-search="true">
                                             @foreach($exercises as $exercise)
                                             <option value="{{$exercise->id}}">{{$exercise->name}}</option>
                                             @endforeach
@@ -69,7 +69,7 @@
                                     </div>
                                     <label class="col-sm-1 control-label">@lang('messages.Technique')</label>
                                     <div class="col-sm-4">
-                                        <select name="workoutExercises[0][exercise_technique_id]" required class="form-control">
+                                        <select name="workoutExercises[0][exercise_technique_id]" required class="selectpicker" data-live-search="true">
                                             @foreach($exerciseTechniques as $technique)
                                             <option value="{{$technique->id}}">{{$technique->name}}</option>
                                             @endforeach
@@ -110,3 +110,13 @@
     </section>
 </section>
 @endsection
+
+@push('script')
+    <script>
+    $(function () {
+        $('select').selectpicker({
+            language: {{App::getLocale()}}
+        })
+    });
+    </script>
+@endpush

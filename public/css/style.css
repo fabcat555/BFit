@@ -2509,7 +2509,7 @@ h5 {
     background-color: white;
     color: black;
     margin: 0 auto;
-    width: 90%;
+    /* width: 90%; */
     border: 2px solid;
     padding-bottom: 20px;
 }
@@ -2649,4 +2649,22 @@ label {
 
 .athlete-bm-setting {
     padding: 20px;
+}
+
+/* Data tables */
+
+.dataTables_info, .dataTables_length {
+    text-align: initial;
+}
+
+.dataTables_wrapper {
+    padding: 10px 60px;
+}
+
+table.dataTable {
+    border-collapse: collapse !important;
+}
+
+.dt-buttons {
+    float: left;
 }

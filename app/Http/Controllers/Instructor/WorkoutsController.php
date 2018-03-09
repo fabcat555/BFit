@@ -76,7 +76,13 @@ class WorkoutsController extends Controller
      */
     public function show($id)
     {
-        return view('instructor.workouts.show')->with('workout', Workout::findOrFail($id));
+        $workout = Workout::findOrFail($id);
+        $workoutDays = $workout->workoutExercises->sortBy('day')->groupBy('day');
+        
+        return view('instructor.workouts.show')->with([
+            'workout' => $workout,
+            'workoutDays' => $workoutDays
+        ]);
     }
 
     /**

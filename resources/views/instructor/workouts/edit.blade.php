@@ -30,7 +30,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-1 control-label">@lang('messages.Exercise')</label>
                                     <div class="col-sm-4">
-                                        <select name="workoutExercises[{{$workoutExercise->id}}][exercise_id]" class="form-control">
+                                        <select name="workoutExercises[{{$workoutExercise->id}}][exercise_id]" class="selectpicker" data-live-search="true">
                                             @foreach($exercises as $exercise)
                                             <option {{$exercise->id == $workoutExercise->exercise->id ? 'selected' : ''}} value="{{$exercise->id}}">{{$exercise->name}}</option>
                                             @endforeach
@@ -38,7 +38,7 @@
                                     </div>
                                     <label class="col-sm-1 control-label">@lang('messages.Technique')</label>
                                     <div class="col-sm-4">
-                                        <select name="workoutExercises[{{$workoutExercise->id}}][exercise_technique_id]" class="form-control">
+                                        <select name="workoutExercises[{{$workoutExercise->id}}][exercise_technique_id]" class="selectpicker" data-live-search="true">
                                             <option value=""></option>
                                             @foreach($exerciseTechniques as $technique)
                                             <option {{isset($workoutExercise->exerciseTechnique) && $technique->id == $workoutExercise->exerciseTechnique->id ? 'selected' : ''}} value="{{$technique->id}}">{{$technique->name}}</option>

@@ -22,7 +22,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">@lang('messages.Athlete')</label>
                                     <div class="col-sm-6">
-                                        <select name="athlete_id" required class="form-control">
+                                        <select name="athlete_id" required class="selectpicker" data-live-search="true">
                                             @foreach($athletes as $athlete)
                                             <option value="{{$athlete->id}}">{{$athlete->first_name}} {{$athlete->last_name}}</option>
                                             @endforeach

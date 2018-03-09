@@ -9,12 +9,12 @@
         <div class="row">
             <div class="col-lg-12 main-chart">
                 <div class="row">
-                    @foreach ($workouts as $wo)
+                    @foreach ($workouts as $woKey=> $wo)
                     <div class="col-md-12 mb">
                         <!-- WORKOUT PANEL -->
                         <div class="grey-panel pn">
                             <div class="grey-header">
-                                <h5 class="black-heading">@lang('messages.Workout')</h5>
+                                <h5 class="black-heading">{{$wo->name}}</h5>
                             </div>
                             <table class="table table-borderless table-description">
                                 <tbody>
@@ -32,11 +32,10 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            @foreach($wo->workoutExercises->groupBy('day') as $day => $woExercises)
-                            <h5>@lang('messages.Day') {{$day}}</h5>
-                            <table class="table table-hover table-workout">
+                        <table id="workout-{{$woKey+1}}" class="table table-hover table-workout">
                                 <thead>
                                     <tr>
+                                        <th>#</th>
                                         <th>@lang('messages.Exercise')</th>
                                         <th>@lang('messages.Sets')</th>
                                         <th>@lang('messages.Reps')</th>
@@ -45,8 +44,20 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($woExercises as $woExercise)
+                                    @foreach($wo->workoutExercises->groupBy('day') as $day => $woExercises)
+                                        <tr>
+                                            <th colspan="7" scope="colgroup">
+                                                @lang('messages.Day') {{$day}}
+                                            </th>
+                                            <th style="display: none;"></th>
+                                            <th style="display: none;"></th>
+                                            <th style="display: none;"></th>
+                                            <th style="display: none;"></th>
+                                            <th style="display: none;"></th>
+                                        </tr>
+                                    @foreach ($woExercises as $key => $woExercise)
                                     <tr>
+                                        <td>{{$key+1}}</td>
                                         <td>{{$woExercise->exercise->name}}</td>
                                         <td>{{$woExercise->sets}}</td>
                                         <td>{{$woExercise->reps}}</td>
@@ -60,9 +71,9 @@
                                         </td>
                                     </tr>
                                     @endforeach
+                                    @endforeach
                                 </tbody>
                             </table>
-                            @endforeach
                             <br>
                         </div>
                     </div>
@@ -76,3 +87,30 @@
     </section>
 </section>
 @endsection
+
+@push('script')
+<script>
+    var workouts = {{count($workouts)}};
+
+    $(document).ready(function() {
+        var workoutTable = $('.table-workout').DataTable( {
+            ordering: false,
+            info: false,
+            paging: false,
+            lengthChange: false,
+            searching: false,
+            buttons: [
+                'copy', 'excel', 'pdf'
+            ],
+            initComplete: function () {
+                setTimeout( function () {
+                    workoutTable.buttons().container().appendTo( $('.col-sm-5', table.table().container() ) );
+                }, 10 );
+            }
+        });
+
+        for (var i = 0; i < workouts; i++)
+            $('#workout-' + (i+1)).DataTable().buttons().container().appendTo( $('#workout-' + (i+1) + '_wrapper .col-sm-6:eq(1)') );
+});
+</script>
+@endpush

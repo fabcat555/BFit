@@ -14,7 +14,7 @@ class AthleteWorkoutController extends Controller
 
     public function index() {
         $workout = Auth::guard('athlete')->user()->currentWorkout();
-        $workoutDays = $workout->workoutExercises->groupBy('day');
+        $workoutDays = $workout->workoutExercises->sortBy('day')->groupBy('day');
         
         return view('athlete.workout')->with([
             'workout' => $workout,
