@@ -16,7 +16,7 @@ Auth::routes();
 Route::group(['prefix' => 'instructor'], function () {
     Route::get('/login', 'Auth\Instructor\LoginController@showLoginForm')->name('instructor.login');
     Route::post('/login', 'Auth\Instructor\LoginController@login')->name('instructor.login.submit');
-    Route::get('/logout', 'Auth\Instructor\LoginController@logout')->name('instructor.logout');
+    Route::post('/logout', 'Auth\Instructor\LoginController@logout')->name('instructor.logout');
     Route::get('/dashboard', 'Instructor\InstructorController@index')->name('instructor.dashboard');
 
     Route::post('/password/email', 'Auth\Instructor\ForgotPasswordController@sendResetLinkEmail')->name('instructor.password.email');
@@ -26,7 +26,7 @@ Route::group(['prefix' => 'instructor'], function () {
 });
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/login', 'Auth\Admin\LoginController@showLoginForm')->name('admin.login');
-    Route::get('/logout', 'Auth\Admin\LoginController@logout')->name('admin.logout');
+    Route::post('/logout', 'Auth\Admin\LoginController@logout')->name('admin.logout');
     Route::post('/login', 'Auth\Admin\LoginController@login')->name('admin.login.submit');
     Route::get('/dashboard', 'Admin\AdminController@index')->name('admin.dashboard');
 

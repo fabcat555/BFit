@@ -6,6 +6,13 @@
         @include('athlete.sidebar')
     @endif
 @endsection
+@section('topbar') 
+    @if(Auth::guard('instructor')->check())
+        @include('instructor.topbar')
+    @else
+        @include('athlete.topbar') 
+    @endif
+@endsection
  
 @section('content')
 <section id="main-content">

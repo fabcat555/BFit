@@ -2,7 +2,10 @@
 @section('sidebar')
     @include('instructor.sidebar')
 @endsection
- 
+@section('topbar')
+    @include('instructor.topbar')
+@endsection
+
 @section('content')
 <section id="main-content">
     <section class="wrapper">

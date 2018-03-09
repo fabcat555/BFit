@@ -1,9 +1,17 @@
 @extends('layouts.master') 
-@section('sidebar')
+@section('sidebar') 
     @if(Auth::guard('instructor')->check())
-        @include('instructor.sidebar')
+        @include('instructor.sidebar') 
     @else
-        @include('athlete.sidebar')
+        @include('athlete.sidebar') 
+    @endif
+@endsection
+ 
+@section('topbar') 
+    @if(Auth::guard('instructor')->check())
+        @include('instructor.topbar')
+    @else
+        @include('athlete.topbar') 
     @endif
 @endsection
  
@@ -23,7 +31,7 @@
                     <div class="panel-body">
                         <ol class="list-group exercise-desc">
                             @foreach ($exercise->exerciseSteps->sortBy('id') as $step)
-                                <li class="list-group-item">{{ $step->description }}</li>
+                            <li class="list-group-item">{{ $step->description }}</li>
                             @endforeach
                         </ol>
                     </div>

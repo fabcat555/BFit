@@ -5,7 +5,7 @@
 <body>
     <section id="container">
         <!-- TOPBAR -->
-        @include('shared.topbar')
+        @yield('topbar')
 
         <!-- SIDEBAR -->
         @yield('sidebar')

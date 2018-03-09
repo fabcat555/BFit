@@ -1,6 +1,11 @@
-@extends('layouts.master') 
+@extends('layouts.master')
+ 
 @section('sidebar')
     @include('athlete.sidebar')
+@endsection
+
+@section('topbar')
+    @include('athlete.topbar')
 @endsection
  
 @section('content')

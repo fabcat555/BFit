@@ -2,6 +2,9 @@
 @section('sidebar')
     @include('admin.sidebar')
 @endsection
+@section('topbar')
+    @include('admin.topbar')
+@endsection
  
 @section('content')
 <section id="main-content">
