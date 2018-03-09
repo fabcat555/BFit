@@ -19,7 +19,7 @@
                             <div class="white-header">
                                 <h5 class="panel-header">@lang('messages.AthletesHeading')</h5>
                                 <div class="db-btn-group">
-                                    <a href="{{route('instructor.athletes.create', ['instructor' => Auth::guard('instructor')->user()])}}" class="btn btn-primary btn-xs dashboard-btn">
+                                    <a href="{{route('athletes.create', ['instructor' => Auth::guard('instructor')->user()])}}" class="btn btn-primary btn-xs dashboard-btn">
                                         @lang('messages.New')
                                     </a>
                                 </div>
@@ -37,7 +37,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (Auth::guard('instructor')->user()->athletes as $athlete)
+                                    @foreach ($athletes as $athlete)
                                     <tr>
                                         <td>{{$athlete->first_name}} {{$athlete->last_name}}</td>
                                         <td>

@@ -24,7 +24,7 @@ class AthletesController extends Controller
      */
     public function index()
     {
-        return view('admin.athletes.index');
+        return view('admin.athletes.index')->with('athletes', Athlete::all());
     }
 
     /**
