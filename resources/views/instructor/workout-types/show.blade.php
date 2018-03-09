@@ -1,4 +1,5 @@
-@extends('layouts.master') 
+@extends('layouts.master')
+
 @section('sidebar')
     @if(Auth::guard('instructor')->check())
         @include('instructor.sidebar')
@@ -6,6 +7,7 @@
         @include('athlete.sidebar')
     @endif
 @endsection
+
 @section('topbar') 
     @if(Auth::guard('instructor')->check())
         @include('instructor.topbar')
@@ -13,6 +15,8 @@
         @include('athlete.topbar') 
     @endif
 @endsection
+
+@section('title', __('messages.WorkoutTypeShow'))
  
 @section('content')
 <section id="main-content">

@@ -14,6 +14,8 @@
         @include('athlete.topbar') 
     @endif
 @endsection
+
+@section('title', __('messages.ExerciseShow'))
  
 @section('content')
 <section id="main-content">

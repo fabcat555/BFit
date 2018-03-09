@@ -2,9 +2,12 @@
 @section('sidebar')
     @include('instructor.sidebar')
 @endsection
+
 @section('topbar')
     @include('instructor.topbar')
 @endsection
+
+@section('title', __('messages.AthleteCreate'))
  
 @section('content')
 <section id="main-content">

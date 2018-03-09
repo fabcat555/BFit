@@ -3,8 +3,9 @@
     @include('admin.sidebar')
 @endsection
 @section('topbar')
-@include('admin.topbar')
+    @include('admin.topbar')
 @endsection
+@section('title', __('messages.InstructorShow'))
 
 @section('content')
 <section id="main-content">

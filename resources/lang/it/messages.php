@@ -7,6 +7,52 @@ return [
     'Instructors' => 'Istruttori',
     'Memberships' => 'Abbonamenti',
 
+    // Page titles
+        // Athlete
+    'AthleteDashboard' => 'Dashboard Atleta',
+    'BodyMeasurementsShow' => 'Vedi misurazione corporee',
+    'ExerciseProgressShow' => 'Vedi progressi esercizio',
+    'WorkoutHistoryShow' => 'Vedi cronologia allenamenti',
+    'WorkoutShow' => 'Vedi allenamento',
+
+        // Instructor
+    'InstructorDashboard' => 'Dashboard istruttore',
+    'ExerciseTechniqueCreate' => 'Crea nuova tecnica esercizio',
+    'ExerciseTechniqueEdit' => 'Modifica tecnica esercizio',
+    'ExerciseTechniquesIndex' => 'Vedi tecniche esercizio',
+    'ExerciseTechniqueShow' => 'Vedi tecnica esercizio',
+    'ExerciseCreate' => 'Crea nuovo esercizio',
+    'ExerciseEdit' => 'Modifica esercizio',
+    'ExercisesIndex' => 'Vedi esercizi',
+    'ExerciseShow' => 'Vedi esercizio',
+    'WorkoutTypeCreate' => 'Crea nuovo tipo allenamento',
+    'WorkoutTypeEdit' => 'Modifica tipo allenamento',
+    'WorkoutTypeIndex' => 'Vedi tipi allenamento',
+    'WorkoutTypeShow' => 'Vedi tipo allenamento',
+    'WorkoutCreate' => 'Crea nuovo allenamento',
+    'WorkoutEdit' => 'Modifica allenamento',
+    'WorkoutIndex' => 'Vedi allenamenti',
+    'WorkoutShow' => 'Vedi allenamento',
+    
+        // Admin 
+    'AdminDashboard' => 'Dashboard Admin',
+    'AthleteCreate' => 'Crea nuovo atleta',
+    'AthleteEdit' => 'Modifica atleta',
+    'AthletesIndex' => 'Vedi atleti',
+    'AthleteShow' => 'Vedi atleta',
+    'InstructorCreate' => 'Crea nuovo istruttore',
+    'InstructorEdit' => 'Modifica istruttore',
+    'InstructorsIndex' => 'Vedi istruttori',
+    'InstructorShow' => 'Vedi istruttore',
+    'MembershipTypeCreate' => 'Crea nuovo tipo abbonamento',
+    'MembershipTypeEdit' => 'Modifica tipo abbonamento',
+    'MembershipTypesIndex' => 'Vedi tipi abbonamento',
+    'MembershipTypeShow' => 'Vedi tipo abbonamento',
+    'MembershipCreate' => 'Crea nuovo abbonamento',
+    'MembershipsIndex' => 'Vedi abbonamenti',
+    'MembershipsReport' => 'Vedi statistiche abbonamenti',
+
+    // Login
     'LoginHeadline' => 'LOG IN',
     'RememberMeLabel' => 'Ricordami',
     'ForgotPasswordLabel' => 'Password dimenticata?',

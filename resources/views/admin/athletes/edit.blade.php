@@ -5,6 +5,7 @@
 @section('topbar')
 @include('admin.topbar')
 @endsection
+@section('title', __('messages.AthleteEdit'))
 
 @section('content')
 <section id="main-content">

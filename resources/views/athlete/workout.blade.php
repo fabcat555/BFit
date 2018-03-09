@@ -7,6 +7,8 @@
 @section('topbar')
     @include('athlete.topbar')
 @endsection
+
+@section('title', __('messages.WorkoutShow'))
  
 @section('content')
 <section id="main-content">

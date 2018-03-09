@@ -8,6 +8,8 @@
 @section('topbar')
     @include('athlete.topbar')
 @endsection
+
+@section('title', __('messages.ExerciseProgressShow'))
  
 @section('content')
 <section id="main-content">

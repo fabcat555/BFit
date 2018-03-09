@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-    <title>@lang('messages.AppHeadline')</title>
+    <title>@lang('messages.AppHeadline') - @lang('messages.AdminLogin')</title>
     <!-- Bootstrap core CSS -->
     <link href="{{asset('css/bootstrap.css')}}" rel="stylesheet">
     <!--external css-->

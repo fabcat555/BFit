@@ -1,10 +1,14 @@
-@extends('layouts.master') 
+@extends('layouts.master')
+
 @section('sidebar')
     @include('instructor.sidebar')
 @endsection
+
 @section('topbar')
     @include('instructor.topbar')
 @endsection 
+
+@section('title', __('messages.InstructoDashboard'))
  
 @section('content')
 <section id="main-content">
@@ -75,7 +79,7 @@
                                 </tbody>
                             </table>
                             @else
-                                <h5>@lang('messages.NoAthletes')</h5>
+                                <h5>@lang('messages.NoAthletesAssigned')</h5>
                             @endif
                         </div>
                     </div>

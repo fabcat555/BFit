@@ -8,6 +8,8 @@
     @include('admin.topbar')
 @endsection
 
+@section('title', __('messages.AdminDashboard'))
+
 @section('content')
 <section id="main-content">
     <section class="wrapper">

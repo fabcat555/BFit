@@ -10,6 +10,55 @@ return [
     'Admin' => 'Admin',
     'Memberships' => 'Memberships',
 
+    // Page titles
+        // Athlete
+    'AthleteLogin' => "Athlete Login",
+    'AthleteDashboard' => 'Athlete Dashboard',
+    'BodyMeasurementsShow' => 'View body measurements',
+    'ExerciseProgressShow' => 'View exercise progress',
+    'WorkoutHistoryShow' => 'View workout history',
+    'WorkoutShow' => 'View workout',
+
+        // Instructor
+    'InstructorLogin' => "Instructor Login",
+    'InstructorDashboard' => 'Instructor Dashboard',
+    'ExerciseTechniqueCreate' => 'Create new exercise technique',
+    'ExerciseTechniqueEdit' => 'Edit exercise technique',
+    'ExerciseTechniquesIndex' => 'All exercise techniques',
+    'ExerciseTechniqueShow' => 'View exercise technique',
+    'ExerciseCreate' => 'Create new exercise',
+    'ExerciseEdit' => 'Edit exercise',
+    'ExercisesIndex' => 'All exercises',
+    'ExerciseShow' => 'View exercise',
+    'WorkoutTypeCreate' => 'Create new workout type',
+    'WorkoutTypeEdit' => 'Edit workout type',
+    'WorkoutTypeIndex' => 'All workout types',
+    'WorkoutTypeShow' => 'View workout type',
+    'WorkoutCreate' => 'Create new workout',
+    'WorkoutEdit' => 'Edit workout',
+    'WorkoutIndex' => 'All workout',
+    'WorkoutShow' => 'View workout',
+    
+        // Admin
+    'AdminLogin' => "Admin Login",
+    'AdminDashboard' => 'Admin Dashboard',
+    'AthleteCreate' => 'Create new athlete',
+    'AthleteEdit' => 'Edit athlete',
+    'AthletesIndex' => 'All athletes',
+    'AthleteShow' => 'View athlete',
+    'InstructorCreate' => 'Create new instructor',
+    'InstructorEdit' => 'Edit instructor',
+    'InstructorsIndex' => 'All instructors',
+    'InstructorShow' => 'View instructor',
+    'MembershipTypeCreate' => 'Create new membership types',
+    'MembershipTypeEdit' => 'Edit membership type',
+    'MembershipTypesIndex' => 'All membership types',
+    'MembershipTypeShow' => 'View membership type',
+    'MembershipCreate' => 'Create new membership',
+    'MembershipsIndex' => 'All memberships',
+    'MembershipsReport' => 'Memberships report',
+
+
     // Login
     'AppHeadline' => 'BFit - Gym Management System',
     'LoginHeadline' => 'sign in now',

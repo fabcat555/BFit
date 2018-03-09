@@ -1,10 +1,14 @@
 @extends('layouts.master') 
+
 @section('sidebar')
     @include('instructor.sidebar')
 @endsection
+
 @section('topbar')
     @include('instructor.topbar')
 @endsection
+
+@section('title', __('messages.AthleteEdit'))
  
 @section('content')
 <section id="main-content">
