@@ -47,7 +47,7 @@
                                     <tr>
                                         <td>{{$membership->athlete->first_name}} {{$membership->athlete->last_name}}</td>
                                         <td>{{$membership->type->name}}</td>
-                                        <td>{{$membership->end_date > Carbon\Carbon::now() ? __('messages.Active') : __('messages.NotActive')}}</td>
+                                        <td>{{$membership->end_date > Carbon\Carbon::now() ? __('messages.Active') : __('messages.Expired')}}</td>
                                         <td>{{$membership->start_date->format('d/m/y')}}</td>
                                         <td>{{$membership->end_date->format('d/m/y')}}</td>
                                         <td>
@@ -115,7 +115,7 @@
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                url: "/exercises/" + $(this).data('resource-id'),
+                url: "/memberships/" + $(this).data('resource-id'),
                 success: function() {
                     location.reload();
                 }

@@ -7,9 +7,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Auth;
 
+use App\Athlete;
+use App\Instructor;
 use App\Http\Requests\AthleteCreateForm;
 use App\Http\Requests\AthleteUpdateForm;
-use App\Athlete;
+
 
 class AthletesController extends Controller
 {
@@ -34,7 +36,7 @@ class AthletesController extends Controller
      */
     public function create()
     {
-        return view('admin.athletes.create');
+        return view('admin.athletes.create')->with('instructors', Instructor::all());
     }
 
     /**

@@ -63,7 +63,7 @@
                                 </a>
                                 </div>
                             </div>
-                            @if(isset($athletes))
+                            @if(count($instructor->athletes))
                             <table class="table table-hover table-workout">
                                 <thead>
                                     <tr>

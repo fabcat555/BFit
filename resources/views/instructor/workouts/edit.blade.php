@@ -1,15 +1,13 @@
-@extends('layouts.master')
-
+@extends('layouts.master') 
 @section('sidebar')
     @include('instructor.sidebar')
 @endsection
-
+ 
 @section('topbar')
     @include('instructor.topbar')
 @endsection
-
-@section('title', __('messages.WorkoutEdit'))
  
+@section('title', __('messages.WorkoutEdit')) 
 @section('content')
 <section id="main-content">
     <section class="wrapper site-min-height">
@@ -20,10 +18,9 @@
         <div class="row mt">
             <div class="col-lg-12">
                 <div class="form-panel">
-    @include('shared.errors')
+                @include('shared.errors')
                     <form class="form-horizontal style-form" method="post" action="{{route('workouts.update', $workout->id)}}">
-                        @csrf
-                        {{ method_field('put') }}
+                        @csrf {{ method_field('put') }}
                         <div class="form-group">
                             <label class="col-sm-1 control-label">@lang('messages.Name')</label>
                             <div class="col-sm-4">
@@ -31,8 +28,13 @@
                             </div>
                         </div>
                         @foreach($workout->workoutExercises as $key => $workoutExercise)
-                        <div id="athlete-form" class="panel panel-default">
-                            <div class="panel-heading">@lang('messages.Workout')</div>
+                        <div id="wo-exercise-{{$workoutExercise->id}}" class="panel panel-default athlete-form">
+                            <div class="panel-heading">
+                                @lang('messages.Workout')
+                                <button type="button" data-toggle="modal" data-target="#confirm-delete-modal" data-resource-id="{{$workoutExercise->id}}" class="btn btn-danger btn-xs"> 
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div>
                             <div class="panel-body">
                                 <div class="form-group">
                                     <label class="col-sm-1 control-label">@lang('messages.Exercise')</label>
@@ -88,4 +90,52 @@
         <!-- page end-->
     </section>
 </section>
+<!-- Modal -->
+<div id="confirm-delete-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">@lang('messages.DeleteConfirmModalHeader')</h4>
+            </div>
+            <div class="modal-body">
+                <p>@lang('messages.DeleteConfirmModalBody')</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">@lang('messages.CloseModal')</button>
+                <button id="modal-confirm" type="button" class="btn btn-danger">@lang('messages.ConfirmModal')</button>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
+
+@push('script')
+<script>
+    $(document).ready(function() {
+        var modal = $('#confirm-delete-modal');
+        modal.on('show.bs.modal', function(e) {
+            $('#modal-confirm').data('resource-id', $(e.relatedTarget).data('resource-id'));
+        });
+
+        $('#modal-confirm').on('click', function(e) {
+            var resourceId = $(this).data('resource-id');
+            $.ajax({
+                type: "post",
+                data: {
+                    _method: "DELETE"
+                },
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: "/workout-exercises/" + resourceId,
+                success: function() {
+                    $('#wo-exercise-' + resourceId).fadeOut(1000, function() {$(this).remove()});
+                    modal.modal('hide');
+                }
+            });
+        });
+});
+</script>
+@endpush

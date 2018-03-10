@@ -70,9 +70,14 @@ class AthletesController extends Controller
     public function show($instructorId, $athleteId)
     {
         $athlete = Athlete::find($athleteId);
-        $weightMeasurements = [];
-        foreach($athlete->bodyMeasurements->sortBy('created_at')->all() as $bm) {
-            $weightMeasurements[$bm->created_at->format('d-m-y')] = $bm->weight;
+        if (Auth::guard('instructor')->user()->can('view', $athlete)) {
+            $weightMeasurements = [];
+            foreach ($athlete->bodyMeasurements->sortBy('created_at')->all() as $bm) {
+                $weightMeasurements[$bm->created_at->format('d-m-y')] = $bm->weight;
+            }
+        }
+        else {
+            // redirect to unauthorized page
         }
 
         return view('instructor.athletes.show')->with(['athlete' => $athlete, 'weightMeasurement' => $weightMeasurements]);
@@ -86,7 +91,12 @@ class AthletesController extends Controller
      */
     public function edit($instructor, $athlete)
     {   
-        return view('instructor.athletes.edit')->with('athlete', Athlete::find($athlete));
+        if (Auth::guard('instructor')->user()->can('update', $athlete)) {
+            return view('instructor.athletes.edit')->with('athlete', Athlete::find($athlete));
+        }
+        else {
+            // redirect to unauthorized page
+        }
     }
 
     /**
@@ -121,8 +131,14 @@ class AthletesController extends Controller
      */
     public function destroy($instructor, $athlete)
     {
-        Athlete::destroy($athlete);
+        if (Auth::guard('instructor')->user()->can('delete', $athlete)) {
+            Athlete::destroy($athlete);
 
-        return redirect()->back()->with('status', __('messages.DeletedResource'));
+            request()->session()->flash('status', __('messages.DeletedResource'));
+            return response()->json(['status' => 'ok']);
+        }
+        else {
+             // redirect to unauthorized page
+        }
     }
 }

@@ -42,7 +42,7 @@ class AthleteController extends Controller
             'membership' => $athlete->activeMembership(),
             'workout' => $currentWorkout,
             'workoutDays' => $workoutDays,
-            'weightMeasurement' => $weightMeasurements
+            'weightMeasurements' => $weightMeasurements
         ]);   
     }
 }

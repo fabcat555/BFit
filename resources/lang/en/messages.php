@@ -36,7 +36,7 @@ return [
     'WorkoutTypeShow' => 'View workout type',
     'WorkoutCreate' => 'Create new workout',
     'WorkoutEdit' => 'Edit workout',
-    'WorkoutIndex' => 'All workout',
+    'WorkoutsIndex' => 'All workouts',
     'WorkoutShow' => 'View workout',
     
         // Admin

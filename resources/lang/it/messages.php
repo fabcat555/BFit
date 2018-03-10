@@ -31,7 +31,7 @@ return [
     'WorkoutTypeShow' => 'Vedi tipo allenamento',
     'WorkoutCreate' => 'Crea nuovo allenamento',
     'WorkoutEdit' => 'Modifica allenamento',
-    'WorkoutIndex' => 'Vedi allenamenti',
+    'WorkoutsIndex' => 'Vedi allenamenti',
     'WorkoutShow' => 'Vedi allenamento',
     
         // Admin 

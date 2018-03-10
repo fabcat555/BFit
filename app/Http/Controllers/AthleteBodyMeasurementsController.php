@@ -26,11 +26,11 @@ class AthleteBodyMeasurementsController extends Controller
             $weightMeasurements[$bm->created_at->format('d-m-y')] = $bm->weight;
         }
 
-        return view('athlete.body-measurements')->with(['weightMeasurement' => $weightMeasurements]);
+        return view('athlete.body-measurements')->with(['weightMeasurements' => $weightMeasurements]);
     }
 
-    public function getMeasurements($athleteId, $measure = 'weight') {
-        foreach(Athlete::findOrFail($athleteId)->bodyMeasurements->sortBy('created_at')->all() as $bm) {
+    public function getMeasurements($measure = 'weight') {
+        foreach(Auth::guard('athlete')->user()->bodyMeasurements->sortBy('created_at')->all() as $bm) {
             $measurements[$bm->created_at->format('d-m-y')] = $bm->$measure;
         }
 

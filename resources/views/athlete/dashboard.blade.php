@@ -184,7 +184,7 @@
                                 </div>
                             </div>
                             @if(isset($weightMeasurements))
-                                <canvas id="myChart" class="bm-weight-chart" width="400" height="250"></canvas>
+                                <canvas id="myChart" class="bm-weight-chart" width="400" height="200"></canvas>
                             @else
                                 <h5>@lang('messages.NoMeasurement')</h5>
                             @endif
@@ -209,12 +209,12 @@
     var config = {
         type: 'line',
         data: {
-            labels: @json(array_keys($weightMeasurement)),
+            labels: @json(array_keys($weightMeasurements)),
             datasets: [{
                 label: "{{ __('messages.Weight') }}" ,
                 backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgb(255, 99, 132)',
-                data: @json(array_values($weightMeasurement)),
+                data: @json(array_values($weightMeasurements)),
                 fill: false,
             }]
         },

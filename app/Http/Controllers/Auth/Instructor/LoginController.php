@@ -50,9 +50,9 @@ class LoginController extends Controller
             'email' => 'required|email',
             'password' => 'required|min:6'
         ]);
-
+        
         if (Auth::guard('instructor')->attempt(['email' => $request->get('email'), 'password' => $request->get('password')], $request->get('remember'))) {
-            return redirect()->intended(route('instructor.dashboard'));
+            return redirect(route('instructor.dashboard'));
         }
 
         return redirect()->back()->withInput($request->only('email', 'remember'))->withErrors();
@@ -62,6 +62,6 @@ class LoginController extends Controller
     {
         Auth::guard('instructor')->logout();
 
-        return redirect('/instructor/login');
+        return redirect(route('instructor.login'));
     }
 }

@@ -1,15 +1,13 @@
-@extends('layouts.master')
-
+@extends('layouts.master') 
 @section('sidebar')
     @include('instructor.sidebar')
 @endsection
-
+ 
 @section('topbar')
     @include('instructor.topbar')
 @endsection
-
-@section('title', __('messages.WorkoutShow'))
-
+ 
+@section('title', __('messages.WorkoutShow')) 
 @section('content')
 <section id="main-content">
     <section class="wrapper">
@@ -45,53 +43,55 @@
                                 </tbody>
                             </table>
                             <table class="table table-hover table-workout">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>@lang('messages.Exercise')</th>
-                                            <th>@lang('messages.Sets')</th>
-                                            <th>@lang('messages.Reps')</th>
-                                            <th>@lang('messages.Rest')</th>
-                                            <th>@lang('messages.Technique')</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($workoutDays as $day => $exercises)
-                                            <tr>
-                                                <th colspan="7" scope="colgroup">
-                                                    @lang('messages.Day') {{$day}}
-                                                </th>
-                                                <th style="display: none;"></th>
-                                                <th style="display: none;"></th>
-                                                <th style="display: none;"></th>
-                                                <th style="display: none;"></th>
-                                                <th style="display: none;"></th>
-                                                <th style="display: none;"></th>
-                                            </tr>
-                                            @foreach($exercises as $key => $woExercise)
-                                                <tr>
-                                                    <td>{{$key+1}}</td>
-                                                    <td>
-                                                        <a href="{{route('exercises.show', ['id' => $woExercise->exercise->id])}}">{{$woExercise->exercise->name}}</a>
-                                                    </td>
-                                                    <td>{{$woExercise->sets}}</td>
-                                                    <td>{{$woExercise->reps}}</td>
-                                                    <td>{{$woExercise->rest}}</td>
-                                                    <td>
-                                                        @if (isset($woExercise->exerciseTechnique))
-                                                        <a href="{{route('exercise-techniques.show', ['technique' => $woExercise->exerciseTechnique->id])}}">
-                                                                {{$woExercise->exerciseTechnique->name}}
-                                                            </a> @else - @endif
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{ route('progress.show', ['exercise' => $woExercise->id]) }}" class="btn btn-warning btn-xs"><i class="fa fa-bar-chart-o"></i></a>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>@lang('messages.Exercise')</th>
+                                        <th>@lang('messages.Sets')</th>
+                                        <th>@lang('messages.Reps')</th>
+                                        <th>@lang('messages.Rest')</th>
+                                        <th>@lang('messages.Technique')</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($workoutDays as $day => $exercises)
+                                    <tr>
+                                        <th colspan="7" scope="colgroup">
+                                            @lang('messages.Day') {{$day}}
+                                        </th>
+                                        <th style="display: none;"></th>
+                                        <th style="display: none;"></th>
+                                        <th style="display: none;"></th>
+                                        <th style="display: none;"></th>
+                                        <th style="display: none;"></th>
+                                        <th style="display: none;"></th>
+                                    </tr>
+                                    @foreach($exercises as $key => $woExercise)
+                                    <tr id="wo-exercise-{{$woExercise->id}}">
+                                        <td>{{$key+1}}</td>
+                                        <td>
+                                            <a href="{{route('exercises.show', ['id' => $woExercise->exercise->id])}}">{{$woExercise->exercise->name}}</a>
+                                        </td>
+                                        <td>{{$woExercise->sets}}</td>
+                                        <td>{{$woExercise->reps}}</td>
+                                        <td>{{$woExercise->rest}}</td>
+                                        <td>
+                                            @if (isset($woExercise->exerciseTechnique))
+                                            <a href="{{route('exercise-techniques.show', ['technique' => $woExercise->exerciseTechnique->id])}}">
+                                                {{$woExercise->exerciseTechnique->name}}
+                                            </a> @else - @endif
+                                        </td>
+                                        <td>
+                                            <button data-toggle="modal" data-target="#confirm-delete-modal" data-resource-id="{{$woExercise->id}}" class="btn btn-danger btn-xs"> 
+                                                <i class="fa fa-times"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    @endforeach 
+                                @endforeach
+                                </tbody>
+                            </table>
                             <br>
                         </div>
                     </div>
@@ -103,8 +103,28 @@
         </div>
     </section>
 </section>
-@endsection
 
+<!-- Modal -->
+<div id="confirm-delete-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">@lang('messages.DeleteConfirmModalHeader')</h4>
+            </div>
+            <div class="modal-body">
+                <p>@lang('messages.DeleteConfirmModalBody')</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">@lang('messages.CloseModal')</button>
+                <button id="modal-confirm" type="button" class="btn btn-danger">@lang('messages.ConfirmModal')</button>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+ 
 @push('script')
 <script>
     $(document).ready(function() {
@@ -122,6 +142,28 @@
                     workoutTable.buttons().container().appendTo( $('.col-sm-6:eq(1) ') );
                 }, 10 );
             }
+        });
+
+        var modal = $('#confirm-delete-modal');
+        modal.on('show.bs.modal', function(e) {
+            $('#modal-confirm').data('resource-id', $(e.relatedTarget).data('resource-id'));
+        });
+
+        $('#modal-confirm').on('click', function(e) {
+            var resourceId = $(this).data('resource-id');
+            $.ajax({
+                type: "post",
+                data: {
+                    _method: "DELETE"
+                },
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: "/workout-exercises/" + resourceId,
+                success: function() {
+                    $('#wo-exercise-' + resourceId).fadeOut(1000, function() {$(this).remove()});
+                    modal.modal('hide');
+                }
             });
         });
 });

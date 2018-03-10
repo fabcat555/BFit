@@ -33,7 +33,7 @@
                         <i class="fa fa-angle-right"></i> <span id="bm-heading-span">@lang('messages.Weight')</span>
                     </h4>
                     <div class="panel-body">
-                        @if(isset($bodyMeasurements))
+                        @if(isset($weightMeasurements))
                             <canvas id="myChart" width="800" height="200"></canvas>
                         @else
                             <h5>@lang('messages.NoMeasurement')</h5>
@@ -106,7 +106,7 @@
         };
         window.myChart = new Chart(ctx, config);
     }
-    initChart(@json(array_keys($weightMeasurement)), @json(array_values($weightMeasurement)), 'Weight');
+    initChart(@json(array_keys($weightMeasurements)), @json(array_values($weightMeasurements)), 'Weight');
     $(".bm-setting button").on('click', function(e) {
         var measure = e.target.id;
         $(".btn.active").removeClass('active');

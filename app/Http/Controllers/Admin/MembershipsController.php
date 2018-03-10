@@ -15,6 +15,10 @@ use App\Membership;
 
 class MembershipsController extends Controller
 {
+    public function __construct() {
+        return $this->middleware('auth:admin');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -104,7 +108,8 @@ class MembershipsController extends Controller
      */
     public function destroy(Membership $membership)
     {
-        Membership::destroy($membership->id);
+        $membership->end_date = Carbon::now();
+        $membership->save();
 
         request()->session()->flash('status', __('messages.DeletedResource'));
         return response()->json(['status' => 'ok']);

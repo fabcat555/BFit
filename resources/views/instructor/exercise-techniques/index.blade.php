@@ -49,12 +49,9 @@
                                             <a href="{{ route('exercise-techniques.edit', $technique->id) }}" class="btn btn-primary btn-xs">
                                                 <i class="fa fa-pencil"></i>
                                             </a>
-                                            <form method="POST" class="delete-athlete-form" action="{{ route('exercise-techniques.destroy', $technique->id) }}">
-                                                @csrf {{ method_field('delete') }}
-                                                <button class="btn btn-danger btn-xs" type="submit"> 
+                                            <button data-toggle="modal" data-target="#confirm-delete-modal" data-resource-id="{{$technique->id}}" class="btn btn-danger btn-xs"> 
                                                     <i class="fa fa-times"></i>
                                                 </button>
-                                            </form>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -69,6 +66,7 @@
         </div>
     </section>
 </section>
+
 <!-- Modal -->
 <div id="confirm-delete-modal" class="modal fade" role="dialog">
     <div class="modal-dialog">

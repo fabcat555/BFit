@@ -12,4 +12,8 @@ class ExerciseProgress extends Model
      * @var array
      */
     protected $guarded = ['id'];
+
+    public function workoutExercise() {
+        return $this->belongsTo('App\WorkoutExercise');
+    }
 }

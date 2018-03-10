@@ -42,7 +42,7 @@ Route::get('/my-workout', 'AthleteWorkoutController@index')->name('workout');
 Route::get('/my-workout-history', 'AthleteWorkoutController@viewHistory')->name('workout.history');
 Route::get('/body-measurements', 'AthleteBodyMeasurementsController@index')->name('bodymeasurements');
 Route::get('/getMeasurements/{athleteId}/{measure?}', 'AthleteBodyMeasurementsController@getMeasurements')->name('bodymeasurements.get');
-Route::get('/progress/{exercise}', 'ExerciseProgressController@show')->name('progress.show');
+Route::get('/progress/{workoutExercise}', 'ExerciseProgressController@show')->name('progress.show');
 Route::post('/progress/{exercise}', 'ExerciseProgressController@store')->name('progress.store');
 
 // Instructor routes
@@ -50,6 +50,8 @@ Route::get('instructor/dashboard', 'InstructorController@index')->name('instruct
 Route::resource('workouts', 'Instructor\WorkoutsController');
 Route::resource('exercises', 'Instructor\ExercisesController');
 Route::resource('exercise-techniques', 'Instructor\ExerciseTechniquesController');
+Route::resource('exercise-steps', 'Instructor\ExerciseStepsController')->only(['destroy']);
+Route::resource('workout-exercises', 'Instructor\WorkoutExercisesController')->only(['destroy']);
 Route::resource('workout-types', 'Instructor\WorkoutTypesController');
 Route::resource('instructor.athletes', 'Instructor\AthletesController');
 Route::resource('athletes.measurements', 'Instructor\BodyMeasurementsController')->only(['store']);

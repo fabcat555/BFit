@@ -2417,7 +2417,7 @@ label {
 
 .workout-panel,
 .bm-panel {
-    min-height: 500px;
+    height: 500px;
 }
 
 .personal-panel,
@@ -2614,7 +2614,7 @@ label {
 
 /* Instructor Athlete create */
 
-#athlete-form {
+.athlete-form {
     width: 75%;
     margin: 15px auto;
 }

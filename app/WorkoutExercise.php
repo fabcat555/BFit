@@ -24,4 +24,9 @@ class WorkoutExercise extends Model
     public function exerciseTechnique() {
         return $this->belongsTo('App\ExerciseTechnique');
     }
+
+    public function workout() {
+        return $this->belongsTo('App\Workout');
+    }
+
 }
