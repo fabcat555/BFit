@@ -18,8 +18,18 @@
                         <!-- WORKOUT PANEL -->
                         <div class="grey-panel pn">
                             <div class="grey-header">
-                                <h5 class="black-heading">@lang('messages.Workout')</h5>
+                                <h5 class="panel-header">@lang('messages.Workout')</h5>
+                                <div class="db-btn-group">
+                                    <button class="btn btn-primary btn-xs dashboard-btn" data-toggle="modal" data-target="#assign-workout-modal">
+                                        @lang('messages.WorkoutAssign')
+                                    </button>
+                                </div>
                             </div>
+                            @if(session('status'))
+                            <div class="alert alert-success alert-created" role="alert">
+                                <strong>{{ session('status') }}</strong>
+                            </div>
+                            @endif
                             <table class="table table-borderless table-description">
                                 <tbody>
                                     <tr>
@@ -42,7 +52,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <table class="table table-hover table-workout">
+                            <table id="workout" class="table table-hover table-workout">
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -89,7 +99,7 @@
                                         </td>
                                     </tr>
                                     @endforeach 
-                                @endforeach
+                                    @endforeach
                                 </tbody>
                             </table>
                             <br>
@@ -103,8 +113,7 @@
         </div>
     </section>
 </section>
-
-<!-- Modal -->
+<!-- Modals -->
 <div id="confirm-delete-modal" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
@@ -120,6 +129,33 @@
                 <button type="button" class="btn btn-default" data-dismiss="modal">@lang('messages.CloseModal')</button>
                 <button id="modal-confirm" type="button" class="btn btn-danger">@lang('messages.ConfirmModal')</button>
             </div>
+        </div>
+    </div>
+</div>
+<div id="assign-workout-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">@lang('messages.WorkoutAssignModalTitle')</h4>
+            </div>
+            <form action="{{route('workout.assign')}}" method="POST">
+                @csrf
+                <input type="hidden" name="workout_id" value="{{$workout->id}}">
+                <div class="modal-body">
+                    <p>@lang('messages.WorkoutAssignModalBody')</p>
+                    <select name="athlete_id" class="selectpicker">
+                    @foreach(Auth::guard('instructor')->user()->athletes as $athlete)
+                        <option value="{{$athlete->id}}">{{$athlete->first_name}} {{$athlete->last_name}}</option>
+                    @endforeach
+                </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">@lang('messages.CloseModal')</button>
+                    <button id="modal-confirm" type="submit" class="btn btn-primary">@lang('messages.ConfirmModal')</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -143,12 +179,10 @@
                 }, 10 );
             }
         });
-
         var modal = $('#confirm-delete-modal');
         modal.on('show.bs.modal', function(e) {
             $('#modal-confirm').data('resource-id', $(e.relatedTarget).data('resource-id'));
         });
-
         $('#modal-confirm').on('click', function(e) {
             var resourceId = $(this).data('resource-id');
             $.ajax({

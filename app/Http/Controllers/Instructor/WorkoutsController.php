@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Instructor;
 use Illuminate\Http\Request;
 use App\Http\Requests\WorkoutCreateForm;
 use App\Http\Controllers\Controller;
+use Auth;
 
 use App\Athlete;
 use App\Exercise;
@@ -15,6 +16,11 @@ use App\WorkoutType;
 
 class WorkoutsController extends Controller
 {
+
+    public function __construct() {
+        $this->middleware('auth:instructor');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -30,11 +36,13 @@ class WorkoutsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($athleteId = '0')
     {
         return view('instructor.workouts.create')->with([
+            'athleteId' => $athleteId,
             'athletes' => Athlete::all(),
             'exercises' => Exercise::all(),
+            'workouts' => Workout::all(),
             'workoutTypes' => WorkoutType::all(),
             'exerciseTechniques' => ExerciseTechnique::all()
         ]);
@@ -46,26 +54,36 @@ class WorkoutsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(WorkoutCreateForm $request)
+    public function store(Request $request)
     {
-        $workout = Workout::create($request->only(['name', 'athlete_id', 'start_date', 'end_date', 'type_id']));
-        $workout->save();
+        $athleteId = $request->get('athlete_id');
 
-        $workoutExercises = $request->get('workoutExercises');
-        foreach($workoutExercises as $workoutExercise) {
-            WorkoutExercise::create([
-                'exercise_id' => $workoutExercise['exercise_id'],
-                'workout_id' => $workout->id,
-                'sets' => $workoutExercise['sets'],
-                'reps' => $workoutExercise['reps'],
-                'rest' => $workoutExercise['rest'],
-                'day' => $workoutExercise['day'],
-                'notes' => $workoutExercise['notes'],
-                'exercise_technique_id' => $workoutExercise['exercise_technique_id'],
-            ])->save();
+        if ($request->get('workout_id')) {
+            return $this->assignWorkout($request, $athleteId);
+        } 
+        
+        else {
+            $workout = Workout::create($request->only(['name', 'athlete_id', 'start_date', 'end_date', 'type_id']));
+            $workout->save();
+
+            $workoutDays = $request->get('workoutExercises');
+            foreach ($workoutDays as $day => $workoutExercises) {
+                foreach ($workoutExercises as $workoutExercise) {
+                    WorkoutExercise::create([
+                        'exercise_id' => $workoutExercise['exercise_id'],
+                        'workout_id' => $workout->id,
+                        'sets' => $workoutExercise['sets'],
+                        'reps' => $workoutExercise['reps'],
+                        'rest' => $workoutExercise['rest'],
+                        'day' => $day,
+                        'notes' => $workoutExercise['notes'],
+                        'exercise_technique_id' => $workoutExercise['exercise_technique_id'],
+                    ])->save();
+                }
+            }
+
+            return redirect(route('workouts.index'))->with('status', __('messages.CreatedWorkout'));
         }
-
-        return redirect(route('workouts.index'))->with('status', __('messages.CreatedWorkout'));
     }
 
     /**
@@ -109,18 +127,34 @@ class WorkoutsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(WorkoutCreateForm $request, $id)
+    public function update(Request $request, $id)
     {
         $workout = Workout::findOrFail($id);
         $workout->fill($request->only(['name', 'athlete_id', 'start_date', 'end_date', 'type_id']))->save();
 
-        $workoutExercises = $request->get('workoutExercises');
-        foreach($workoutExercises as $exerciseId => $data) {
-            $exercise = WorkoutExercise::find($exerciseId);
-            $exercise->fill($data)->save();
+        $workoutDays = $request->get('workoutExercises');
+        foreach ($workoutDays as $day => $workoutExercises) {
+            foreach ($workoutExercises as $workoutExercise) {
+                if (isset($workoutExercise['workout_exercise_id'])) {
+                    $exercise = WorkoutExercise::find($workoutExercise['workout_exercise_id']);
+                    unset($workoutExercise['workout_exercise_id']);
+                    $exercise->fill($workoutExercise)->save();
+                } else {
+                    WorkoutExercise::create([
+                        'exercise_id' => $workoutExercise['exercise_id'],
+                        'workout_id' => $workout->id,
+                        'sets' => $workoutExercise['sets'],
+                        'reps' => $workoutExercise['reps'],
+                        'rest' => $workoutExercise['rest'],
+                        'day' => $day,
+                        'notes' => $workoutExercise['notes'],
+                        'exercise_technique_id' => $workoutExercise['exercise_technique_id'],
+                    ])->save();
+                }
+            }
         }
 
-        return redirect(route('workouts.show', $id));
+        return redirect(route('workouts.show', $id))->with('status', __('messages.UpdatedResource'));
     }
 
     /**
@@ -135,5 +169,23 @@ class WorkoutsController extends Controller
 
         request()->session()->flash('status', __('messages.DeletedResource'));
         return response()->json(['status' => 'ok']);
+    }
+
+    public function assignWorkout(Request $request, $athleteId)
+    {
+        $workout = Workout::findOrFail($request->get('workout_id'));
+        $newWorkout = $workout->replicate();
+        $newWorkout->athlete_id = $athleteId;
+        $newWorkout->save();
+        
+        foreach ($workout->workoutExercises as $woExercise) {
+            $newWoExercise = $woExercise->replicate();
+            $newWoExercise->workout_id = $newWorkout->id;
+            $newWoExercise->save();
+            $newWorkout->workoutExercises->push($newWoExercise);
+        }
+
+        return redirect($athleteId ? route('instructor.athletes.show', ['instructor' => Auth::guard('instructor')->user(), 'athletes' => Athlete::find($athleteId)]) 
+            : route('instructor.athletes.show', Auth::guard('instructor')->user()))->with('status', __('messages.AssignedWorkoutMessage'));
     }
 }

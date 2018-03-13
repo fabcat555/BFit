@@ -2573,7 +2573,7 @@ label {
     width: 100%
 }
 
-/* Exercise */
+/* Exercise show */
 
 .exercise-desc {
     width: 80%;
@@ -2630,6 +2630,7 @@ label {
 .alert-created {
     width: 90%;
     margin: 0 auto;
+    text-align: center;
 }
 
 /* Instructor Athletes */
@@ -2667,4 +2668,12 @@ table.dataTable {
 
 .dt-buttons {
     float: left;
+}
+
+#workout_wrapper .dt-buttons {
+    float: right !important;
+}
+
+#workout-day-1, #predefined-workout, #workout-submit, #add-day {
+    display: none;
 }

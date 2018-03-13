@@ -154,13 +154,17 @@ return [
     'NoInstructors' => 'Nessun istruttore trovato!',
 
     // Delete resource modal
-    'DeleteConfirmModalHeader' => 'Deleting resource',
-    'DeleteConfirmModalBody' => 'Are you sure you want to delete the selected resource?',
+    'DeleteConfirmModalHeader' => 'Cancella risorsa',
+    'DeleteConfirmModalBody' => 'Sei sicuro di voler cancellare la risorsa selezionata?',
     'CloseModal' => 'Annulla',
     'ConfirmModal' => 'Conferma',
 
     // Workout show
     'Day' => 'Giorno',
+    'WorkoutAssign' => 'Assegna ad atleta',
+    'WorkoutAssignModalTitle' => 'Assegna allenamento predefinito ad atleta',
+    'WorkoutAssignModalBody' => 'Scegli un atleta',
+    'AssignedWorkoutMessage' => 'Hai assegnato correttamente un allenamento!',
 
     // Workout history
     'NoWorkouts' => 'Nessun workout precedente.',
@@ -192,10 +196,14 @@ return [
     'UpdatedResource' => 'Aggiornato correttamente!',
     'DeletedResource' => 'Eliminato correttamente!',
 
+    // Athlete show
+    'AssignWorkout' => 'Assegnawe nuovo allenamento',
+
     // Exercise create form
     'Step' => 'Step',
     'CreatedExercise' => 'Hai creato un nuovo esercizio!',
     'AddExerciseStep' => 'Aggiungi nuovo step',    
+    'AddWorkoutDay' => 'Aggiungi giorno',
 
     // Workout Type create form
     'CreatedWorkoutType' => 'Hai creato un nuovo tipo di allenamento!',
@@ -205,9 +213,12 @@ return [
     // Workout create form
     'Name' => 'Nome',
     'Description' => 'Descrizione',
-    'NewWorkout' => 'Nuovo Allenamengo',
+    'NewWorkout' => 'Nuovo Allenamento',
     'CreatedWorkout' => 'Hai creato un nuovo workout!',
     'WorkoutData' => 'Dati Allenamento',
+    'AssignPredefinedWorkout' => 'Assegna allenamento predefinito',
+    'ChoosePredefinedWorkout' => 'Scegli un allenamento predefinito',
+    'AddExercise' => 'Aggiungi esercizio',
 
     // Exercise technique create form
     'NewExerciseTechnique' => 'Nuova tecnica esercizio',

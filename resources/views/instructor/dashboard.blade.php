@@ -209,7 +209,7 @@
                                     </a>
                                 </div>
                             </div>
-                            @if (isset($exerciseTecniques))
+                            @if (isset($exerciseTechniques))
                             <table class="table table-hover table-workout">
                                 <thead>
                                     <tr>

@@ -47,10 +47,10 @@ class Athlete extends Authenticatable
     }
 
     public function activeMembership() {
-        return $this->memberships()->where('end_date', '>', Carbon::now())->first();
+        return $this->memberships()->where('end_date', '>', Carbon::now())->orderByDesc('id')->first();
     }
 
     public function currentWorkout() {
-        return $this->workouts()->where('end_date', '>', Carbon::now())->first();
+        return $this->workouts()->where('end_date', '>', Carbon::now())->orderByDesc('id')->first();
     }
 }

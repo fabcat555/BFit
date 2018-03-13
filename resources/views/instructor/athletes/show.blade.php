@@ -54,6 +54,87 @@
                         </div>
                     </div>
                 </div>
+                <div class="row mb">
+                    <div class="col-lg-12">
+                        <div class="grey-panel pn">
+                            <div class="grey-header">
+                                <h5 class="panel-header">@lang('messages.AssignedWorkout')</h5>
+                                <div class="db-btn-group">
+                                    <a href="{{route('workouts.create', $athlete->id)}}" type="button" class="btn btn-xs btn-primary">@lang('messages.AssignWorkout')</a>
+                                </div>
+                            </div>
+                            @if (isset($workout))
+                            <table class="table table-borderless table-description">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">@lang('messages.Type')</th>
+                                        <td>{{ $workout->type->name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">@lang('messages.StartDate')</th>
+                                        <td>{{ $workout->start_date->format('d/m/y') }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">@lang('messages.EndDate')</th>
+                                        <td>{{ $workout->end_date->format('d/m/y') }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="table table-hover table-workout">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>@lang('messages.Exercise')</th>
+                                        <th>@lang('messages.Sets')</th>
+                                        <th>@lang('messages.Reps')</th>
+                                        <th>@lang('messages.Rest')</th>
+                                        <th>@lang('messages.Technique')</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($workout->workoutExercises->sortBy('day')->groupBy('day') as $day => $exercises)
+                                        <tr>
+                                            <th colspan="7" scope="colgroup">
+                                                @lang('messages.Day') {{$day}}
+                                            </th>
+                                            <th style="display: none;"></th>
+                                            <th style="display: none;"></th>
+                                            <th style="display: none;"></th>
+                                            <th style="display: none;"></th>
+                                            <th style="display: none;"></th>
+                                            <th style="display: none;"></th>
+                                        </tr>
+                                        @foreach($exercises as $key => $woExercise)
+                                            <tr>
+                                                <td>{{$key+1}}</td>
+                                                <td>
+                                                    <a href="{{route('exercises.show', ['id' => $woExercise->exercise->id])}}">{{$woExercise->exercise->name}}</a>
+                                                </td>
+                                                <td>{{$woExercise->sets}}</td>
+                                                <td>{{$woExercise->reps}}</td>
+                                                <td>{{$woExercise->rest}}</td>
+                                                <td>
+                                                    @if (isset($woExercise->exerciseTechnique))
+                                                    <a href="{{route('exercise-techniques.show', ['technique' => $woExercise->exerciseTechnique->id])}}">
+                                                            {{$woExercise->exerciseTechnique->name}}
+                                                        </a> @else - @endif
+                                                </td>
+                                                <td>
+                                                    <a href="{{ route('progress.show', ['exercise' => $woExercise->id]) }}" class="btn btn-warning btn-xs"><i class="fa fa-bar-chart-o"></i></a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            @else
+                                <h5>@lang('messages.NoWorkout')</h5>
+                            @endif
+                            <br>
+                        </div>
+                    </div>
+                </div>
                 <!-- /row -->
                 <div class="row">
                     <div class="col-lg-12">
@@ -180,7 +261,7 @@
         };
         window.myChart = new Chart(ctx, config);
     }
-    initChart(@json(array_keys($weightMeasurement)), @json(array_values($weightMeasurement)), 'Weight');
+    initChart(@json(array_keys($weightMeasurements)), @json(array_values($weightMeasurements)), 'Weight');
     $(".athlete-bm-setting button").on('click', function(e) {
         var measure = e.target.id;
         $(".btn.active").removeClass('active');

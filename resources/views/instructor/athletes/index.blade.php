@@ -19,6 +19,10 @@
                 <div class="row mt">
                     <div class="col-md-12 mb">
                         <!-- WHITE PANEL - TOP USER -->
+                        @if(session('status'))
+                        <div class="alert alert-success alert-created" role="alert">
+                            <strong>{{ session('status') }}</strong>
+                        </div>
                         <div class="white-panel pn">
                             <div class="white-header">
                                 <h5 class="panel-header">@lang('messages.AssignedAthletes')</h5>
@@ -27,10 +31,6 @@
                                         @lang('messages.New')
                                     </a>
                                 </div>
-                            </div>
-                            @if(session('status'))
-                            <div class="alert alert-success alert-created" role="alert">
-                                <strong>{{ session('status') }}</strong>
                             </div>
                             @endif
                             <table id="athletes" class="table table-hover table-workout">

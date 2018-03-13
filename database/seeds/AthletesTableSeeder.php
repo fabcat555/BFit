@@ -21,6 +21,7 @@ class AthletesTableSeeder extends Seeder
             'gender' => 'M',
             'height' => 180,
             'notes' => '',
+            'instructor_id' => 1,
             'email' => 'fabio@fabio.com',
             'password' => Hash::make('moonsault')
         ]);

@@ -41,13 +41,15 @@ Route::get('/{url?}', 'AthleteController@index')->where('url', 'dashboard')->nam
 Route::get('/my-workout', 'AthleteWorkoutController@index')->name('workout');
 Route::get('/my-workout-history', 'AthleteWorkoutController@viewHistory')->name('workout.history');
 Route::get('/body-measurements', 'AthleteBodyMeasurementsController@index')->name('bodymeasurements');
-Route::get('/getMeasurements/{athleteId}/{measure?}', 'AthleteBodyMeasurementsController@getMeasurements')->name('bodymeasurements.get');
+Route::get('/getMeasurements/{measure?}', 'AthleteBodyMeasurementsController@getMeasurements')->name('bodymeasurements.get');
 Route::get('/progress/{workoutExercise}', 'ExerciseProgressController@show')->name('progress.show');
 Route::post('/progress/{exercise}', 'ExerciseProgressController@store')->name('progress.store');
 
 // Instructor routes
 Route::get('instructor/dashboard', 'InstructorController@index')->name('instructor.dashboard');
-Route::resource('workouts', 'Instructor\WorkoutsController');
+Route::get('workouts/create/{athleteId?}', 'Instructor\WorkoutsController@create')->name('workouts.create');
+Route::resource('workouts', 'Instructor\WorkoutsController', ['except' => 'create']);
+Route::post('/assignWorkout', 'Instructor\WorkoutsController@assignWorkout')->name('workout.assign');
 Route::resource('exercises', 'Instructor\ExercisesController');
 Route::resource('exercise-techniques', 'Instructor\ExerciseTechniquesController');
 Route::resource('exercise-steps', 'Instructor\ExerciseStepsController')->only(['destroy']);
@@ -55,6 +57,7 @@ Route::resource('workout-exercises', 'Instructor\WorkoutExercisesController')->o
 Route::resource('workout-types', 'Instructor\WorkoutTypesController');
 Route::resource('instructor.athletes', 'Instructor\AthletesController');
 Route::resource('athletes.measurements', 'Instructor\BodyMeasurementsController')->only(['store']);
+Route::get('/getMeasurements/{athleteId}/{measure?}', 'Instructor\BodyMeasurementsController@getAthleteMeasurements');
 
 // Admin routes
 Route::get('admin/dashboard', 'AdminController@index')->name('admin.dashboard');

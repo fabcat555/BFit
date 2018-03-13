@@ -77,10 +77,13 @@ class AthletesController extends Controller
             }
         }
         else {
-            // redirect to unauthorized page
+           return 'non sei autorizzato';
         }
 
-        return view('instructor.athletes.show')->with(['athlete' => $athlete, 'weightMeasurement' => $weightMeasurements]);
+        return view('instructor.athletes.show')->with([
+            'athlete' => $athlete, 
+            'workout' => $athlete->currentWorkout(),
+            'weightMeasurements' => $weightMeasurements]);
     }
 
     /**
