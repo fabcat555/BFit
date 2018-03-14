@@ -47,7 +47,7 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $this->validate($request, [
-            'email' => 'required|email',
+            'email' => 'required|email|exists:instructors,email',
             'password' => 'required|min:6'
         ]);
         
@@ -55,7 +55,7 @@ class LoginController extends Controller
             return redirect(route('instructor.dashboard'));
         }
 
-        return redirect()->back()->withInput($request->only('email', 'remember'))->withErrors();
+        return redirect()->back()->withInput($request->only('email', 'remember'))->withErrors(__('messages.WrongPassword'));
     }
 
     public function logout()

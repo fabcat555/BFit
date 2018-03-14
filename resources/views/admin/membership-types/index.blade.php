@@ -114,7 +114,7 @@
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                url: "/exercises/" + $(this).data('resource-id'),
+                url: "/membership-types/" + $(this).data('resource-id'),
                 success: function() {
                     location.reload();
                 }

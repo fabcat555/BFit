@@ -32,7 +32,7 @@ return [
     'ExerciseShow' => 'View exercise',
     'WorkoutTypeCreate' => 'Create new workout type',
     'WorkoutTypeEdit' => 'Edit workout type',
-    'WorkoutTypeIndex' => 'All workout types',
+    'WorkoutTypesIndex' => 'All workout types',
     'WorkoutTypeShow' => 'View workout type',
     'WorkoutCreate' => 'Create new workout',
     'WorkoutEdit' => 'Edit workout',
@@ -74,6 +74,7 @@ return [
     'ResetPasswordHeading' => 'Enter your e-mail address below to reset your password.',
     'CancelButton' => 'Cancel',
     'SubmitButton' => 'Submit',
+    'WrongPassword' => 'Wrong password. Retry.',
 
     // Athlete sidebar
     'Dashboard' => 'Dashboard',
@@ -180,6 +181,12 @@ return [
     // Membership Types index
     'MembershipTypes' => 'Membership Types',
 
+    // Memberships index
+    'CreatedMembership' => 'Successfully created a new membership',
+    'DisableMembershipConfirmModalHeader' => 'Disable membership',
+    'DisableMembershipConfirmModalBody' => 'Are you sure you want to disable the selected membership?',
+    'DisabledMembership' => 'Successfully disabled!',
+
     // Membership Type create/edit form
     'CreatedMembershipType' => 'Successfully created a new membership type!',
     'NewMembershipType' => 'New Membership Type',
@@ -203,6 +210,10 @@ return [
     'CreatedAthlete' => 'Successfully created a new athlete!',
     'UpdatedResource' => 'Successfully updated!',
     'DeletedResource' => 'Successfully deleted!',
+
+    // Instructor create form
+    'InstructorPersonals' => 'Instructor personal data',
+    'CreatedAthlete' => 'Successfully created a new instructor!',
 
     // Athlete show
     'AssignWorkout' => 'Assign new workout',

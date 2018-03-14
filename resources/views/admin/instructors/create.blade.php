@@ -19,7 +19,7 @@
                 <div class="form-panel">
                     @include('shared.errors')
                     <div id="athlete-form" class="panel panel-default">
-                        <div class="panel-heading">@lang('messages.AthletePersonals')</div>
+                        <div class="panel-heading">@lang('messages.InstructorPersonals')</div>
                         <div class="panel-body">
                         <form class="form-horizontal style-form" method="post"
                             action="{{route('instructors.store')}}">

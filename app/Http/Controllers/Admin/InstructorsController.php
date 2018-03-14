@@ -89,18 +89,12 @@ class InstructorsController extends Controller
      */
     public function update(InstructorUpdateForm $request, $instructorId)
     {
-        $instructor = Instructor::findOrFail($instructor);
-        $instructor->first_name = $request->get('first_name');
-        $instructor->last_name = $request->get('last_name');
-        $instructor->birth_date = $request->get('birth_date');
-        $instructor->email = $request->get('email');
-        $instructor->gender = $request->get('gender');
-        $instructor->height = $request->get('height');
-        $instructor->notes = $request->get('notes');
+        $instructor = Instructor::findOrFail($instructorId);
+        $instructor->fill($request->except(['instructor_id']));
 
         $instructor->save();
 
-        return redirect(route('instructor.instructors.show', $instructor))->with('status', __('messages.UpdatedResource'));
+        return redirect(route('instructors.show', $instructor))->with('status', __('messages.UpdatedResource'));
     }
 
     /**

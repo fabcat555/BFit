@@ -68,7 +68,7 @@
                                 <tbody>
                                     <tr>
                                         <th scope="row">@lang('messages.Type')</th>
-                                        <td>{{ $workout->type->name }}</td>
+                                        <td>@if(isset($workout->type)) {{ $workout->type->name }} @else - @endif</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">@lang('messages.StartDate')</th>

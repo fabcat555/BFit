@@ -173,6 +173,7 @@ class WorkoutsController extends Controller
 
     public function assignWorkout(Request $request, $athleteId)
     {
+        
         $workout = Workout::findOrFail($request->get('workout_id'));
         $newWorkout = $workout->replicate();
         $newWorkout->athlete_id = $athleteId;

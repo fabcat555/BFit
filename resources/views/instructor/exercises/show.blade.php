@@ -22,7 +22,7 @@
 <section id="main-content">
     <section class="wrapper site-min-height">
         <h3 class="bm-section-heading">
-            <i class="fa fa-angle-right"></i> @lang('messages.Techniques')
+            <i class="fa fa-angle-right"></i> @lang('messages.Exercises')
         </h3>
         <!-- page start-->
         <div class="row mt">

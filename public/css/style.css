@@ -2677,3 +2677,8 @@ table.dataTable {
 #workout-day-1, #predefined-workout, #workout-submit, #add-day {
     display: none;
 }
+
+.btn:focus,.btn:active {
+    outline: none !important;
+    box-shadow: none;
+ }

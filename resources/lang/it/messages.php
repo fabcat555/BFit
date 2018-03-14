@@ -27,7 +27,7 @@ return [
     'ExerciseShow' => 'Vedi esercizio',
     'WorkoutTypeCreate' => 'Crea nuovo tipo allenamento',
     'WorkoutTypeEdit' => 'Modifica tipo allenamento',
-    'WorkoutTypeIndex' => 'Vedi tipi allenamento',
+    'WorkoutTypesIndex' => 'Vedi tipi allenamento',
     'WorkoutTypeShow' => 'Vedi tipo allenamento',
     'WorkoutCreate' => 'Crea nuovo allenamento',
     'WorkoutEdit' => 'Modifica allenamento',
@@ -66,7 +66,8 @@ return [
     'ResetPasswordHeading' => 'Inserisci il tuo indirizzo email per resettare la tua password.',
     'CancelButton' => 'Annulla',
     'SubmitButton' => 'Reset',
-    
+    'WrongPassword' => 'Password errata. Riprova.',
+
     // Athlete sidebar
     'Dashboard' => 'Dashboard',
     'Workout' => 'Allenamento',
@@ -171,6 +172,12 @@ return [
 
     // Membership Types index
     'MembershipTypes' => 'Tipi di abbonamento',
+    
+    // Memberships index
+    'CreatedMembership' => 'Hai creato un nuovo abbonamento!',
+    'DisableMembershipConfirmModalHeader' => 'Disattiva abbonamento',
+    'DisableMembershipConfirmModalBody' => 'Sei sicuro di volere disattivare l\'abbonamento selezionato?',
+    'DisabledMembership' => 'Correttamente disattivato!',
 
     // Membership Type create/edit form
     'CreatedMembershipType' => 'Hai creato un nuovo tipo di abbonamento!',
@@ -195,6 +202,9 @@ return [
     'CreatedAthlete' => 'Hai creato un nuovo atleta!',
     'UpdatedResource' => 'Aggiornato correttamente!',
     'DeletedResource' => 'Eliminato correttamente!',
+
+    // Instructor create form
+    'InstructorPersonals' => 'Dati anagrafici istruttore',
 
     // Athlete show
     'AssignWorkout' => 'Assegnawe nuovo allenamento',

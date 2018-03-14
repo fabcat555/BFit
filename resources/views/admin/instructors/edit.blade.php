@@ -31,7 +31,7 @@
                                     <input name="first_name" required type="text" class="form-control" value="{{ old('first_name', $instructor->first_name) }}">
                                     </div>
                                 </div>
-                                <input type="hidden" name="athlete_id" value={{ $instructor->id }}>
+                                <input type="hidden" name="instructor_id" value={{ $instructor->id }}>
                                 <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">@lang('messages.LastName')</label>
                                     <div class="col-sm-12">

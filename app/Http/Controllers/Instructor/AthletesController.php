@@ -70,20 +70,21 @@ class AthletesController extends Controller
     public function show($instructorId, $athleteId)
     {
         $athlete = Athlete::find($athleteId);
+
         if (Auth::guard('instructor')->user()->can('view', $athlete)) {
             $weightMeasurements = [];
             foreach ($athlete->bodyMeasurements->sortBy('created_at')->all() as $bm) {
                 $weightMeasurements[$bm->created_at->format('d-m-y')] = $bm->weight;
             }
+            
+            return view('instructor.athletes.show')->with([
+                'athlete' => $athlete, 
+                'workout' => $athlete->currentWorkout(),
+                'weightMeasurements' => $weightMeasurements]);
         }
         else {
            return 'non sei autorizzato';
         }
-
-        return view('instructor.athletes.show')->with([
-            'athlete' => $athlete, 
-            'workout' => $athlete->currentWorkout(),
-            'weightMeasurements' => $weightMeasurements]);
     }
 
     /**
@@ -92,13 +93,15 @@ class AthletesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($instructor, $athlete)
-    {   
+    public function edit($athleteId)
+    {
+        $athlete = Athlete::find($athleteId);
+
         if (Auth::guard('instructor')->user()->can('update', $athlete)) {
-            return view('instructor.athletes.edit')->with('athlete', Athlete::find($athlete));
+            return view('instructor.athletes.edit')->with('athlete', $athlete);
         }
         else {
-            // redirect to unauthorized page
+            return 'non sei autorizzato';
         }
     }
 
@@ -109,20 +112,12 @@ class AthletesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(AthleteUpdateForm $request, $instructor, $athlete)
+    public function update(AthleteUpdateForm $request, $athleteId)
     {
-        $a = Athlete::findOrFail($athlete);
-        $a->first_name = $request->get('first_name');
-        $a->last_name = $request->get('last_name');
-        $a->birth_date = $request->get('birth_date');
-        $a->email = $request->get('email');
-        $a->gender = $request->get('gender');
-        $a->height = $request->get('height');
-        $a->notes = $request->get('notes');
+        $athlete = Athlete::findOrFail($athleteId);
+        $athlete->fill($request->except('athlete_id'))->save();
 
-        $a->save();
-
-        return redirect(route('instructor.athletes.show', ['instructor' => $instructor, 'athlete' => $athlete]))
+        return redirect(route('instructor.athletes.show', ['instructor' => Auth::guard('instructor')->user()->id, 'athlete' => $athlete->id]))
             ->with('status', __('messages.UpdatedResource'));
     }
 
@@ -132,16 +127,18 @@ class AthletesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($instructor, $athlete)
+    public function destroy($athleteId)
     {
+        $athlete = Athlete::findOrFail($athleteId);
+
         if (Auth::guard('instructor')->user()->can('delete', $athlete)) {
-            Athlete::destroy($athlete);
+            $athlete->delete();
 
             request()->session()->flash('status', __('messages.DeletedResource'));
             return response()->json(['status' => 'ok']);
         }
         else {
-             // redirect to unauthorized page
+            return 'non sei autorizzato';
         }
     }
 }

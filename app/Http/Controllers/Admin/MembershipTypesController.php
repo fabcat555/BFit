@@ -74,7 +74,7 @@ class MembershipTypesController extends Controller
      */
     public function update(Request $request, MembershipType $membershipType)
     {
-        $membershipType->fill($request->all());
+        $membershipType->fill($request->only(['name', 'validity', 'price']))->save();
 
         return redirect(route('membership-types.index'))->with('status', __('messages.UpdatedResource'));
     }
@@ -87,9 +87,9 @@ class MembershipTypesController extends Controller
      */
     public function destroy(MembershipType $membershipType)
     {
-        MembershipType::destroy($membershipType->id);
+        $membershipType->delete();
 
-        request()->session()->flash('status', __('messages.DeletedResource'));
+        request()->session()->flash('status', __('messages.DisabledMembership'));
         return response()->json(['status' => 'ok']);
     }
 }

@@ -41,7 +41,7 @@
                                     </div>
                                 </fieldset>
                                 <button type="submit" class="btn btn-primary pull-right">@lang('messages.Register')</button>
-                                <button id="add-step" class="btn btn-default">@lang('messages.AddExerciseStep')</button>
+                                <button type="button" id="add-step" class="btn btn-default">@lang('messages.AddExerciseStep')</button>
                             </form>
                         </div>
                     </div>

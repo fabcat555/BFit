@@ -22,7 +22,7 @@
                 <div class="form-panel">
                 @include('shared.errors')
                     <div id="athlete-form" class="panel panel-default">
-                        <div class="panel-heading">@lang('messages.ExerciseTechnique')</div>
+                        <div class="panel-heading">@lang('messages.ExerciseTechniqueData')</div>
                         <div class="panel-body">
                             <form class="form-horizontal style-form" method="post" action="{{route('exercise-techniques.update', $technique->id)}}">
                                 @csrf

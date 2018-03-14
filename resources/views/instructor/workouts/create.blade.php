@@ -43,7 +43,7 @@
                                         <select name="type_id" class="selectpicker" data-live-search="true">
                                             <option label=" "></option>
                                             @foreach($workoutTypes as $wt)
-                                            <option value="{{$wt->id}}">{{$wt->name}}</option>
+                                                <option value="{{$wt->id}}">{{$wt->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -51,11 +51,11 @@
                                 <div class="form-group">
                                     <label class="col-sm-1 control-label">@lang('messages.StartDate')</label>
                                     <div class="col-sm-3">
-                                        <input name="start_date" type="date" class="form-control">
+                                        <input id="start-date" name="start_date" type="date" class="form-control">
                                     </div>
                                     <label class="col-sm-1 control-label">@lang('messages.EndDate')</label>
                                     <div class="col-sm-3">
-                                        <input name="end_date" type="date" class="form-control">
+                                        <input id="end-date" name="end_date" type="date" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -124,8 +124,8 @@
                             <div class="panel-body">
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <select name="workout_id" required class="selectpicker form-control" data-live-search="true">
-                                            <option value=" "></option>
+                                        <select id="workout-select" name="workout_id" required class="selectpicker form-control" data-live-search="true">
+                                            <option label=" "></option>
                                             @foreach($workouts as $workout)
                                                 <option value="{{$workout->id}}">{{$workout->name}}</option>
                                             @endforeach
@@ -177,21 +177,48 @@
             });
         });
         $("#pw-toggle").on('click', function() {
-            $("#predefined-workout").slideToggle();
-            if (!$('#nw-toggle').hasClass('active'))
-                $("#workout-submit").slideToggle();
             $(this).toggleClass('active');
             $('#nw-toggle').removeClass('active');
+            $("#predefined-workout").slideToggle();
             $("#workout-day-1").hide();
+            if ($(this).hasClass('active'))
+                $("#workout-submit").show();
+            else 
+                $("#workout-submit").hide();
+            $("#add-day").hide();
+
+            if ($(this).hasClass('active')) {
+                // atleta, start date, end date e workout devono essere required
+                $('#athlete-select, #start-date, #end-date, #workout-select').prop('required', true);
+                // togliere i required di nw
+                $('input[name="sets"], input[name="reps"], input[name="rest"]').prop('required', false);
+            }
+            else {
+                // togliere i required di pw
+                $('#athlete-select, #start-date, #end-date, #workout-select').prop('required', false);
+            }
         });
         $("#nw-toggle").on('click', function() {
-            $("#workout-day-1").slideToggle();
-            if (!$('#pw-toggle').hasClass('active'))
-                $("#workout-submit").slideToggle();
             $(this).toggleClass('active');
             $('#pw-toggle').removeClass('active');
+            $("#workout-day-1").slideToggle();
             $("#predefined-workout").hide();
-            $("#add-day").slideToggle();
+            if ($(this).hasClass('active'))
+                $("#workout-submit").show();
+            else 
+                $("#workout-submit").hide();
+            $("#add-day").slideToggle()
+            
+            if ($(this).hasClass('active')) {
+                // tutti i sets, reps, rest devono essere required
+                $('input[name*="sets"], input[name*="reps"], input[name*="rest"]').prop('required', true);
+                // togliere i required di pw
+                $('#athlete-select, #start-date, #end-date, #workout-select').prop('required', false);
+            }
+            else {
+                // togliere i required di nw
+                $('input[name="sets"], input[name="reps"], input[name="rest"]').prop('required', false);
+            }
         });
     });
 </script>

@@ -141,9 +141,9 @@ class MembershipsController extends Controller
                     ->get();
 
         $report = [];
-       
+        
         foreach($membershipsPerPeriod as $result) {
-            $report[Membership::find($result->type_id)->name] = $result->subscriptions;
+            $report[MembershipType::find($result->type_id)->name] = $result->subscriptions;
         }
         
         return $report;

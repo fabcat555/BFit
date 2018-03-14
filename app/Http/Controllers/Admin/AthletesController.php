@@ -47,9 +47,9 @@ class AthletesController extends Controller
      */
     public function store(AthleteCreateForm $request)
     {
-        Athlete::create($request->all());
+        Athlete::create($request->except(['password_confirmation']));
 
-        return redirect(route('admin.athletes.index'))->with('status', __('messages.CreatedAthlete'));
+        return redirect(route('athletes.index'))->with('status', __('messages.CreatedAthlete'));
     }
 
     /**
@@ -85,18 +85,10 @@ class AthletesController extends Controller
      */
     public function update(AthleteUpdateForm $request, $athleteId)
     {
-        $athlete = Athlete::findOrFail($athlete);
-        $athlete->first_name = $request->get('first_name');
-        $athlete->last_name = $request->get('last_name');
-        $athlete->birth_date = $request->get('birth_date');
-        $athlete->email = $request->get('email');
-        $athlete->gender = $request->get('gender');
-        $athlete->height = $request->get('height');
-        $athlete->notes = $request->get('notes');
+        $athlete = Athlete::findOrFail($athleteId);
+        $athlete->fill($request->except('athlete_id'))->save();
 
-        $athlete->save();
-
-        return redirect(route('instructor.athletes.show',  $athlete))->with('status', __('messages.UpdatedResource'));
+        return redirect(route('athletes.show',  $athlete))->with('status', __('messages.UpdatedResource'));
     }
 
     /**
@@ -105,7 +97,7 @@ class AthletesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($instructor, $athlete)
+    public function destroy($athlete)
     {
         Athlete::destroy($athlete);
 
