@@ -19,8 +19,8 @@
                     <div class="col-md-12 mb">
                         <!-- WORKOUT PANEL -->
                         <div class="grey-panel pn">
-                            <div class="grey-header">
-                                <h5 class="black-heading">@lang('messages.AssignedWorkout')</h5>
+                            <div class="panel-header-red">
+                                <h5 class="panel-header">@lang('messages.AssignedWorkout')</h5>
                             </div>
                             @if (isset($workout))
                             <table class="table table-borderless table-description">
@@ -39,7 +39,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <table class="table table-hover table-workout">
+                            <table id="workout-table" class="table table-hover table-workout">
                                 <thead>
                                     <tr>
                                         <th>#</th>

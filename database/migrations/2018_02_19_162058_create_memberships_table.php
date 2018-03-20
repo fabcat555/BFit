@@ -25,7 +25,7 @@ class CreateMembershipsTable extends Migration
                 ->references('id')
                 ->on('athletes')
                 ->onUpdate('cascade')
-                ->onDelete('cascade');
+                ->onDelete('set null');
 
             $table->foreign('type_id')
                 ->references('id')

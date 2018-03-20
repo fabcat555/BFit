@@ -12,7 +12,7 @@
 <section id="main-content">
     <section class="wrapper site-min-height">
         <h3 class="bm-section-heading">
-            <i class="fa fa-angle-right"></i> @lang('messages.NewWorkout')
+            <i class="fa fa-angle-right"></i> @lang('messages.EditWorkout')
         </h3>
         <!-- page start-->
         <div class="row mt">
@@ -28,16 +28,18 @@
                             </div>
                         </div>
                         @foreach($workout->workoutExercises->groupBy('day') as $day => $workoutExercises)
-                        <div class="panel panel-default workout-day mt">
+                        <div class="panel panel-danger workout-day mt">
                             <div class="panel-heading">
                                 @lang('messages.Day') {{$day}}
                             </div>
                             <div class="panel-body" data-day="{{$day}}">
                                 @foreach($workoutExercises as $key => $workoutExercise)
-                                <div id="wo-exercise-{{$workoutExercise->id}}" class="panel panel-default" data-exercise="{{$key+1}}">
+                                <div id="wo-exercise-{{$workoutExercise->id}}" class="panel panel-default exercise-panel" data-exercise="{{$key+1}}">
                                     <div class="panel-heading">
                                         @lang('messages.Exercise') {{$key + 1}}
-                                        <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#confirm-delete-modal" data-resource-id="{{$workoutExercise->id}}"><i class="fa fa-times"></i></button>
+                                        @if($key!==0)
+                                            <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#confirm-delete-modal" data-resource-id="{{$workoutExercise->id}}"><i class="fa fa-times"></i></button>
+                                        @endif
                                     </div>
                                     <div class="panel-body">
                                         <div class="form-group">
@@ -87,7 +89,8 @@
                             </div>
                         </div>
                         @endforeach
-                        <button type="submit" class="btn btn-primary pull-right">@lang('messages.Register')</button>
+                        <button id="workout-edit-submit" type="submit" class="btn btn-primary pull-right">@lang('messages.Register')</button>
+                        <button id="add-wo-day" type="button" class="btn btn-default pull-left">@lang('messages.AddWorkoutDay')</button>
                         <div style="clear: both;"></div>
                     </form>
                 </div>
@@ -121,11 +124,21 @@
 @push('script')
 <script>
     $(document).ready(function() {
+        var days = parseInt("{{count($workout->workoutExercises->groupBy('day'))}}");
+
+        $('#add-wo-day').on('click', function() {
+            days++;
+            $('<div class="panel panel-danger workout-day mt"> <div class="panel-heading"> @lang('messages.Day') ' + days + ' <button type="button" class="btn btn-danger btn-xs remove-item"><i class="fa fa-times"></i></button></div><div class="panel-body" data-day="' + days + '"> <div class="panel panel-default exercise-panel" data-exercise="1"> <div class="panel-heading">@lang('messages.Exercise') 1</div><div class="panel-body"> <div class="form-group"> <label class="col-sm-1 control-label">@lang('messages.Exercise')</label> <div class="col-sm-4"> <select name="workoutExercises[' + days + '][0][exercise_id]" class="selectpicker" data-live-search="true"> @foreach($exercises as $exercise) <option value="{{$exercise->id}}">{{$exercise->name}}</option> @endforeach </select> </div><label class="col-sm-1 control-label">@lang('messages.Technique')</label> <div class="col-sm-4"> <select name="workoutExercises[' + days + '][0][exercise_technique_id]" class="selectpicker" data-live-search="true"><option label=" "></option>@foreach($exerciseTechniques as $technique) <option value="{{$technique->id}}">{{$technique->name}}</option> @endforeach </select> </div></div><div class="form-group"> <label class="col-sm-1 control-label">@lang('messages.Sets')</label> <div class="col-sm-2"> <input name="workoutExercises[' + days + '][0][sets]" type="text" class="form-control"> </div><label class="col-sm-1 control-label">@lang('messages.Reps')</label> <div class="col-sm-2"> <input name="workoutExercises[' + days + '][0][reps]" type="text" class="form-control"> </div><label class="col-sm-1 control-label">@lang('messages.Rest')</label> <div class="col-sm-2"> <input name="workoutExercises[' + days + '][0][rest]" type="text" class="form-control"> </div></div><div class="form-group"> <label class="col-sm-2 control-label">@lang('messages.Notes')</label> <div class="col-sm-12"> <textarea name="workoutExercises[' + days + '][0][notes]" class="form-control"></textarea> </div></div></div></div><button type="button" class="btn btn-default pull-right add-exercise">@lang('messages.AddExercise')</button> </div></div>')
+                .insertBefore($('#workout-edit-submit'));
+            $('select').selectpicker({
+                language: "{{ App::getLocale() }}"
+            });
+        });
         $(document).on('click', '.add-exercise', function() {
             var day = $(this).parent().data('day');
             var exercise = $(this).prev().data('exercise');
             exercise++;
-            $('<div class="panel panel-default" data-exercise="' + exercise + '"><div class="panel-heading"> @lang('messages.Exercise') ' + exercise + ' <button type="button" class="btn btn-danger btn-xs remove-exercise"><i class="fa fa-times"></i></button> </div><div class="panel-body"><div class="form-group"><label class="col-sm-1 control-label">@lang('messages.Exercise')</label> <div class="col-sm-4"> <select name="workoutExercises[' + day + '][' + exercise + '][exercise_id]" class="selectpicker" data-live-search="true"> @foreach($exercises as $exercise) <option value="{{$exercise->id}}">{{$exercise->name}}</option> @endforeach </select> </div><label class="col-sm-1 control-label">@lang('messages.Technique')</label> <div class="col-sm-4"> <select name="workoutExercises[' + day + '][' + exercise + '][exercise_technique_id]" class="selectpicker" data-live-search="true"><option value=" "></option>@foreach($exerciseTechniques as $technique) <option value="{{$technique->id}}">{{$technique->name}}</option> @endforeach </select> </div></div><div class="form-group"> <label class="col-sm-1 control-label">@lang('messages.Sets')</label> <div class="col-sm-2"> <input name="workoutExercises[' + day + '][' + exercise + '][sets]" type="text" class="form-control"> </div><label class="col-sm-1 control-label">@lang('messages.Reps')</label> <div class="col-sm-2"> <input name="workoutExercises[' + day + '][' + exercise + '][reps]" type="text" class="form-control"> </div><label class="col-sm-1 control-label">@lang('messages.Rest')</label> <div class="col-sm-2"> <input name="workoutExercises[' + day + '][' + exercise + '][rest]" type="text" class="form-control"> </div></div><div class="form-group"> <label class="col-sm-2 control-label">@lang('messages.Notes')</label> <div class="col-sm-12"> <textarea name="workoutExercises[' + day + '][' + exercise + '][notes]" class="form-control"></textarea> </div></div></div></div>')
+            $('<div class="panel panel-default exercise-panel" data-exercise="' + exercise + '"><div class="panel-heading"> @lang('messages.Exercise') ' + (exercise) + ' <button type="button" class="btn btn-danger btn-xs remove-item"><i class="fa fa-times"></i></button> </div><div class="panel-body"><div class="form-group"><label class="col-sm-1 control-label">@lang('messages.Exercise')</label> <div class="col-sm-4"> <select name="workoutExercises[' + day + '][' + exercise + '][exercise_id]" class="selectpicker" data-live-search="true"> @foreach($exercises as $exercise) <option value="{{$exercise->id}}">{{$exercise->name}}</option> @endforeach </select> </div><label class="col-sm-1 control-label">@lang('messages.Technique')</label> <div class="col-sm-4"> <select name="workoutExercises[' + day + '][' + exercise + '][exercise_technique_id]" class="selectpicker" data-live-search="true"><option value=" "></option>@foreach($exerciseTechniques as $technique) <option value="{{$technique->id}}">{{$technique->name}}</option> @endforeach </select> </div></div><div class="form-group"> <label class="col-sm-1 control-label">@lang('messages.Sets')</label> <div class="col-sm-2"> <input name="workoutExercises[' + day + '][' + exercise + '][sets]" type="text" class="form-control"> </div><label class="col-sm-1 control-label">@lang('messages.Reps')</label> <div class="col-sm-2"> <input name="workoutExercises[' + day + '][' + exercise + '][reps]" type="text" class="form-control"> </div><label class="col-sm-1 control-label">@lang('messages.Rest')</label> <div class="col-sm-2"> <input name="workoutExercises[' + day + '][' + exercise + '][rest]" type="text" class="form-control"> </div></div><div class="form-group"> <label class="col-sm-2 control-label">@lang('messages.Notes')</label> <div class="col-sm-12"> <textarea name="workoutExercises[' + day + '][' + exercise + '][notes]" class="form-control"></textarea> </div></div></div></div>')
                 .insertBefore($(this));
             $('select').selectpicker({
                 language: "{{ App::getLocale() }}"
@@ -152,7 +165,7 @@
                 }
             });
         });
-        $(document).on('click', ".remove-exercise", function(e) {
+        $(document).on('click', ".remove-item", function(e) {
            $(this).parent().parent().fadeOut(1000, function() {$(this).remove()});
         });
 });

@@ -5,7 +5,7 @@
     <!--logo start-->
     <a href="{{route('admin.dashboard')}}" class="logo"><b>BFIT</b></a>
     <!--logo end-->
-    <div class="nav notify-row" id="top_menu">
+    {{--  <div class="nav notify-row" id="top_menu">
         <!--  notification start -->
         <ul class="nav top-menu">
             <!-- settings start -->
@@ -147,7 +147,7 @@
             <!-- inbox dropdown end -->
         </ul>
         <!--  notification end -->
-    </div>
+    </div>  --}}
     <div class="top-menu">
         <form action="{{route('admin.logout')}}" method="POST">
             {{ csrf_field() }}

@@ -7,7 +7,7 @@
     @include('instructor.topbar')
 @endsection
  
-@section('title', __('messages.ExerciseTechniquesShow')) 
+@section('title', __('messages.ExerciseTechniquesIndex')) 
 @section('content')
 <section id="main-content">
     <section class="wrapper">
@@ -18,10 +18,11 @@
                     <div class="col-md-12 mb">
                         <!-- WHITE PANEL - TOP USER -->
                         <div class="white-panel pn">
-                            <div class="white-header">
+                            <div class="panel-header-red">
                                 <h5 class="panel-header">@lang('messages.Techniques')</h5>
                                 <div class="db-btn-group">
-                                    <a href="{{route('exercise-techniques.create')}}" class="btn btn-primary btn-xs dashboard-btn">
+                                    <a href="{{route('exercise-techniques.create')}}" class="btn btn-primary btn-sm dashboard-btn">
+                                        <i class="fa fa-plus"></i>
                                         @lang('messages.New')
                                     </a>
                                 </div>

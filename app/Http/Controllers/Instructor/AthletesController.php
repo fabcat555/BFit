@@ -80,7 +80,8 @@ class AthletesController extends Controller
             return view('instructor.athletes.show')->with([
                 'athlete' => $athlete, 
                 'workout' => $athlete->currentWorkout(),
-                'weightMeasurements' => $weightMeasurements]);
+                'weightMeasurements' => $weightMeasurements
+            ]);
         }
         else {
            return 'non sei autorizzato';
@@ -127,7 +128,7 @@ class AthletesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($athleteId)
+    public function destroy($instructorId, $athleteId)
     {
         $athlete = Athlete::findOrFail($athleteId);
 

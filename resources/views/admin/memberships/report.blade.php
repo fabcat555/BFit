@@ -17,9 +17,8 @@
                     <div class="col-lg-12">
                         <div class="content-panel">
                             <h4 class="athlete-bm-heading">
-                                <i class="fa fa-angle-right"></i> <span id="bm-heading-span">@lang('messages.Weight')</span>
+                                <i class="fa fa-angle-right"></i> <span id="bm-heading-span">@lang('messages.Week')</span>
                             </h4>
-                            @if (!empty($report))
                             <div class="btn-group pull-right athlete-bm-setting">
                                 <button id="week" type="button" class="btn btn-default active">@lang('messages.Week')</button>
                                 <button id="month" type="button" class="btn btn-default">@lang('messages.Month')</button>
@@ -28,9 +27,6 @@
                             <div class="panel-body">
                                 <canvas id="myChart" width="800" height="200"></canvas>
                             </div>
-                            @else
-                                <h5>@lang('messages.NoMemberships')</h5>
-                            @endif
                         </div>
                     </div>
                 </div>

@@ -21,8 +21,8 @@
                         <div class="col-md-12 mb">
                             <!-- WORKOUT PANEL -->
                             <div class="grey-panel pn">
-                                <div class="grey-header">
-                                    <h5 class="black-heading">{{$wo->name}}</h5>
+                            <div class="{{$woKey%2 ? 'panel-header-black' : 'panel-header-red'}}">
+                                    <h5 class="panel-header">{{$wo->name}}</h5>
                                 </div>
                                 <table class="table table-borderless table-description">
                                     <tbody>
@@ -54,7 +54,7 @@
                                     <tbody>
                                         @foreach($wo->workoutExercises->groupBy('day') as $day => $woExercises)
                                             <tr>
-                                                <th colspan="7" scope="colgroup">
+                                                <th colspan="6" scope="colgroup">
                                                     @lang('messages.Day') {{$day}}
                                                 </th>
                                                 <th style="display: none;"></th>
@@ -115,13 +115,11 @@
             ],
             initComplete: function () {
                 setTimeout( function () {
-                    workoutTable.buttons().container().appendTo( $('.col-sm-5', table.table().container() ) );
-                }, 10 );
+                    for (var i = 0; i < workouts; i++)
+                        $('#workout-' + (i+1)).DataTable().buttons().container().appendTo( $('#workout-' + (i+1) + '_wrapper .col-sm-6:eq(1)') ); 
+                });
             }
         });
-
-        for (var i = 0; i < workouts; i++)
-            $('#workout-' + (i+1)).DataTable().buttons().container().appendTo( $('#workout-' + (i+1) + '_wrapper .col-sm-6:eq(1)') );
 });
 </script>
 @endpush

@@ -9,6 +9,11 @@ return [
     'Instructors' => 'Instructors',
     'Admin' => 'Admin',
     'Memberships' => 'Memberships',
+    'ExerciseTechnique' => 'Exercise Technique',
+
+    // Show resource pages
+    'Edit' => 'Edit',
+    'Delete' => 'Delete',
 
     // Page titles
         // Athlete
@@ -87,6 +92,7 @@ return [
 
     // Instructor sidebar
     'NewWorkout' => 'New Workout',
+    'PredefinedWorkouts' => 'Predefined Workouts',
     'ManageWOTypes' => 'Manage Workout Types',
     'Athletes' => 'Athletes',
     'ViewAssignedAthletes' => 'View Assigned Athletes',
@@ -101,6 +107,7 @@ return [
     'ManageAthletes' => 'Manage Athletes',
     'ManageInstructors' => 'Manage Instructors',
     'NewInstructor' => 'New Instructor',
+    'ManageMemberships' => 'Manage Memberships',
     'ManageMembershipTypes' => 'Manage Membership Types',
     'ViewMembershipReport' => 'View Membership Report',
 
@@ -139,7 +146,7 @@ return [
     'Email' => 'Email',
     'MembershipStartDate' => 'Member since',
     'AssignedAthletes' => 'ASSIGNED ATHLETES',
-    'PredefinedWorkouts' => 'PREDEFINED WORKOUTS',
+    'PredefinedWorkoutsHeading' => 'PREDEFINED WORKOUTS',
     'WorkoutTypesHeading' => 'WORKOUT TYPES',
     'ExerciseTechniques' => 'EXERCISE TECHNIQUES',
     'WorkoutType' => 'Workout Type',
@@ -213,7 +220,7 @@ return [
 
     // Instructor create form
     'InstructorPersonals' => 'Instructor personal data',
-    'CreatedAthlete' => 'Successfully created a new instructor!',
+    'CreatedInstructor' => 'Successfully created a new instructor!',
 
     // Athlete show
     'AssignWorkout' => 'Assign new workout',
@@ -223,6 +230,7 @@ return [
     'CreatedExercise' => 'Successfully created a new exercise!',
     'AddExerciseStep' => 'Add new step',
     'AddWorkoutDay' => 'Add day',
+    'ExerciseData' => 'Exercise data',
 
     // Workout Type create form
     'CreatedWorkoutType' => 'Successfully created a new workout type!',
@@ -238,6 +246,9 @@ return [
     'AssignPredefinedWorkout' => 'Assign predefined workout',
     'ChoosePredefinedWorkout' => 'Choose a predefined workout',
     'AddExercise' => 'Add exercise',
+
+    // Workout edit
+    'EditWorkout' => 'Edit workout',
 
     // Exercise technique create form
     'NewExerciseTechnique' => 'New Exercise Technique',

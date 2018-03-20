@@ -1,15 +1,13 @@
-@extends('layouts.master')
-
+@extends('layouts.master') 
 @section('sidebar')
     @include('instructor.sidebar')
 @endsection
-
+ 
 @section('topbar')
     @include('instructor.topbar')
-@endsection 
-
-@section('title', __('messages.InstructorDashboard'))
+@endsection
  
+@section('title', __('messages.InstructorDashboard')) 
 @section('content')
 <section id="main-content">
     <section class="wrapper">
@@ -18,10 +16,10 @@
                 <!-- First row -->
                 <div class="row mt">
                     <div class="col-md-12 col-lg-6 mb">
-                         <!-- PERSONAL PANEL -->
+                        <!-- PERSONAL PANEL -->
                         <div class="white-panel pn personal-panel">
-                            <div class="white-header">
-                                <h5 class="personal-data-heading">@lang('messages.PersonalData')</h5>
+                            <div class="panel-header-black">
+                                <h5 class="panel-header">@lang('messages.PersonalData')</h5>
                             </div>
                             <table class="table table-borderless table-personal">
                                 <tbody>
@@ -52,19 +50,21 @@
                     <div class="col-md-12 col-lg-6 mb">
                         <!-- ATHLETES PANEL -->
                         <div class="white-panel pn membership-panel">
-                            <div class="white-header">
+                            <div class="panel-header-black">
                                 <h5 class="panel-header">@lang('messages.AssignedAthletes')</h5>
                                 <div class="db-btn-group">
-                                    <a href="{{route('instructor.athletes.create', ['instructor' => Auth::guard('instructor')->user()])}}" class="btn btn-primary btn-xs dashboard-btn">
-                                    @lang('messages.New')
+                                    <a href="{{route('instructor.athletes.create', ['instructor' => Auth::guard('instructor')->user()])}}" class="btn btn-danger btn-sm dashboard-btn">
+                                        <i class="fa fa-plus"></i>
+                                        @lang('messages.New')
                                 </a>
-                                    <a href="{{route('instructor.athletes.index', ['instructor' => Auth::guard('instructor')->user()])}}" class="btn btn-primary btn-xs dashboard-btn">
-                                    @lang('messages.ViewAll')
+                                    <a href="{{route('instructor.athletes.index', ['instructor' => Auth::guard('instructor')->user()])}}" class="btn btn-danger btn-sm dashboard-btn">
+                                            <i class="fa fa-list"></i> 
+                                        @lang('messages.ViewAll')
                                 </a>
                                 </div>
                             </div>
                             @if(count($instructor->athletes))
-                            <table class="table table-hover table-workout">
+                            <table class="table table-hover table-dashboard">
                                 <thead>
                                     <tr>
                                         <th>@lang('messages.Athlete')</th>
@@ -79,7 +79,7 @@
                                 </tbody>
                             </table>
                             @else
-                                <h5>@lang('messages.NoAthletesAssigned')</h5>
+                            <h5>@lang('messages.NoAthletesAssigned')</h5>
                             @endif
                         </div>
                     </div>
@@ -91,19 +91,21 @@
                     <div class="col-md-12 col-lg-6 mb">
                         <!-- EXERCISES PANEL -->
                         <div class="white-panel pn personal-panel">
-                            <div class="white-header">
+                            <div class="panel-header-red">
                                 <h5 class="personal-data-heading panel-header">@lang('messages.ExercisesHeading')</h5>
                                 <div class="db-btn-group">
-                                    <a href="{{route('exercises.create')}}" class="btn btn-primary btn-xs dashboard-btn">
+                                    <a href="{{route('exercises.create')}}" class="btn btn-sm btn-danger dashboard-btn">
+                                            <i class="fa fa-plus"></i>
                                         @lang('messages.New')
                                     </a>
-                                    <a href="{{route('exercises.index')}}" class="btn btn-primary btn-xs dashboard-btn">
+                                    <a href="{{route('exercises.index')}}" class="btn btn-sm btn-danger dashboard-btn">
+                                        <i class="fa fa-list"></i> 
                                         @lang('messages.ViewAll')
                                     </a>
                                 </div>
                             </div>
                             @if(isset($exercises))
-                            <table class="table table-hover table-workout">
+                            <table class="table table-hover table-dashboard">
                                 <thead>
                                     <tr>
                                         <th>@lang('messages.Exercise')</th>
@@ -118,26 +120,28 @@
                                 </tbody>
                             </table>
                             @else
-                                <h5>@lang('messages.NoExercises')</h5>
+                            <h5>@lang('messages.NoExercises')</h5>
                             @endif
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 mb">
                         <!-- PREDEFINED WORKOUTS PANEL -->
                         <div class="white-panel pn membership-panel">
-                            <div class="white-header">
-                                <h5 class="panel-header">@lang('messages.PredefinedWorkouts')</h5>
+                            <div class="panel-header-red">
+                                <h5 class="panel-header">@lang('messages.PredefinedWorkoutsHeading')</h5>
                                 <div class="db-btn-group">
-                                    <a href="{{route('workouts.create')}}" class="btn btn-primary btn-xs dashboard-btn">
-                                    @lang('messages.New')
-                                </a>
-                                    <a href="{{route('workouts.index')}}" class="btn btn-primary btn-xs dashboard-btn">
-                                    @lang('messages.ViewAll')
+                                    <a href="{{route('workouts.create')}}" class="btn btn-sm btn-danger dashboard-btn">
+                                        <i class="fa fa-plus"></i>
+                                        @lang('messages.New')
+                                    </a>
+                                    <a href="{{route('workouts.index')}}" class="btn btn-sm btn-danger dashboard-btn">
+                                        <i class="fa fa-list"></i> 
+                                        @lang('messages.ViewAll')
                                 </a>
                                 </div>
                             </div>
                             @if(isset($workouts))
-                            <table class="table table-hover table-workout">
+                            <table class="table table-hover table-dashboard">
                                 <thead>
                                     <tr>
                                         <th>@lang('messages.Workout')</th>
@@ -152,7 +156,7 @@
                                 </tbody>
                             </table>
                             @else
-                                <h5>@lang('messages.NoWorkouts')</h5>
+                            <h5>@lang('messages.NoWorkouts')</h5>
                             @endif
                         </div>
                     </div>
@@ -164,19 +168,21 @@
                     <div class="col-md-12 col-lg-6 mb">
                         <!-- WORKOUT TYPES PANEL -->
                         <div class="white-panel pn personal-panel">
-                            <div class="white-header">
+                            <div class="panel-header-black">
                                 <h5 class="personal-data-heading panel-header">@lang('messages.WorkoutTypesHeading')</h5>
                                 <div class="db-btn-group">
-                                    <a href="{{route('workout-types.create')}}" class="btn btn-primary btn-xs dashboard-btn">
-                                    @lang('messages.New')
-                                </a>
-                                    <a href="{{route('workout-types.index')}}" class="btn btn-primary btn-xs dashboard-btn">
-                                    @lang('messages.ViewAll')
+                                    <a href="{{route('workout-types.create')}}" class="btn btn-sm btn-danger dashboard-btn">
+                                        <i class="fa fa-plus"></i>
+                                        @lang('messages.New')
+                                    </a>
+                                    <a href="{{route('workout-types.index')}}" class="btn btn-sm btn-danger dashboard-btn">
+                                        <i class="fa fa-list"></i> 
+                                        @lang('messages.ViewAll')
                                 </a>
                                 </div>
                             </div>
                             @if (isset($workoutTypes))
-                            <table class="table table-hover table-workout">
+                            <table class="table table-hover table-dashboard">
                                 <thead>
                                     <tr>
                                         <th>@lang('messages.WorkoutType')</th>
@@ -191,26 +197,28 @@
                                 </tbody>
                             </table>
                             @else
-                                <h5>@lang('messages.NoWorkoutTypes')</h5>
+                            <h5>@lang('messages.NoWorkoutTypes')</h5>
                             @endif
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 mb">
                         <!-- EXERCISE TECHNIQUES PANEL -->
                         <div class="white-panel pn membership-panel">
-                            <div class="white-header">
+                            <div class="panel-header-black">
                                 <h5 class="panel-header">@lang('messages.ExerciseTechniques')</h5>
                                 <div class="db-btn-group">
-                                    <a href="{{route('exercise-techniques.create')}}" class="btn btn-primary btn-xs dashboard-btn">
+                                    <a href="{{route('exercise-techniques.create')}}" class="btn btn-sm btn-danger dashboard-btn">
+                                         <i class="fa fa-plus"></i>
                                         @lang('messages.New')
                                     </a>
-                                    <a href="{{route('exercise-techniques.index')}}" class="btn btn-primary btn-xs dashboard-btn">
+                                    <a href="{{route('exercise-techniques.index')}}" class="btn btn-sm btn-danger dashboard-btn">
+                                        <i class="fa fa-list"></i> 
                                         @lang('messages.ViewAll')
                                     </a>
                                 </div>
                             </div>
                             @if (isset($exerciseTechniques))
-                            <table class="table table-hover table-workout">
+                            <table class="table table-hover table-dashboard">
                                 <thead>
                                     <tr>
                                         <th>@lang('messages.Technique')</th>
@@ -225,7 +233,7 @@
                                 </tbody>
                             </table>
                             @else
-                                <h5>@lang('messages.NoTechniques')</h5>
+                            <h5>@lang('messages.NoTechniques')</h5>
                             @endif
                         </div>
                     </div>

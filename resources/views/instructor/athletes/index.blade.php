@@ -8,7 +8,7 @@
     @include('instructor.topbar')
 @endsection
 
-@section('title', __('messages.AthletesShow'))
+@section('title', __('messages.AthletesIndex'))
  
 @section('content')
 <section id="main-content">
@@ -20,10 +20,11 @@
                     <div class="col-md-12 mb">
                         <!-- WHITE PANEL - TOP USER -->
                         <div class="white-panel pn">
-                            <div class="white-header">
+                            <div class="panel-header-red">
                                 <h5 class="panel-header">@lang('messages.AssignedAthletes')</h5>
                                 <div class="db-btn-group">
-                                    <a href="{{route('instructor.athletes.create', ['instructor' => Auth::guard('instructor')->user()])}}" class="btn btn-primary btn-xs dashboard-btn">
+                                    <a href="{{route('instructor.athletes.create', ['instructor' => Auth::guard('instructor')->user()])}}" class="btn btn-primary btn-sm dashboard-btn">
+                                        <i class="fa fa-plus"></i>
                                         @lang('messages.New')
                                     </a>
                                 </div>
@@ -54,8 +55,8 @@
                                                 <i class="fa fa-pencil"></i>
                                             </a>
                                             <button data-toggle="modal" data-target="#confirm-delete-modal" data-resource-id="{{$athlete->id}}" class="btn btn-danger btn-xs"> 
-                                                    <i class="fa fa-times"></i>
-                                                </button>
+                                                <i class="fa fa-times"></i>
+                                            </button>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -111,7 +112,7 @@
             }
             });
        
-            $('#confirm-delete-modal').on('show.bs.modal', function(e) {
+        $('#confirm-delete-modal').on('show.bs.modal', function(e) {
             $('#modal-confirm').data('resource-id', $(e.relatedTarget).data('resource-id'));
         });
 
@@ -119,12 +120,12 @@
             $.ajax({
                 type: "post",
                 data: {
-                    _method: "DELETE",
+                    _method: "DELETE"
                 },
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                url: "/athletes/" + $(this).data('resource-id'),
+                url: '/instructor/{{Auth::guard('instructor')->user()->id}}/athletes/' + $(this).data('resource-id'), 
                 success: function() {
                     location.reload();
                 }

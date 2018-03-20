@@ -16,8 +16,8 @@
                 <div class="row mt">
                     <div class="col-md-12 mb">
                         <div class="white-panel pn personal-panel">
-                            <div class="white-header">
-                                <h5 class="personal-data-heading">@lang('messages.PersonalData')</h5>
+                            <div class="panel-header-red">
+                                <h5 class="panel-header">@lang('messages.PersonalData')</h5>
                             </div>
                             @if(session('status'))
                             <div class="alert alert-success alert-created" role="alert">

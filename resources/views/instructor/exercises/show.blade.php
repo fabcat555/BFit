@@ -1,23 +1,16 @@
 @extends('layouts.master') 
-
-@section('sidebar') 
-    @if(Auth::guard('instructor')->check())
-        @include('instructor.sidebar') 
-    @else
-        @include('athlete.sidebar') 
-    @endif
+@section('sidebar') @if(Auth::guard('instructor')->check())
+    @include('instructor.sidebar') @else
+    @include('athlete.sidebar') @endif
 @endsection
  
-@section('topbar') 
-    @if(Auth::guard('instructor')->check())
-        @include('instructor.topbar')
-    @else
-        @include('athlete.topbar') 
-    @endif
+@section('topbar') @if(Auth::guard('instructor')->check())
+    @include('instructor.topbar')
+@else
+    @include('athlete.topbar') @endif
 @endsection
  
 @section('title', __('messages.ExerciseShow')) 
-
 @section('content')
 <section id="main-content">
     <section class="wrapper site-min-height">
@@ -28,17 +21,28 @@
         <div class="row mt">
             <div class="col-lg-12">
                 <div class="content-panel">
-                    <h4 class="bm-heading">
-                        <i class="fa fa-angle-right"></i> {{ $exercise->name }}
+                    <h4 class="athlete-bm-heading">
+                        <i class="fa fa-angle-right"></i> <span id="bm-heading-span"> {{ $exercise->name }}</span>
                     </h4>
+                    <div class="edit-btns">
+                        <button data-toggle="modal" data-target="#confirm-delete-modal" data-resource-id="{{$exercise->id}}" data-item="exercise"
+                            class="btn btn-danger btn-sm pull-right"> 
+                            <i class="fa fa-times"></i>
+                            @lang('messages.Delete')
+                        </button>
+                        <a href="{{ route('exercises.edit', ['exercise' => $exercise->id]) }}" class="btn btn-warning btn-sm pull-right">
+                            <i class="fa fa-pencil"></i>
+                            @lang('messages.Edit')
+                        </a>
+                    </div>
                     <div class="panel-body">
                         <ol class="list-group exercise-desc">
                             @foreach ($exercise->exerciseSteps->sortBy('id') as $step)
                             <li id="step-{{$step->id}}" class="list-group-item">
-                                {{ $step->description }}
-                                <button data-toggle="modal" data-target="#confirm-delete-modal" data-resource-id="{{$step->id}}" class="btn btn-danger btn-xs"> 
+                                {{ $step->description }} @if(Auth::guard('instructor')->check())
+                                <button data-toggle="modal" data-target="#confirm-delete-modal" data-resource-id="{{$step->id}}" data-item="step" class="btn btn-danger btn-xs"> 
                                     <i class="fa fa-times"></i>
-                                </button>
+                                </button> @endif
                             </li>
                             @endforeach
                         </ol>
@@ -74,13 +78,13 @@
 <script>
     $(document).ready(function() {
         var modal = $('#confirm-delete-modal');
-
         modal.on('show.bs.modal', function(e) {
             $('#modal-confirm').data('resource-id', $(e.relatedTarget).data('resource-id'));
+            $('#modal-confirm').data('item', $(e.relatedTarget).data('item'));
         });
-
         $('#modal-confirm').on('click', function(e) {
             var resourceId = $(this).data('resource-id');
+            var item = $(this).data('item');
             $.ajax({
                 type: "post",
                 data: {
@@ -89,10 +93,15 @@
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                url: "/exercise-steps/" + resourceId,
+                url: (item === 'exercise' ? "/exercises/" : "/exercise-steps/") + resourceId,
                 success: function() {
-                    $('#step-' + resourceId).fadeOut(1000, function() {$(this).remove()});
-                    modal.modal('hide');
+                    if (item === 'exercise') {
+                        window.location.replace('/exercises');
+                    }
+                    else {
+                        $('#step-' + resourceId).fadeOut(1000, function() {$(this).remove()});
+                        modal.modal('hide');
+                    }
                 }
             });
         });   

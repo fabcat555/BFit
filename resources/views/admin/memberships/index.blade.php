@@ -18,10 +18,11 @@
                     <div class="col-md-12 mb">
                         <!-- WHITE PANEL - TOP USER -->
                         <div class="white-panel pn">
-                            <div class="white-header">
-                                <h5 class="panel-header">@lang('messages.MembershipTypes')</h5>
+                            <div class="panel-header-red">
+                                <h5 class="panel-header">@lang('messages.Memberships')</h5>
                                 <div class="db-btn-group">
-                                    <a href="{{route('memberships.create')}}" class="btn btn-primary btn-xs dashboard-btn">
+                                    <a href="{{route('memberships.create')}}" class="btn btn-primary btn-sm dashboard-btn">
+                                         <i class="fa fa-plus"></i>
                                         @lang('messages.New')
                                     </a>
                                 </div>

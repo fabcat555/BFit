@@ -17,11 +17,20 @@
                     <div class="col-md-12 mb">
                         <!-- WORKOUT PANEL -->
                         <div class="grey-panel pn">
-                            <div class="grey-header">
+                            <div class="panel-header-red">
                                 <h5 class="panel-header">@lang('messages.Workout')</h5>
                                 <div class="db-btn-group">
-                                    <button class="btn btn-primary btn-xs dashboard-btn" data-toggle="modal" data-target="#assign-workout-modal">
+                                    <button class="btn btn-primary btn-sm dashboard-btn" data-toggle="modal" data-target="#assign-workout-modal">
+                                        <i class="fa fa-child"></i>
                                         @lang('messages.WorkoutAssign')
+                                    </button>
+                                    <a href="{{route('workouts.edit', $workout->id)}}" class="btn btn-primary btn-sm dashboard-btn">
+                                        <i class="fa fa-pencil"></i>
+                                        @lang('messages.Edit')
+                                    </a>
+                                    <button data-toggle="modal" data-target="#confirm-delete-modal" data-resource-id="{{$workout->id}}" data-item="workout" class="btn btn-primary btn-sm dashboard-btn"> 
+                                        <i class="fa fa-times"></i>
+                                        @lang('messages.Delete')
                                     </button>
                                 </div>
                             </div>
@@ -93,7 +102,7 @@
                                             </a> @else - @endif
                                         </td>
                                         <td>
-                                            <button data-toggle="modal" data-target="#confirm-delete-modal" data-resource-id="{{$woExercise->id}}" class="btn btn-danger btn-xs"> 
+                                            <button data-toggle="modal" data-target="#confirm-delete-modal" data-resource-id="{{$woExercise->id}}" data-item="exercise" class="btn btn-danger btn-xs"> 
                                                 <i class="fa fa-times"></i>
                                             </button>
                                         </td>
@@ -113,6 +122,7 @@
         </div>
     </section>
 </section>
+
 <!-- Modals -->
 <div id="confirm-delete-modal" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -132,6 +142,7 @@
         </div>
     </div>
 </div>
+
 <div id="assign-workout-modal" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
@@ -182,9 +193,11 @@
         var modal = $('#confirm-delete-modal');
         modal.on('show.bs.modal', function(e) {
             $('#modal-confirm').data('resource-id', $(e.relatedTarget).data('resource-id'));
+            $('#modal-confirm').data('item', $(e.relatedTarget).data('item'));
         });
         $('#modal-confirm').on('click', function(e) {
             var resourceId = $(this).data('resource-id');
+            var item = $(this).data('item');
             $.ajax({
                 type: "post",
                 data: {
@@ -193,10 +206,15 @@
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                url: "/workout-exercises/" + resourceId,
+                url: (item === 'workout' ? "/workouts/" : "/workout-exercises/") + resourceId,
                 success: function() {
-                    $('#wo-exercise-' + resourceId).fadeOut(1000, function() {$(this).remove()});
-                    modal.modal('hide');
+                    if (item === 'workout') {
+                        window.location.replace('/workouts');
+                    }
+                    else {
+                        $('#wo-exercise-' + resourceId).fadeOut(1000, function() {$(this).remove()});
+                        modal.modal('hide');
+                    }
                 }
             });
         });

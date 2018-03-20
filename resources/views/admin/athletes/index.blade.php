@@ -18,10 +18,11 @@
                     <div class="col-md-12 mb">
                         <!-- WHITE PANEL - TOP USER -->
                         <div class="white-panel pn">
-                            <div class="white-header">
+                            <div class="panel-header-red">
                                 <h5 class="panel-header">@lang('messages.AthletesHeading')</h5>
                                 <div class="db-btn-group">
-                                    <a href="{{route('athletes.create', ['instructor' => Auth::guard('instructor')->user()])}}" class="btn btn-primary btn-xs dashboard-btn">
+                                    <a href="{{route('athletes.create', ['instructor' => Auth::guard('instructor')->user()])}}" class="btn btn-primary btn-sm dashboard-btn">
+                                        <i class="fa fa-plus"></i>
                                         @lang('messages.New')
                                     </a>
                                 </div>
@@ -66,27 +67,25 @@
         </div>
     </section>
 </section>
-
 <!-- Modal -->
 <div id="confirm-delete-modal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">@lang('messages.DeleteConfirmModalHeader')</h4>
-                </div>
-                <div class="modal-body">
-                    <p>@lang('messages.DeleteConfirmModalBody')</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">@lang('messages.CloseModal')</button>
-                    <button id="modal-confirm" type="button" class="btn btn-danger">@lang('messages.ConfirmModal')</button>
-                </div>
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">@lang('messages.DeleteConfirmModalHeader')</h4>
+            </div>
+            <div class="modal-body">
+                <p>@lang('messages.DeleteConfirmModalBody')</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">@lang('messages.CloseModal')</button>
+                <button id="modal-confirm" type="button" class="btn btn-danger">@lang('messages.ConfirmModal')</button>
             </div>
         </div>
     </div>
-
+</div>
 @endsection
  
 @push('script')
@@ -106,7 +105,6 @@
     $('#confirm-delete-modal').on('show.bs.modal', function(e) {
         $('#modal-confirm').data('resource-id', $(e.relatedTarget).data('resource-id'));
     });
-
     $('#modal-confirm').on('click', function(e) {
             $.ajax({
                 type: "post",

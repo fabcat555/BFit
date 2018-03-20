@@ -31,7 +31,7 @@ class CreateAthletesTable extends Migration
                 ->references('id')
                 ->on('instructors')
                 ->onUpdate('cascade')
-                ->onDelete('cascade');
+                ->onDelete('set null');
         });
     }
 

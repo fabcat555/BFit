@@ -41,7 +41,7 @@ class CreateWorkoutExercisesTable extends Migration
                 ->references('id')
                 ->on('exercise_techniques')
                 ->onUpdate('cascade')
-                ->onDelete('cascade');
+                ->onDelete('set null');
 
 
         });

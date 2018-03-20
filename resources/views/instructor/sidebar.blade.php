@@ -17,8 +17,9 @@
                   <span>@lang('messages.Workout')</span>
               </a>
                 <ul class="sub">
+                    <li class="{{ isActiveRoute('workouts.index') }}"><a href={{ route('workouts.index') }}>@lang('messages.PredefinedWorkouts')</a></li>
                     <li class="{{ isActiveRoute('workouts.create') }}"><a href={{ route('workouts.create') }}>@lang('messages.NewWorkout')</a></li>
-                    <li class="{{ isActiveRoute('workout-types.index') }}"><a href="{{ route('workout-types.index' )}}">@lang('messages.ManageWOTypes')</a></li>
+                    <li class="{{ isActiveRoute('workout-types.index') }}"><a href="{{ route('workout-types.index')}}">@lang('messages.ManageWOTypes')</a></li>
                 </ul>
             </li>
             <li class="sub-menu">

@@ -6,6 +6,11 @@ return [
     'Instructor' => 'Istruttore',
     'Instructors' => 'Istruttori',
     'Memberships' => 'Abbonamenti',
+    'ExerciseTechnique' => 'Tecnica esercizio',
+
+    // Show resource pages
+    'Edit' => 'Modifica',
+    'Delete' => 'Elimina',
 
     // Page titles
         // Athlete
@@ -79,6 +84,7 @@ return [
 
     // Instructor sidebar
     'NewWorkout' => 'Nuovo Allenamento',
+    'PredefinedWorkouts' => 'Allenamenti predefiniti',
     'ManageWOTypes' => 'Gestisci Categorie Allenamento',
     'Athletes' => 'Atleti',
     'ViewAssignedAthletes' => 'Guarda Atleti Assegnati',
@@ -93,6 +99,7 @@ return [
     'ManageAthletes' => 'Gestisci Athleti',
     'ManageInstructors' => 'Gestisci Istruttori',
     'NewInstructor' => 'Nuovo Istruttore',
+    'ManageMemberships' => 'Gestisci iscrizioni',
     'ManageMembershipTypes' => 'Gestisci abbonamenti',
     'ViewMembershipReport' => 'Guarda statistiche abbonamenti',
 
@@ -131,7 +138,7 @@ return [
     'Email' => 'Email',
     'MembershipStartDate' => 'Membro dal',
     'AssignedAthletes' => 'ATLETI ASSEGNATI',
-    'PredefinedWorkouts' => 'ALLENAMENTI PREDEFINITI',
+    'PredefinedWorkoutsHeading' => 'ALLENAMENTI PREDEFINITI',
     'WorkoutTypesHeading' => 'TIPI ALLENAMENTO',
     'ExerciseTechniques' => 'TECNICHE ESERCIZI',
     'WorkoutType' => 'Tipo Allenamento',
@@ -212,8 +219,9 @@ return [
     // Exercise create form
     'Step' => 'Step',
     'CreatedExercise' => 'Hai creato un nuovo esercizio!',
-    'AddExerciseStep' => 'Aggiungi nuovo step',    
+    'AddExerciseStep' => 'Aggiungi nuovo step',
     'AddWorkoutDay' => 'Aggiungi giorno',
+    'ExerciseData' => 'Dati esercizio',
 
     // Workout Type create form
     'CreatedWorkoutType' => 'Hai creato un nuovo tipo di allenamento!',
@@ -229,6 +237,9 @@ return [
     'AssignPredefinedWorkout' => 'Assegna allenamento predefinito',
     'ChoosePredefinedWorkout' => 'Scegli un allenamento predefinito',
     'AddExercise' => 'Aggiungi esercizio',
+
+     // Workout edit
+     'EditWorkout' => 'Modifica workout',
 
     // Exercise technique create form
     'NewExerciseTechnique' => 'Nuova tecnica esercizio',

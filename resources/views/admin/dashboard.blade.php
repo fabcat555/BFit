@@ -20,8 +20,8 @@
                     <div class="col-md-12 col-lg-6 mb">
                         <!-- PERSONAL PANEL -->
                         <div class="white-panel pn personal-panel">
-                            <div class="white-header">
-                                <h5 class="personal-data-heading">@lang('messages.PersonalData')</h5>
+                            <div class="panel-header-red">
+                                <h5 class="panel-header">@lang('messages.PersonalData')</h5>
                             </div>
                             <table class="table table-borderless table-personal">
                                 <tbody>
@@ -52,19 +52,21 @@
                     <div class="col-md-12 col-lg-6 mb">
                         <!-- MEMBERSHIP TYPES PANEL -->
                         <div class="white-panel pn membership-panel">
-                            <div class="white-header">
+                            <div class="panel-header-red">
                                 <h5 class="panel-header">@lang('messages.MembershipTypesHeading')</h5>
                                 <div class="db-btn-group">
-                                    <a href="{{route('membership-types.create')}}" class="btn btn-primary btn-xs dashboard-btn">
+                                    <a href="{{route('membership-types.create')}}" class="btn btn-primary btn-sm dashboard-btn">
+                                        <i class="fa fa-plus"></i>
                                         @lang('messages.New')
                                     </a>
-                                    <a href="{{route('membership-types.index')}}" class="btn btn-primary btn-xs dashboard-btn">
+                                    <a href="{{route('membership-types.index')}}" class="btn btn-primary btn-sm dashboard-btn">
+                                        <i class="fa fa-list"></i> 
                                         @lang('messages.ViewAll')
                                     </a>
                                 </div>
                             </div>
                             @if (isset($membershipTypes))
-                            <table class="table table-hover table-workout">
+                            <table class="table table-hover table-dashboard">
                                 <thead>
                                     <tr>
                                         <th>@lang('messages.Membership')</th>
@@ -94,22 +96,25 @@
                     <div class="col-md-12 mb">
                         <!-- MEMBERSHIPS PANEL -->
                         <div class="white-panel pn membership-panel">
-                            <div class="white-header">
+                            <div class="panel-header-black">
                                 <h5 class="panel-header">@lang('messages.MembershipsHeading')</h5>
                                 <div class="db-btn-group">
-                                    <a href="{{route('memberships.create')}}" class="btn btn-primary btn-xs dashboard-btn">
+                                    <a href="{{route('memberships.create')}}" class="btn btn-primary btn-sm dashboard-btn">
+                                        <i class="fa fa-plus"></i>
                                         @lang('messages.New')
                                     </a>
-                                    <a href="{{route('memberships.index')}}" class="btn btn-primary btn-xs dashboard-btn">
+                                    <a href="{{route('memberships.index')}}" class="btn btn-primary btn-sm dashboard-btn">
+                                        <i class="fa fa-list"></i> 
                                         @lang('messages.ViewAll')
                                     </a>
-                                    <a href="{{route('memberships.report.view')}}" class="btn btn-primary btn-xs dashboard-btn">
+                                    <a href="{{route('memberships.report.view')}}" class="btn btn-primary btn-sm dashboard-btn">
+                                        <i class="fa fa-bar-chart-o"></i> 
                                         @lang('messages.ViewReport')
                                     </a>
                                 </div>
                             </div>
                             @if (isset($memberships))
-                            <table class="table table-hover table-workout">
+                            <table class="table table-hover table-dashboard">
                                 <thead>
                                     <tr>
                                         <th>@lang('messages.Athlete')</th>
@@ -141,19 +146,21 @@
                     <div class="col-md-12 col-lg-6 mb">
                         <!-- ATHLETES PANEL -->
                         <div class="white-panel pn membership-panel">
-                            <div class="white-header">
+                            <div class="panel-header-red">
                                 <h5 class="panel-header">@lang('messages.AthletesHeading')</h5>
                                 <div class="db-btn-group">
-                                    <a href="{{route('athletes.create')}}" class="btn btn-primary btn-xs dashboard-btn">
-                                            @lang('messages.New')
-                                        </a>
-                                    <a href="{{route('athletes.index')}}" class="btn btn-primary btn-xs dashboard-btn">
-                                            @lang('messages.ViewAll')
-                                        </a>
+                                    <a href="{{route('athletes.create')}}" class="btn btn-primary btn-sm dashboard-btn">
+                                        <i class="fa fa-plus"></i>
+                                        @lang('messages.New')
+                                    </a>
+                                    <a href="{{route('athletes.index')}}" class="btn btn-primary btn-sm dashboard-btn">
+                                        <i class="fa fa-list"></i>
+                                        @lang('messages.ViewAll')
+                                    </a>
                                 </div>
                             </div>
                             @if (isset($athletes))
-                            <table class="table table-hover table-workout">
+                            <table class="table table-hover table-dashboard">
                                 <thead>
                                     <tr>
                                         <th>@lang('messages.Name')</th>
@@ -175,19 +182,21 @@
                     <div class="col-md-12 col-lg-6 mb">
                         <!-- INSTRUCTORS PANEL -->
                         <div class="white-panel pn membership-panel">
-                            <div class="white-header">
+                            <div class="panel-header-red">
                                 <h5 class="panel-header">@lang('messages.InstructorsHeading')</h5>
                                 <div class="db-btn-group">
-                                    <a href="{{route('instructors.create')}}" class="btn btn-primary btn-xs dashboard-btn">
-                                    @lang('messages.New')
-                                </a>
-                                    <a href="{{route('instructors.index')}}" class="btn btn-primary btn-xs dashboard-btn">
-                                    @lang('messages.ViewAll')
-                                </a>
+                                    <a href="{{route('instructors.create')}}" class="btn btn-primary btn-sm dashboard-btn">
+                                        <i class="fa fa-plus"></i>
+                                        @lang('messages.New')
+                                    </a>
+                                    <a href="{{route('instructors.index')}}" class="btn btn-primary btn-sm dashboard-btn">
+                                        <i class="fa fa-list"></i> 
+                                        @lang('messages.ViewAll')
+                                    </a>
                                 </div>
                             </div>
                             @if (isset($instructors))
-                            <table class="table table-hover table-workout">
+                            <table class="table table-hover table-dashboard">
                                 <thead>
                                     <tr>
                                         <th>@lang('messages.Name')</th>

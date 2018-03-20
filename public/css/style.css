@@ -96,8 +96,7 @@ a:focus {
 
 .btn-theme {
     color: #fff;
-    background-color: #68dff0;
-    border-color: #48bcb4;
+    background-color: #424a5c;
 }
 
 .btn-theme:hover,
@@ -106,8 +105,8 @@ a:focus {
 .btn-theme.active,
 .open .dropdown-toggle.btn-theme {
     color: #fff;
-    background-color: #48bcb4;
-    border-color: #48bcb4;
+    background-color: #cc4e4e;
+    border-color: #ffffff;
 }
 
 .btn-theme02 {
@@ -340,7 +339,7 @@ ul.sidebar-menu li ul.sub li a:hover {
 }
 
 ul.sidebar-menu li ul.sub li.active a {
-    color: #68dff0;
+    color: #ff8888;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
@@ -381,7 +380,7 @@ ul.sidebar-menu li a {
 ul.sidebar-menu li a.active,
 ul.sidebar-menu li a:hover,
 ul.sidebar-menu li a:focus {
-    background: #68dff0;
+    background: linear-gradient(to bottom right, rgb(205, 41, 41), rgba(255, 0, 0, 0.51));
     color: #fff;
     display: block;
     -webkit-transition: all 0.3s ease;
@@ -423,6 +422,10 @@ ul.sidebar-menu li a.active i {
     padding: 0 15px;
 }
 
+footer {
+    display: none;
+}
+
 .header {
     position: fixed;
     left: 0;
@@ -431,8 +434,8 @@ ul.sidebar-menu li a.active i {
 }
 
 .black-bg {
-    background: #ffd777;
-    border-bottom: 1px solid #c9aa5f;
+    background: linear-gradient(to bottom right, rgb(205, 41, 41), rgb(212, 79, 79));
+    border-bottom: 1px solid #000000;
 }
 
 .wrapper {
@@ -577,7 +580,7 @@ ul.top-menu>li>a:focus {
 }
 
 .dropdown-menu.tasks-bar .task-info .percent {
-    display: inline-block;
+    /* display: inline-block; */
     float: right;
     font-size: 13px;
     font-weight: 600;
@@ -766,6 +769,7 @@ ul.top-menu>li>a:focus {
 }
 
 .sidebar-toggle-box .fa-bars {
+    color: #fff;
     cursor: pointer;
     display: inline-block;
     font-size: 20px;
@@ -896,7 +900,7 @@ ul.top-menu>li>a:focus {
     padding-top: 20px;
 }
 
-.mleft {}
+/* .mleft {} */
 
 .border-head h3 {
     margin-top: 20px;
@@ -1867,6 +1871,7 @@ PANELS CONFIGURATIONS
     padding: 10px;
     box-shadow: 0px 3px 2px #aab2bd;
     text-align: left;
+    padding: 40px 70px;
 }
 
 label {
@@ -1920,7 +1925,7 @@ label {
     text-align: left;
     width: 80px;
     -webkit-mask: url('../img/mask.png') 0 0 no-repeat;
-    mask: url('../img/mask.png') 0 0 no-repeat;
+    /* mask: url('../img/mask.png') 0 0 no-repeat; */
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -1951,6 +1956,7 @@ label {
     -o-transition: left 0.25s ease-out;
     transition: left 0.25s ease-out;
     -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 
 .has-switch>div.switch-off {
@@ -1999,6 +2005,7 @@ label {
     -o-transition: 0.25s ease-out;
     transition: 0.25s ease-out;
     -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 
 .has-switch span.switch-left {
@@ -2036,13 +2043,14 @@ label {
     -o-transition: 0.25s ease-out;
     transition: 0.25s ease-out;
     -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 
 .switch-square {
     border-radius: 6px;
     -webkit-border-radius: 6px;
     -webkit-mask: url('../img/mask.png') 0 0 no-repeat;
-    mask: url('../img/mask.png') 0 0 no-repeat;
+    /* mask: url('../img/mask.png') 0 0 no-repeat; */
 }
 
 .switch-square>div.switch-off label {
@@ -2422,16 +2430,12 @@ label {
 
 .personal-panel,
 .membership-panel {
-    height: 300px;
+    min-height: 320px;
 }
 
 .table-personal {
     width: 70%;
     margin: 0 auto;
-    margin-top: 30px;
-}
-
-.membership-panel table {
     margin-top: 30px;
 }
 
@@ -2458,6 +2462,7 @@ label {
     width: 60%;
     margin: 0 auto;
     margin-bottom: 15px;
+    margin-top: 30px;
 }
 
 .table-description td {
@@ -2485,12 +2490,6 @@ label {
     display: inline-block;
 }
 
-.white-header,
-.grey-header,
-.darkblue-header {
-    position: relative;
-}
-
 .db-btn-group {
     display: inline-block;
     position: absolute;
@@ -2509,13 +2508,37 @@ h5 {
     background-color: white;
     color: black;
     margin: 0 auto;
-    /* width: 90%; */
     border: 2px solid;
     padding-bottom: 20px;
 }
 
 .table-workout th {
     text-align: center;
+}
+
+.table-dashboard {
+    width: 90%;
+    background-color: white;
+    color: black;
+    margin: 0 auto;
+    margin-top: 30px;
+    border: 2px solid;
+}
+
+.table-dashboard th {
+    text-align: center;
+}
+
+/* Workout show */
+
+#workout-table_wrapper .dt-buttons {
+    float: right;
+}
+
+/* Workout history */
+
+div[id*='workout-'][id$='_wrapper'] .dt-buttons {
+    float: right;
 }
 
 /* Body measurement */
@@ -2595,11 +2618,26 @@ label {
     content: counter(step-counter);
     margin-right: 5px;
     font-size: 80%;
-    background-color: rgb(102, 223, 240);
+    background-color: #cc4e4e;
     color: white;
     font-weight: bold;
     padding: 3px 8px;
     border-radius: 3px;
+}
+
+.edit-btns {
+    padding: 0 20px 40px 0;
+    margin-top: 5px;
+}
+
+.edit-btns button {
+    margin-left: 5px;
+}
+
+/* Exercise edit */
+
+.step-label {
+    padding-left: 15px;
 }
 
 /* Login page */
@@ -2641,15 +2679,32 @@ label {
 
 /* Workout create form */
 
+.exercise-panel .panel-body {
+    padding: 15px !important;
+}
+
 /* Athlete show */
 
 .athlete-bm-heading {
     display: inline-block;
     color: #464444;
+    float: left;
+    margin-left: 20px;
+    /* margin-top: 20px; */
 }
 
 .athlete-bm-setting {
     padding: 20px;
+}
+
+#bm-form {
+    display: none;
+}
+
+/* Workout types index */
+
+#workout-types_wrapper .dt-buttons {
+    float: left !important;
 }
 
 /* Data tables */
@@ -2674,11 +2729,73 @@ table.dataTable {
     float: right !important;
 }
 
-#workout-day-1, #predefined-workout, #workout-submit, #add-day {
+#workout-day-1, #predefined-workout, #workout-create-submit, #add-day {
     display: none;
+}
+
+.workout-day .panel-body {
+    padding: 40px;
 }
 
 .btn:focus,.btn:active {
     outline: none !important;
     box-shadow: none;
  }
+
+ .panel-header-red {
+    background: linear-gradient(to bottom right, rgb(205, 41, 41), rgba(160, 19, 19, 0.52));
+    border: 1px solid #8c0303;
+}
+
+.panel-header-black {
+    background: linear-gradient(to bottom right, rgb(66, 74, 92), rgba(66, 74, 92, 0.48));
+    border: 1px solid #171313;
+}
+
+.panel-header-red, .panel-header-black {
+    margin-bottom: 15px;
+    border-radius: 3px 3px 0 0;
+}
+
+.white-header,
+.grey-header,
+.darkblue-header,
+.panel-header-red,
+.panel-header-black {
+    position: relative;
+}
+
+.panel-header {
+    color: white;
+}
+
+.panel-header-red .dashboard-btn {
+    background-color: #424a5c;
+}
+
+.panel-header-red .dashboard-btn:hover {
+    border-color: white;
+}
+
+.panel-header-black .dashboard-btn {
+    background-color: #cc4e4e;
+    border-color: #424a5c;
+}
+
+.panel-header-black .dashboard-btn:hover {
+     border-color: white;
+}
+
+.dashboard-btn {
+    margin-top: -4px;
+}
+
+.pagination>.active>a, 
+.pagination>.active>a:focus, 
+.pagination>.active>a:hover, 
+.pagination>.active>span, 
+.pagination>.active>span:focus, 
+.pagination>.active>span:hover {
+    background-color: #cc4e4e;
+    border-color: #a71d1d;
+}

@@ -21,8 +21,10 @@
             <div class="col-lg-12">
                 <div class="form-panel">
                     @include('shared.errors')
-                    <div id="athlete-form" class="panel panel-default">
-                        <div class="panel-heading">@lang('messages.Exercise')</div>
+                    <div id="athlete-form" class="panel panel-danger">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">@lang('messages.ExerciseData')</h3>
+                        </div>
                         <div class="panel-body">
                             <form id="exercise-form" class="form-horizontal style-form" method="post" action="{{route('exercises.store')}}">
                                 @csrf

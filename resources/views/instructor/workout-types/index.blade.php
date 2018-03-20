@@ -18,10 +18,11 @@
                     <div class="col-md-12 mb">
                         <!-- WHITE PANEL - TOP USER -->
                         <div class="white-panel pn">
-                            <div class="white-header">
+                            <div class="panel-header-red">
                                 <h5 class="panel-header">@lang('messages.WorkoutType')</h5>
                                 <div class="db-btn-group">
-                                    <a href="{{route('workout-types.create')}}" class="btn btn-primary btn-xs dashboard-btn">
+                                    <a href="{{route('workout-types.create')}}" class="btn btn-sm btn-danger dashboard-btn">
+                                        <i class="fa fa-plus"></i>
                                         @lang('messages.New')
                                     </a>
                                 </div>
@@ -92,7 +93,7 @@
 @push('script')
 <script>
     $(document).ready(function(){
-        var table = $('#athletes').DataTable( {
+        var table = $('#workout-types').DataTable( {
             info: false,
             language: {
                 url: "{{ App::isLocale('it') ? asset('js/datatables/i18n/Italian.json') : '' }}"

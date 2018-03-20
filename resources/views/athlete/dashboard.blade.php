@@ -1,15 +1,13 @@
 @extends('layouts.master') 
-
 @section('sidebar')
     @include('athlete.sidebar')
 @endsection
-
+ 
 @section('topbar')
     @include('athlete.topbar')
 @endsection
-
-@section('title', __('messages.AthleteDashboard'))
  
+@section('title', __('messages.AthleteDashboard')) 
 @section('content')
 <section id="main-content">
     <section class="wrapper">
@@ -20,8 +18,8 @@
                     <div class="col-md-12 col-lg-6 mb">
                         <!-- PERSONAL DATA PANEL -->
                         <div class="white-panel pn personal-panel">
-                            <div class="white-header">
-                                <h5 class="personal-data-heading ">@lang('messages.PersonalData')</h5>
+                            <div class="panel-header-red">
+                                <h5 class="panel-header">@lang('messages.PersonalData')</h5>
                             </div>
                             <table class="table table-borderless table-personal">
                                 <tbody>
@@ -52,8 +50,8 @@
                     <div class="col-md-12 col-lg-6 mb">
                         <!-- MEMBERSHIP PANEL -->
                         <div class="white-panel pn membership-panel">
-                            <div class="white-header">
-                                <h5 class="">@lang('messages.MembershipHeading')</h5>
+                            <div class="panel-header-red">
+                                <h5 class="panel-header">@lang('messages.MembershipHeading')</h5>
                             </div>
                             @if(isset($membership))
                             <table class="table table-borderless table-description">
@@ -64,7 +62,8 @@
                                     </tr>
                                     <tr>
                                         <th scope="row">@lang('messages.MembershipStatus')</th>
-                                        <td>{{ $membership->end_date > Carbon\Carbon::now() ? __('messages.Active') : __('messages.Expired') }}</td>
+                                        <td>{{ $membership->end_date > Carbon\Carbon::now() ? __('messages.Active') : __('messages.Expired')
+                                            }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">@lang('messages.MembershipValidity')</th>
@@ -73,17 +72,14 @@
                                     <tr>
                                         <th scope="row">@lang('messages.Instructor')</th>
                                         <td>
-                                            @if (isset($athlete->instructor)) 
-                                                {{ $athlete->instructor->first_name . ' ' . $athlete->instructor->last_name }} 
-                                            @else 
-                                                -
+                                            @if (isset($athlete->instructor)) {{ $athlete->instructor->first_name . ' ' . $athlete->instructor->last_name }} @else -
                                             @endif
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                             @else
-                                <h5>@lang('messages.NoMembership')</h5>
+                            <h5>@lang('messages.NoMembership')</h5>
                             @endif
                             <div class="row">
                                 <div class="col-md-6">
@@ -93,11 +89,7 @@
                                 <div class="col-md-6">
                                     <p class="small mt">@lang('messages.MembershipCost')</p>
                                     <p>
-                                        @if (isset($athlete->instructor)) 
-                                            $ {{ $membership->type->price }}
-                                        @else 
-                                            -
-                                        @endif
+                                        @if (isset($athlete->instructor)) $ {{ $membership->type->price }} @else - @endif
                                     </p>
                                 </div>
                             </div>
@@ -112,14 +104,16 @@
                     <div class="col-md-12 col-lg-6 mb">
                         <!-- WORKOUT PANEL -->
                         <div class="grey-panel pn workout-panel">
-                            <div class="grey-header">
+                            <div class="panel-header-black">
                                 <h5 class="panel-header">@lang('messages.AssignedWorkoutHeading')</h5>
                                 @isset($workout)
                                 <div class="db-btn-group">
-                                    <a href="{{route('workout.history')}}" class="btn btn-primary btn-xs dashboard-btn">
+                                    <a href="{{route('workout.history')}}" class="btn btn-danger btn-sm dashboard-btn">
+                                        <i class="fa fa-history"></i>
                                         @lang('messages.ViewHistory')
                                     </a>
-                                    <a href="{{route('workout')}}" class="btn btn-primary btn-xs dashboard-btn">
+                                    <a href="{{route('workout')}}" class="btn btn-danger btn-sm dashboard-btn">
+                                        <i class="fa fa-list"></i>
                                         @lang('messages.ViewAll')
                                     </a>
                                 </div>
@@ -143,7 +137,7 @@
                                 </tbody>
                             </table>
                             <h5>@lang('messages.Day') 1</h5>
-                            <table class="table table-hover table-workout">
+                            <table class="table table-hover table-dashboard">
                                 <thead>
                                     <tr>
                                         <th>@lang('messages.Exercise')</th>
@@ -167,26 +161,28 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            @else
-                                <h5>@lang('messages.NoWorkout')</h5>
-                            @endif
-                            <br>
                         </div>
+                        @else
+                        <h5>@lang('messages.NoWorkout')</h5>
+                        @endif
+                        <br>
                     </div>
                     <!-- /col-md-6 -->
                     <div class="col-md-12 col-lg-6 mb">
                         <!-- BODY MEASUREMENTS PANEL -->
                         <div class="darkblue-panel pn bm-panel">
-                            <div class="darkblue-header">
+                            <div class="panel-header-black">
                                 <h5 class="panel-header">@lang('messages.BodyMeasurementsHeading')</h5>
                                 <div class="db-btn-group">
-                                    <a href="{{route('bodymeasurements')}}" class="btn btn-primary btn-xs dashboard-btn">@lang('messages.ViewAll')</a>
+                                    <a href="{{route('bodymeasurements')}}" class="btn btn-danger btn-sm dashboard-btn">
+                                        <i class="fa fa-list"></i>
+                                        @lang('messages.ViewAll')
+                                    </a>
                                 </div>
                             </div>
                             @if(isset($weightMeasurements))
-                                <canvas id="myChart" class="bm-weight-chart" width="400" height="200"></canvas>
-                            @else
-                                <h5>@lang('messages.NoMeasurement')</h5>
+                            <canvas id="myChart" class="bm-weight-chart" width="350" height="200"></canvas> @else
+                            <h5>@lang('messages.NoMeasurement')</h5>
                             @endif
                         </div>
                     </div>

@@ -1,15 +1,15 @@
-@extends('layouts.master')
+@extends('layouts.master') 
 
 @section('sidebar')
     @include('instructor.sidebar')
 @endsection
-
+ 
 @section('topbar')
     @include('instructor.topbar')
 @endsection
-
-@section('title', __('messages.AthleteShow'))
  
+@section('title', __('messages.AthleteShow')) 
+
 @section('content')
 <section id="main-content">
     <section class="wrapper">
@@ -19,8 +19,18 @@
                 <div class="row mt">
                     <div class="col-md-12 mb">
                         <div class="white-panel pn personal-panel">
-                            <div class="white-header">
-                                <h5 class="personal-data-heading">@lang('messages.PersonalData')</h5>
+                            <div class="panel-header-red">
+                                <h5 class="panel-header">@lang('messages.PersonalData')</h5>
+                                <div class="db-btn-group">
+                                    <a href="{{route('instructor.athletes.edit', ['instructor' => Auth::guard('instructor')->user(), 'athlete' => $athlete])}}" class="btn btn-primary btn-sm dashboard-btn">
+                                        <i class="fa fa-pencil"></i>
+                                        @lang('messages.Edit')
+                                    </a>
+                                    <button data-toggle="modal" data-target="#confirm-delete-modal" class="btn btn-primary btn-sm dashboard-btn"> 
+                                        <i class="fa fa-times"></i>
+                                        @lang('messages.Delete')
+                                    </button>
+                                </div>
                             </div>
                             @if(session('status'))
                             <div class="alert alert-success alert-created" role="alert">
@@ -57,10 +67,10 @@
                 <div class="row mb">
                     <div class="col-lg-12">
                         <div class="grey-panel pn">
-                            <div class="grey-header">
+                            <div class="panel-header-black">
                                 <h5 class="panel-header">@lang('messages.AssignedWorkout')</h5>
                                 <div class="db-btn-group">
-                                    <a href="{{route('workouts.create', $athlete->id)}}" type="button" class="btn btn-xs btn-primary">@lang('messages.AssignWorkout')</a>
+                                    <a href="{{route('workouts.create', $athlete->id)}}" type="button" class="btn btn-primary btn-sm dashboard-btn">@lang('messages.AssignWorkout')</a>
                                 </div>
                             </div>
                             @if (isset($workout))
@@ -80,7 +90,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <table class="table table-hover table-workout">
+                            <table class="table table-hover table-dashboard">
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -94,42 +104,41 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($workout->workoutExercises->sortBy('day')->groupBy('day') as $day => $exercises)
-                                        <tr>
-                                            <th colspan="7" scope="colgroup">
-                                                @lang('messages.Day') {{$day}}
-                                            </th>
-                                            <th style="display: none;"></th>
-                                            <th style="display: none;"></th>
-                                            <th style="display: none;"></th>
-                                            <th style="display: none;"></th>
-                                            <th style="display: none;"></th>
-                                            <th style="display: none;"></th>
-                                        </tr>
-                                        @foreach($exercises as $key => $woExercise)
-                                            <tr>
-                                                <td>{{$key+1}}</td>
-                                                <td>
-                                                    <a href="{{route('exercises.show', ['id' => $woExercise->exercise->id])}}">{{$woExercise->exercise->name}}</a>
-                                                </td>
-                                                <td>{{$woExercise->sets}}</td>
-                                                <td>{{$woExercise->reps}}</td>
-                                                <td>{{$woExercise->rest}}</td>
-                                                <td>
-                                                    @if (isset($woExercise->exerciseTechnique))
-                                                    <a href="{{route('exercise-techniques.show', ['technique' => $woExercise->exerciseTechnique->id])}}">
-                                                            {{$woExercise->exerciseTechnique->name}}
-                                                        </a> @else - @endif
-                                                </td>
-                                                <td>
-                                                    <a href="{{ route('progress.show', ['exercise' => $woExercise->id]) }}" class="btn btn-warning btn-xs"><i class="fa fa-bar-chart-o"></i></a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    @endforeach
+                                    <tr>
+                                        <th colspan="7" scope="colgroup">
+                                            @lang('messages.Day') {{$day}}
+                                        </th>
+                                        <th style="display: none;"></th>
+                                        <th style="display: none;"></th>
+                                        <th style="display: none;"></th>
+                                        <th style="display: none;"></th>
+                                        <th style="display: none;"></th>
+                                        <th style="display: none;"></th>
+                                    </tr>
+                                    @foreach($exercises as $key => $woExercise)
+                                    <tr>
+                                        <td>{{$key+1}}</td>
+                                        <td>
+                                            <a href="{{route('exercises.show', ['id' => $woExercise->exercise->id])}}">{{$woExercise->exercise->name}}</a>
+                                        </td>
+                                        <td>{{$woExercise->sets}}</td>
+                                        <td>{{$woExercise->reps}}</td>
+                                        <td>{{$woExercise->rest}}</td>
+                                        <td>
+                                            @if (isset($woExercise->exerciseTechnique))
+                                            <a href="{{route('exercise-techniques.show', ['technique' => $woExercise->exerciseTechnique->id])}}">
+                                                {{$woExercise->exerciseTechnique->name}}
+                                            </a> @else - @endif
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('progress.show', ['exercise' => $woExercise->id]) }}" class="btn btn-warning btn-xs"><i class="fa fa-bar-chart-o"></i></a>
+                                        </td>
+                                    </tr>
+                                    @endforeach @endforeach
                                 </tbody>
                             </table>
                             @else
-                                <h5>@lang('messages.NoWorkout')</h5>
+                            <h5>@lang('messages.NoWorkout')</h5>
                             @endif
                             <br>
                         </div>
@@ -138,7 +147,10 @@
                 <!-- /row -->
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="content-panel">
+                        <div class="white-panel pn">
+                            <div class="panel-header-red">
+                                <h5 class="panel-header">@lang('messages.BodyMeasurementsHeading')</h5>
+                            </div>
                             <h4 class="athlete-bm-heading">
                                 <i class="fa fa-angle-right"></i> <span id="bm-heading-span">@lang('messages.Weight')</span>
                             </h4>
@@ -152,46 +164,55 @@
                                 <button id="biceps" type="button" class="btn btn-default">@lang('messages.Biceps')</button>
                             </div>
                             <div class="panel-body">
-                                <canvas id="myChart" width="800" height="200"></canvas>
-                                 <form class="form-horizontal style-form" method="POST" action="{{route('athletes.measurements.store', $athlete->id)}}">
-                                    @csrf
-                                    <input type="hidden" name="athlete_id" value="{{$athlete->id}}">
-                                    <div class="form-group">
-                                        <label class="col-sm-1 control-label">@lang('messages.Weight')</label>
-                                        <div class="col-sm-2">
-                                            <input name="weight" type="text" class="form-control">
-                                        </div>
-                                        <label class="col-sm-1 control-label">@lang('messages.Chest')</label>
-                                        <div class="col-sm-2">
-                                            <input name="chest" type="text" class="form-control">
-                                        </div>
-                                        <label class="col-sm-1 control-label">@lang('messages.Waist')</label>
-                                        <div class="col-sm-2">
-                                            <input name="waist" type="text" class="form-control">
-                                        </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <canvas id="myChart" width="800" height="200"></canvas>
+                                        <button class="btn btn-default btn-primary pull-right" id="toggle-bm-form" type="button">@lang('messages.NewBodyMeasurement')</button>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-1 control-label">@lang('messages.Hips')</label>
-                                        <div class="col-sm-2">
-                                            <input name="hips" type="text" class="form-control">
-                                        </div>
-                                        <label class="col-sm-1 control-label">@lang('messages.Thighs')</label>
-                                        <div class="col-sm-2">
-                                            <input name="thighs" type="text" class="form-control">
-                                        </div>
-                                        <label class="col-sm-1 control-label">@lang('messages.Calves')</label>
-                                        <div class="col-sm-2">
-                                            <input name="calves" type="text" class="form-control">
-                                        </div>
+                                </div>
+                                <div class="row mt">
+                                    <div id="bm-form" class="col-lg-12">
+                                        <form class="form-horizontal style-form" method="POST" action="{{route('athletes.measurements.store', $athlete->id)}}">
+                                            @csrf
+                                            <input type="hidden" name="athlete_id" value="{{$athlete->id}}">
+                                            <div class="form-group">
+                                                <label class="col-sm-1 control-label">@lang('messages.Weight')</label>
+                                                <div class="col-sm-2">
+                                                    <input name="weight" type="text" class="form-control">
+                                                </div>
+                                                <label class="col-sm-1 control-label">@lang('messages.Chest')</label>
+                                                <div class="col-sm-2">
+                                                    <input name="chest" type="text" class="form-control">
+                                                </div>
+                                                <label class="col-sm-1 control-label">@lang('messages.Waist')</label>
+                                                <div class="col-sm-2">
+                                                    <input name="waist" type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-1 control-label">@lang('messages.Hips')</label>
+                                                <div class="col-sm-2">
+                                                    <input name="hips" type="text" class="form-control">
+                                                </div>
+                                                <label class="col-sm-1 control-label">@lang('messages.Thighs')</label>
+                                                <div class="col-sm-2">
+                                                    <input name="thighs" type="text" class="form-control">
+                                                </div>
+                                                <label class="col-sm-1 control-label">@lang('messages.Calves')</label>
+                                                <div class="col-sm-2">
+                                                    <input name="calves" type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-1 control-label">@lang('messages.Biceps')</label>
+                                                <div class="col-sm-2">
+                                                    <input name="biceps" type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary pull-right">@lang('messages.Register')</button>
+                                        </form>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-1 control-label">@lang('messages.Biceps')</label>
-                                        <div class="col-sm-2">
-                                            <input name="biceps" type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary pull-right">@lang('messages.Register')</button>
-                                </form>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -200,6 +221,25 @@
         </div>
     </section>
 </section>
+<!-- Modal -->
+<div id="confirm-delete-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">@lang('messages.DeleteConfirmModalHeader')</h4>
+            </div>
+            <div class="modal-body">
+                <p>@lang('messages.DeleteConfirmModalBody')</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">@lang('messages.CloseModal')</button>
+                <button id="modal-confirm" type="button" class="btn btn-danger">@lang('messages.ConfirmModal')</button>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
  
 @push('script')
@@ -273,6 +313,24 @@
             success: function(data) {
                 initChart(Object.keys(data), Object.values(data), capitalizeFirstLetter(measure));
                 $("#bm-heading-span").text(capitalizeFirstLetter(measure))
+            }
+        });
+    });
+    $("#toggle-bm-form").on('click', function(e) {
+        $("#bm-form").slideToggle();
+    });
+    $('#modal-confirm').on('click', function(e) {
+        $.ajax({
+            type: "post",
+            data: {
+                _method: "DELETE"
+            },
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: '/instructor/{{Auth::guard('instructor')->user()->id}}/athletes/' + "{{$athlete->id}}",             
+            success: function() {
+                window.location.replace('/instructor/{{Auth::guard('instructor')->user()->id}}/athletes');
             }
         });
     });

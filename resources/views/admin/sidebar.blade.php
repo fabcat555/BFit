@@ -32,11 +32,12 @@
                 </ul>
             </li>
             <li class="sub-menu">
-                <a href="javascript:;" class="{{ areActiveRoutes(['memberships.report.view', 'membership-types.index']) }}">
+                <a href="javascript:;" class="{{ areActiveRoutes(['memberships.report.view', 'membership-types.index', 'memberships.index']) }}">
                   <i class="fa fa-book"></i>
                   <span>@lang('messages.Memberships')</span>
                 </a>
                 <ul class="sub">
+                    <li class="{{ isActiveRoute('memberships.index') }}"><a href="{{route('memberships.index')}}">@lang('messages.ManageMemberships')</a></li>
                     <li class="{{ isActiveRoute('membership-types.index') }}"><a href="{{route('membership-types.index')}}">@lang('messages.ManageMembershipTypes')</a></li>
                     <li class="{{ isActiveRoute('memberships.report.view') }}"><a href="{{route('memberships.report.view')}}">@lang('messages.ViewMembershipReport')</a></li>
                 </ul>
