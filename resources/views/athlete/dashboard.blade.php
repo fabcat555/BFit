@@ -110,11 +110,11 @@
                                 <div class="db-btn-group">
                                     <a href="{{route('workout.history')}}" class="btn btn-danger btn-sm dashboard-btn">
                                         <i class="fa fa-history"></i>
-                                        @lang('messages.ViewHistory')
+                                        <span class="btn-title">@lang('messages.ViewHistory')</span>
                                     </a>
                                     <a href="{{route('workout')}}" class="btn btn-danger btn-sm dashboard-btn">
                                         <i class="fa fa-list"></i>
-                                        @lang('messages.ViewAll')
+                                        <span class="btn-title">@lang('messages.ViewAll')</span>
                                     </a>
                                 </div>
                                 @endisset
@@ -176,12 +176,12 @@
                                 <div class="db-btn-group">
                                     <a href="{{route('bodymeasurements')}}" class="btn btn-danger btn-sm dashboard-btn">
                                         <i class="fa fa-list"></i>
-                                        @lang('messages.ViewAll')
+                                        <span class="btn-title">@lang('messages.ViewAll')</span>
                                     </a>
                                 </div>
                             </div>
                             @if(isset($weightMeasurements))
-                            <canvas id="myChart" class="bm-weight-chart" width="350" height="200"></canvas> @else
+                            <canvas id="myChart" class="bm-weight-chart" width="400" height="200"></canvas> @else
                             <h5>@lang('messages.NoMeasurement')</h5>
                             @endif
                         </div>

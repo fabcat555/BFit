@@ -37,7 +37,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">@lang('messages.Description')</label>
                                     <div class="col-sm-12">
-                                        <textarea name="description" class="form-control"></textarea>
+                                        <textarea name="description" class="form-control" required></textarea>
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary pull-right">@lang('messages.Register')</button>

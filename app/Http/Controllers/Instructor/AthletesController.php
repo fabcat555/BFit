@@ -94,10 +94,9 @@ class AthletesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($athleteId)
+    public function edit($instructorId, $athleteId)
     {
         $athlete = Athlete::find($athleteId);
-
         if (Auth::guard('instructor')->user()->can('update', $athlete)) {
             return view('instructor.athletes.edit')->with('athlete', $athlete);
         }

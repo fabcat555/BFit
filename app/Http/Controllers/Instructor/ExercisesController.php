@@ -94,6 +94,11 @@ class ExercisesController extends Controller
             $step->fill($stepData);
             $step->save();
         }
+        foreach($request->get('steps') as $step) {
+            if ($step) {
+                ExerciseStep::create(['description' => $step, 'exercise_id' => $exercise->id]);
+            }
+        }
 
         return redirect(route('exercises.show', $id));
     }

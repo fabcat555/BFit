@@ -111,7 +111,7 @@ class MembershipsController extends Controller
         $membership->end_date = Carbon::now();
         $membership->save();
 
-        request()->session()->flash('status', __('messages.DeletedResource'));
+        request()->session()->flash('status', __('messages.DisabledMembership'));
         return response()->json(['status' => 'ok']);
     }
 

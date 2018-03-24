@@ -1,10 +1,13 @@
-@extends('layouts.master') 
+@extends('layouts.master')
+
 @section('sidebar')
     @include('admin.sidebar')
 @endsection
+
 @section('topbar')
     @include('admin.topbar')
 @endsection
+
 @section('title', __('messages.AthleteCreate'))
  
 @section('content')
@@ -79,7 +82,7 @@
                                     <label class="col-sm-2 control-label">@lang('messages.Instructor')</label>
                                     <div class="col-sm-12">
                                         <select name="instructor_id" required class="selectpicker form-control" data-live-search="true">
-                                            <option value=""></option>
+                                            <option label=" "></option>
                                             @foreach($instructors as $instructor)
                                                 <option value="{{$instructor->id}}">{{$instructor->first_name}} {{$instructor->last_name}}</option>
                                             @endforeach

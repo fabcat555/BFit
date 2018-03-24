@@ -1,4 +1,5 @@
-@extends('layouts.master') 
+@extends('layouts.master')
+
 @section('sidebar')
     @include('admin.sidebar')
 @endsection
@@ -7,7 +8,8 @@
     @include('admin.topbar')
 @endsection
  
-@section('title', __('messages.MembershipTypesIndex')) 
+@section('title', __('messages.MembershipTypesIndex'))
+
 @section('content')
 <section id="main-content">
     <section class="wrapper">
@@ -19,7 +21,7 @@
                         <!-- WHITE PANEL - TOP USER -->
                         <div class="white-panel pn">
                             <div class="panel-header-red">
-                                <h5 class="panel-header">@lang('messages.MembershipTypes')</h5>
+                                <h5 class="panel-header">{{Str::upper(__('messages.MembershipTypes'))}}</h5>
                                 <div class="db-btn-group">
                                     <a href="{{route('membership-types.create')}}" class="btn btn-primary btn-sm dashboard-btn">
                                         <i class="fa fa-plus"></i>

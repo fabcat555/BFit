@@ -30,13 +30,13 @@
                                 @csrf
                                 <fieldset>
                                     <div class="form-group">
-                                        <label class="col-sm-2 col-sm-2 control-label">@lang('messages.Name')</label>
+                                        <label class="col-sm-2 control-label">@lang('messages.Name')</label>
                                         <div class="col-sm-12">
                                             <input name="name" type="text" required class="form-control">
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-2 col-sm-2 control-label">@lang('messages.Step')</label>
+                                    <div class="form-group step-input">
+                                        <label class="step-label control-label">@lang('messages.Step') <span class="step-key">1</span></label>
                                         <div class="col-sm-12">
                                             <textarea name="steps[]" required class="form-control"></textarea>
                                         </div>
@@ -58,10 +58,19 @@
 
 @push('script')
 <script>
+    var steps = $('.step-label').length;
     $(function () {
         $('#add-step').on('click', function() {
+            steps++;
             $('#exercise-form fieldset').append(
-                '<div class="form-group"> <label class="col-sm-2 col-sm-2 control-label">@lang('messages.Step')</label> <div class="col-sm-12"> <textarea name="steps[]" class="form-control"></textarea></div></div>')
+                '<div class="form-group step-input"> <label class="step-label control-label">@lang('messages.Step') <span class="step-key">' + steps + '</span></label><button type="button" class="btn btn-danger btn-xs remove-item"> <i class="fa fa-times"></i> </button> <div class="col-sm-12"> <textarea name="steps[]" class="form-control" required></textarea></div></div>')
+        });
+        $(document).on('click', ".remove-item", function(e) {
+            steps--;
+            $(this).parent().nextAll('.step-input').find('.step-key').each(function(){
+               $(this).text(parseInt($(this).text())-1);
+           });
+           $(this).parent().fadeOut(1000, function() {$(this).remove()});
         });
     });
 </script>

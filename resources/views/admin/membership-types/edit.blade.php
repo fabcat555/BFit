@@ -37,13 +37,13 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">@lang('messages.Validity')</label>
                                     <div class="col-sm-12">
-                                        <input name="validity" required type="number" class="form-control" value="{{ old('validity', $membershipType->validity) }}">
+                                        <input name="validity" required type="number" min="1" class="form-control" value="{{ old('validity', $membershipType->validity) }}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">@lang('messages.Price')</label>
                                     <div class="col-sm-12">
-                                        <input name="price" required type="number" class="form-control" value="{{ old('price', $membershipType->price) }}">
+                                        <input name="price" required type="number" min="0" class="form-control" value="{{ old('price', $membershipType->price) }}">
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary pull-right">@lang('messages.Register')</button>

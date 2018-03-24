@@ -19,7 +19,7 @@
                         <!-- WHITE PANEL - TOP USER -->
                         <div class="white-panel pn">
                             <div class="panel-header-red">
-                                <h5 class="panel-header">@lang('messages.WorkoutType')</h5>
+                                <h5 class="panel-header">{{ Str::upper(__('messages.WorkoutType')) }}</h5>
                                 <div class="db-btn-group">
                                     <a href="{{route('workout-types.create')}}" class="btn btn-sm btn-danger dashboard-btn">
                                         <i class="fa fa-plus"></i>

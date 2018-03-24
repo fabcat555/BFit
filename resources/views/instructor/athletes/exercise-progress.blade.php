@@ -2,11 +2,11 @@
 
 @section('sidebar')
 
-    @include('athlete.sidebar')
+    @include('instructor.sidebar')
 @endsection
 
 @section('topbar')
-    @include('athlete.topbar')
+    @include('instructor.topbar')
 @endsection
 
 @section('title', __('messages.ExerciseProgressShow'))
@@ -36,7 +36,7 @@
                     <h4 class="bm-heading"><i class="fa fa-angle-right"></i> @lang('messages.NewExerciseProgress')</h4>
                     <form class="form-horizontal style-form" method="post">
                         {{ csrf_field() }}
-                        <div class="form-group">\
+                        <div class="form-group">
                             <div class="col-sm-2">
                                 <input name="weight" required placeholder="Weight" type="text" class="form-control">
                             </div>

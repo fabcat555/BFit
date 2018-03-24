@@ -19,7 +19,7 @@
                         <!-- WHITE PANEL - TOP USER -->
                         <div class="white-panel pn">
                             <div class="panel-header-red">
-                                <h5 class="panel-header">@lang('messages.Techniques')</h5>
+                                <h5 class="panel-header">{{ Str::upper(__('messages.Techniques')) }}</h5>
                                 <div class="db-btn-group">
                                     <a href="{{route('exercise-techniques.create')}}" class="btn btn-primary btn-sm dashboard-btn">
                                         <i class="fa fa-plus"></i>

@@ -18,19 +18,23 @@
                         <!-- WORKOUT PANEL -->
                         <div class="grey-panel pn">
                             <div class="panel-header-red">
-                                <h5 class="panel-header">@lang('messages.Workout')</h5>
+                                <h5 class="panel-header">{{ Str::upper(__('messages.Workout')) }}</h5>
                                 <div class="db-btn-group">
                                     <button class="btn btn-primary btn-sm dashboard-btn" data-toggle="modal" data-target="#assign-workout-modal">
                                         <i class="fa fa-child"></i>
-                                        @lang('messages.WorkoutAssign')
+                                        <span class="btn-title">@lang('messages.WorkoutAssign')</span>
                                     </button>
+                                    <a href="{{route('workout-athletes', $workout->id)}}" class="btn btn-primary btn-sm dashboard-btn">
+                                        <i class="fa fa-list-ol"></i>
+                                        <span class="btn-title">@lang('messages.ViewAthletes')</span>
+                                    </a>
                                     <a href="{{route('workouts.edit', $workout->id)}}" class="btn btn-primary btn-sm dashboard-btn">
                                         <i class="fa fa-pencil"></i>
-                                        @lang('messages.Edit')
+                                        <span class="btn-title">@lang('messages.Edit')</span>
                                     </a>
                                     <button data-toggle="modal" data-target="#confirm-delete-modal" data-resource-id="{{$workout->id}}" data-item="workout" class="btn btn-primary btn-sm dashboard-btn"> 
                                         <i class="fa fa-times"></i>
-                                        @lang('messages.Delete')
+                                        <span class="btn-title">@lang('messages.Delete')</span>
                                     </button>
                                 </div>
                             </div>
@@ -102,6 +106,9 @@
                                             </a> @else - @endif
                                         </td>
                                         <td>
+                                             @if(!empty($woExercise->notes))
+                                                    <button type="button" data-toggle="modal" data-target="#notes-modal" data-notes="{{$woExercise->notes}}" class="btn btn-primary btn-xs"><i class="fa fa-file-text-o"></i></button>
+                                                @endif
                                             <button data-toggle="modal" data-target="#confirm-delete-modal" data-resource-id="{{$woExercise->id}}" data-item="exercise" class="btn btn-danger btn-xs"> 
                                                 <i class="fa fa-times"></i>
                                             </button>
@@ -155,18 +162,46 @@
                 @csrf
                 <input type="hidden" name="workout_id" value="{{$workout->id}}">
                 <div class="modal-body">
-                    <p>@lang('messages.WorkoutAssignModalBody')</p>
-                    <select name="athlete_id" class="selectpicker">
-                    @foreach(Auth::guard('instructor')->user()->athletes as $athlete)
-                        <option value="{{$athlete->id}}">{{$athlete->first_name}} {{$athlete->last_name}}</option>
-                    @endforeach
-                </select>
+                    <div class="form-group">
+                        <p>@lang('messages.WorkoutAssignModalBody')</p>
+                        <select name="athlete_id" class="selectpicker">
+                            @foreach(Auth::guard('instructor')->user()->athletes as $athlete)
+                                <option value="{{$athlete->id}}">{{$athlete->first_name}} {{$athlete->last_name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <p>@lang('messages.StartDate')</p>
+                        <input id="start-date" name="start_date" type="date" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <p>@lang('messages.EndDate')</p>
+                        <input id="start-date" name="end_date" type="date" class="form-control" required>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">@lang('messages.CloseModal')</button>
-                    <button id="modal-confirm" type="submit" class="btn btn-primary">@lang('messages.ConfirmModal')</button>
+                    <button id="modal-confirm" type="submit" class="btn btn-danger">@lang('messages.ConfirmModal')</button>
                 </div>
             </form>
+        </div>
+    </div>
+</div>
+
+<div id="notes-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">@lang('messages.ExerciseNotes')</h4>
+            </div>
+            <div class="modal-body">
+                <p></p>
+            </div>
+             <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">@lang('messages.CloseModal')</button>
+            </div>
         </div>
     </div>
 </div>

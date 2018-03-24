@@ -59,6 +59,9 @@ return [
 
     // Login
     'LoginHeadline' => 'LOG IN',
+    'AthleteLoginHeadline' => 'login atleta',
+    'InstructorHeadline' => 'login istruttore',
+    'AdminLoginHeadline' => 'login admin',
     'RememberMeLabel' => 'Ricordami',
     'ForgotPasswordLabel' => 'Password dimenticata?',
     'SignIn' => 'ENTRA',
@@ -169,10 +172,12 @@ return [
 
     // Workout show
     'Day' => 'Giorno',
+    'Value' => 'Valore',
     'WorkoutAssign' => 'Assegna ad atleta',
     'WorkoutAssignModalTitle' => 'Assegna allenamento predefinito ad atleta',
     'WorkoutAssignModalBody' => 'Scegli un atleta',
     'AssignedWorkoutMessage' => 'Hai assegnato correttamente un allenamento!',
+    'ExerciseNotes' => 'Note esercizio',
 
     // Workout history
     'NoWorkouts' => 'Nessun workout precedente.',
@@ -216,6 +221,9 @@ return [
     // Athlete show
     'AssignWorkout' => 'Assegnawe nuovo allenamento',
 
+    // Instructor show
+    'ViewAthletes' => 'Vedi atleti assegnati',
+
     // Exercise create form
     'Step' => 'Step',
     'CreatedExercise' => 'Hai creato un nuovo esercizio!',
@@ -244,6 +252,7 @@ return [
     // Exercise technique create form
     'NewExerciseTechnique' => 'Nuova tecnica esercizio',
     'ExerciseTechniqueData' => 'Dati tecnica esercizio',
+    'CreatedExerciseTechnique' => 'Hai creato una nuova tecnica esercizio!',
 
     // Exercise progress
     'ExerciseProgress' => 'Progresso esercizio',

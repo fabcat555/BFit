@@ -46,9 +46,10 @@ Route::get('/progress/{workoutExercise}', 'ExerciseProgressController@show')->na
 Route::post('/progress/{exercise}', 'ExerciseProgressController@store')->name('progress.store');
 
 // Instructor routes
-Route::get('instructor/dashboard', 'InstructorController@index')->name('instructor.dashboard');
+Route::get('instructor/dashboard', 'Instructor\InstructorController@index')->name('instructor.dashboard');
 Route::get('workouts/create/{athleteId?}', 'Instructor\WorkoutsController@create')->name('workouts.create');
 Route::resource('workouts', 'Instructor\WorkoutsController', ['except' => 'create']);
+Route::get('workouts/{workout}/athletes', 'Instructor\WorkoutsController@viewAthletes')->name('workout-athletes');
 Route::post('/assignWorkout', 'Instructor\WorkoutsController@assignWorkout')->name('workout.assign');
 Route::resource('exercises', 'Instructor\ExercisesController');
 Route::resource('exercise-techniques', 'Instructor\ExerciseTechniquesController');
@@ -67,3 +68,4 @@ Route::resource('memberships', 'Admin\MembershipsController')->except(['show', '
 Route::resource('membership-types', 'Admin\MembershipTypesController');
 Route::get('memberships-report', 'Admin\MembershipsController@viewReport')->name('memberships.report.view');
 Route::get('memberships/{timeRange?}', 'Admin\MembershipsController@getReport')->name('memberships.report.get');
+Route::get('instructors/{instructor}/athletes', 'Admin\InstructorsController@viewAthletes')->name('instructor-athletes');

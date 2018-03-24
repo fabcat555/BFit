@@ -73,7 +73,7 @@ class AthletesController extends Controller
      */
     public function edit($athlete)
     {   
-        return view('admin.athletes.edit')->with('athlete', Athlete::find($athlete));
+        return view('admin.athletes.edit')->with(['athlete' => Athlete::find($athlete), 'instructors' => Instructor::all()]);
     }
 
     /**

@@ -28,4 +28,8 @@ class Workout extends Model
     public function workoutExercises() {
         return $this->hasMany('App\WorkoutExercise');
     }
+
+    public static function predefinedWorkouts() {
+        return static::whereNull('athlete_id');
+    }
 }

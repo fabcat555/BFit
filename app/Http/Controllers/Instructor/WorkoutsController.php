@@ -28,7 +28,7 @@ class WorkoutsController extends Controller
      */
     public function index()
     {
-        return view('instructor.workouts.index')->with('workouts', Workout::all());
+        return view('instructor.workouts.index')->with('workouts', Workout::predefinedWorkouts()->get());
     }
 
     /**
@@ -42,7 +42,7 @@ class WorkoutsController extends Controller
             'athleteId' => $athleteId,
             'athletes' => Athlete::all(),
             'exercises' => Exercise::all(),
-            'workouts' => Workout::all(),
+            'workouts' => Workout::predefinedWorkouts()->get(),
             'workoutTypes' => WorkoutType::all(),
             'exerciseTechniques' => ExerciseTechnique::all()
         ]);
@@ -171,12 +171,14 @@ class WorkoutsController extends Controller
         return response()->json(['status' => 'ok']);
     }
 
-    public function assignWorkout(Request $request, $athleteId)
+    public function assignWorkout(Request $request)
     {
-        
+        $athleteId = $request->get('athlete_id');
         $workout = Workout::findOrFail($request->get('workout_id'));
         $newWorkout = $workout->replicate();
         $newWorkout->athlete_id = $athleteId;
+        $newWorkout->start_date = $request->get('start_date');
+        $newWorkout->end_date = $request->get('end_date');
         $newWorkout->save();
         
         foreach ($workout->workoutExercises as $woExercise) {
@@ -186,7 +188,15 @@ class WorkoutsController extends Controller
             $newWorkout->workoutExercises->push($newWoExercise);
         }
 
-        return redirect($athleteId ? route('instructor.athletes.show', ['instructor' => Auth::guard('instructor')->user(), 'athletes' => Athlete::find($athleteId)]) 
-            : route('instructor.athletes.show', Auth::guard('instructor')->user()))->with('status', __('messages.AssignedWorkoutMessage'));
+        return redirect(route('instructor.athletes.show', ['instructor' => Auth::guard('instructor')->user(), 'athlete' => Athlete::find($athleteId)])
+            )->with('status', __('messages.AssignedWorkoutMessage'));
+    }
+
+    public function viewAthletes($workoutId) {
+        $workout = Workout::findOrFail($workoutId);
+        return view('instructor.athletes.index')->with('athletes', Auth::guard('instructor')->user()->athletes
+            ->filter(function($athlete) use ($workout) {
+                return $athlete->currentWorkout()->name == $workout->name;
+            }));
     }
 }

@@ -22,14 +22,18 @@
                             <div class="panel-header-red">
                                 <h5 class="panel-header">@lang('messages.PersonalData')</h5>
                                 <div class="db-btn-group">
-                                    <a href="{{route('instructor.edit', $instructor->id)}}" class="btn btn-primary btn-sm dashboard-btn">
+                                    <a href="{{route('instructors.edit', $instructor->id)}}" class="btn btn-primary btn-sm dashboard-btn">
                                         <i class="fa fa-pencil"></i>
-                                        @lang('messages.Edit')
+                                        <span class="btn-title">@lang('messages.Edit')</span>
                                     </a>
                                     <button data-toggle="modal" data-target="#confirm-delete-modal" data-resource-id="{{$instructor->id}}" class="btn btn-primary btn-sm dashboard-btn"> 
                                         <i class="fa fa-times"></i>
-                                        @lang('messages.Delete')
+                                        <span class="btn-title">@lang('messages.Delete')</span>
                                     </button>
+                                    <a href="{{route('instructor-athletes', $instructor->id)}}" class="btn btn-primary btn-sm dashboard-btn">
+                                        <i class="fa fa-child"></i>
+                                        <span class="btn-title">@lang('messages.ViewAthletes')</span>
+                                    </a>
                                 </div>
                             </div>
                             @if(session('status'))

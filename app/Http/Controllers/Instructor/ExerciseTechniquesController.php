@@ -40,7 +40,7 @@ class ExerciseTechniquesController extends Controller
     {
         ExerciseTechnique::create($request->all());
 
-        return redirect(route('exercise-techniques.index'))->with('status', __('messages.ExerciseTechniqueCreated'));
+        return redirect(route('exercise-techniques.index'))->with('status', __('messages.CreatedExerciseTechnique'));
     }
 
     /**

@@ -31,6 +31,7 @@
                         <h4 class="athlete-bm-heading">
                             <i class="fa fa-angle-right"></i> {{ $technique->name }}
                         </h4>
+                        @if(Auth::guard('instructor')->check())
                         <div class="edit-btns">
                             <button data-toggle="modal" data-target="#confirm-delete-modal" class="btn btn-danger btn-sm pull-right"> 
                                     <i class="fa fa-times"></i>
@@ -41,8 +42,9 @@
                                     @lang('messages.Edit')
                                 </a>
                         </div>
+                        @endif
                         <div class="panel-body">
-                            <p class="technique-description">
+                            <p class="resource-description">
                                 {{ $technique->description }}
                             </p>
                         </div>
@@ -88,7 +90,7 @@
                 },
                 url: "/exercise-techniques/" + "{{$technique->id}}",
                 success: function() {
-                    window.location.replace('/technique');
+                    window.location.replace('/exercise-techniques');
                 }
             });
         });   

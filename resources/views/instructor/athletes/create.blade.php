@@ -31,25 +31,25 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">@lang('messages.FirstName')</label>
                                     <div class="col-sm-12">
-                                        <input name="first_name" type="text" required class="form-control">
+                                    <input name="first_name" type="text" required class="form-control" value="{{old('first_name')}}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">@lang('messages.LastName')</label>
                                     <div class="col-sm-12">
-                                        <input name="last_name" type="text" required class="form-control">
+                                        <input name="last_name" type="text" required class="form-control" value="{{old('last_name')}}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">@lang('messages.BirthDate')</label>
                                     <div class="col-sm-12">
-                                        <input name="birth_date" type="date" required class="form-control">
+                                        <input name="birth_date" type="date" required class="form-control" value="{{old('birth_date')}}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">@lang('messages.Email')</label>
                                     <div class="col-sm-12">
-                                        <input name="email" type="email" required class="form-control">
+                                        <input name="email" type="email" required class="form-control" value={{old('email')}}>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -75,16 +75,16 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">@lang('messages.Height')</label>
                                     <div class="col-sm-12">
-                                        <input name="height" required type="number" class="form-control">
+                                        <input name="height" required type="number" class="form-control" value="{{old('height')}}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">@lang('messages.Notes')</label>
                                     <div class="col-sm-12">
-                                        <textarea name="notes" class="form-control"></textarea>
+                                        <textarea name="notes" class="form-control">{{old('notes')}}</textarea>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary pull-right">Register</button>
+                                <button type="submit" class="btn btn-primary pull-right">@lang('messages.Register')</button>
                             </form>
                         </div>
                     </div>

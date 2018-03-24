@@ -9,12 +9,13 @@ Premium: http://www.gridgum.com
 /* Import fonts */
 
 @import url(http://fonts.googleapis.com/css?family=Ruda:400,700,900);
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,700,900);
 /* BASIC THEME CONFIGURATION */
 
 body {
     color: #797979;
     background: #f2f2f2;
-    font-family: 'Ruda', sans-serif;
+    font-family: 'Raleway', sans-serif;
     padding: 0px !important;
     margin: 0px !important;
     font-size: 13px;
@@ -49,7 +50,7 @@ a:focus {
 /* Bootstrap Modifications */
 
 .modal-header {
-    background: #68dff0;
+    background: #cc4e4e;
 }
 
 .modal-title {
@@ -2089,11 +2090,10 @@ label {
     -webkit-border-radius: 5px;
 }
 
-.form-login h2.form-login-heading {
+.form-login h2.form-login-heading, .form-login h2.form-login-heading-yellow, .form-login h2.form-login-heading-blue {
     margin: 0;
     padding: 25px 20px;
     text-align: center;
-    background: #68dff0;
     border-radius: 5px 5px 0 0;
     -webkit-border-radius: 5px 5px 0 0;
     color: #fff;
@@ -2101,6 +2101,20 @@ label {
     text-transform: uppercase;
     font-weight: 300;
 }
+
+.form-login h2.form-login-heading { 
+    background: #cc4e4e;
+}
+
+.form-login h2.form-login-heading-yellow { 
+    background: #f0ad4e;
+}
+
+.form-login h2.form-login-heading-blue { 
+    background: #337ab7;
+}
+
+
 
 .login-wrap {
     padding: 20px;
@@ -2529,6 +2543,10 @@ h5 {
     text-align: center;
 }
 
+.bm-weight-chart {
+    margin-top: 40px;
+}
+
 /* Workout show */
 
 #workout-table_wrapper .dt-buttons {
@@ -2545,15 +2563,17 @@ div[id*='workout-'][id$='_wrapper'] .dt-buttons {
 
 .bm-heading {
     color: #464444;
+    margin-bottom: 30px;
 }
 
 /* Technique */
 
-.technique-description {
+.resource-description {
     color: #464444;
     width: 90%;
     margin: 0 auto;
     line-height: 2em;
+    padding-top: 30px;
 }
 
 label {
@@ -2590,6 +2610,7 @@ label {
 
 .ep-form {
     margin: 0;
+    padding: 20px 30px;
 }
 
 .ep-form .form-group {
@@ -2650,6 +2671,27 @@ label {
     list-style-type: disc !important;
 }
 
+.btn-login, .btn-login-blue, .btn-login-yellow {
+    color: white;
+}
+
+.btn-login:hover, .btn-login-blue:hover, .btn-login-yellow:hover {
+    border-color: black;
+    color: #d8cdb8;
+}
+
+.btn-login {
+    background-color: #cc4e4e;
+}
+
+.btn-login-yellow {
+    background-color: #f0ad4e;
+}
+
+.btn-login-blue {
+    background-color: #337ab7;
+}
+
 /* Instructor Athlete create */
 
 .athlete-form {
@@ -2699,6 +2741,7 @@ label {
 
 #bm-form {
     display: none;
+    padding-left: 50px;
 }
 
 /* Workout types index */

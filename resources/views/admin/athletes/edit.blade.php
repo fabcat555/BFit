@@ -66,6 +66,17 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label class="col-sm-2 control-label">@lang('messages.Instructor')</label>
+                                    <div class="col-sm-12">
+                                        <select name="instructor_id" required class="selectpicker form-control" data-live-search="true">
+                                            <option label=" "></option>
+                                            @foreach($instructors as $instructor)
+                                                <option value="{{$instructor->id}}" @if($instructor->id == $athlete->instructor->id) selected @endif>{{$instructor->first_name}} {{$instructor->last_name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">@lang('messages.Notes')</label>
                                     <div class="col-sm-12">
                                         <textarea name="notes" class="form-control"> {{ old('notes', $athlete->notes) }} </textarea>

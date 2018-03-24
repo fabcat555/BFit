@@ -1,4 +1,5 @@
-@extends('layouts.master') 
+@extends('layouts.master')
+
 @section('sidebar')
     @include('instructor.sidebar')
 @endsection
@@ -55,12 +56,12 @@
                                 <div class="db-btn-group">
                                     <a href="{{route('instructor.athletes.create', ['instructor' => Auth::guard('instructor')->user()])}}" class="btn btn-danger btn-sm dashboard-btn">
                                         <i class="fa fa-plus"></i>
-                                        @lang('messages.New')
-                                </a>
+                                        <span class="btn-title">@lang('messages.New')</span>
+                                    </a>
                                     <a href="{{route('instructor.athletes.index', ['instructor' => Auth::guard('instructor')->user()])}}" class="btn btn-danger btn-sm dashboard-btn">
-                                            <i class="fa fa-list"></i> 
-                                        @lang('messages.ViewAll')
-                                </a>
+                                        <i class="fa fa-list"></i> 
+                                        <span class="btn-title">@lang('messages.ViewAll')</span>
+                                    </a>
                                 </div>
                             </div>
                             @if(count($instructor->athletes))
@@ -79,7 +80,7 @@
                                 </tbody>
                             </table>
                             @else
-                            <h5>@lang('messages.NoAthletesAssigned')</h5>
+                                <h5>@lang('messages.NoAthletesAssigned')</h5>
                             @endif
                         </div>
                     </div>
@@ -96,15 +97,15 @@
                                 <div class="db-btn-group">
                                     <a href="{{route('exercises.create')}}" class="btn btn-sm btn-danger dashboard-btn">
                                             <i class="fa fa-plus"></i>
-                                        @lang('messages.New')
+                                        <span class="btn-title">@lang('messages.New')</span>
                                     </a>
                                     <a href="{{route('exercises.index')}}" class="btn btn-sm btn-danger dashboard-btn">
                                         <i class="fa fa-list"></i> 
-                                        @lang('messages.ViewAll')
+                                        <span class="btn-title">@lang('messages.ViewAll')</span>
                                     </a>
                                 </div>
                             </div>
-                            @if(isset($exercises))
+                            @if(count($exercises))
                             <table class="table table-hover table-dashboard">
                                 <thead>
                                     <tr>
@@ -132,15 +133,15 @@
                                 <div class="db-btn-group">
                                     <a href="{{route('workouts.create')}}" class="btn btn-sm btn-danger dashboard-btn">
                                         <i class="fa fa-plus"></i>
-                                        @lang('messages.New')
+                                        <span class="btn-title">@lang('messages.New')</span>
                                     </a>
                                     <a href="{{route('workouts.index')}}" class="btn btn-sm btn-danger dashboard-btn">
                                         <i class="fa fa-list"></i> 
-                                        @lang('messages.ViewAll')
+                                        <span class="btn-title">@lang('messages.ViewAll')</span>
                                 </a>
                                 </div>
                             </div>
-                            @if(isset($workouts))
+                            @if(count($workouts))
                             <table class="table table-hover table-dashboard">
                                 <thead>
                                     <tr>
@@ -156,7 +157,7 @@
                                 </tbody>
                             </table>
                             @else
-                            <h5>@lang('messages.NoWorkouts')</h5>
+                                <h5>@lang('messages.NoPredefinedWorkouts')</h5>
                             @endif
                         </div>
                     </div>
@@ -173,15 +174,15 @@
                                 <div class="db-btn-group">
                                     <a href="{{route('workout-types.create')}}" class="btn btn-sm btn-danger dashboard-btn">
                                         <i class="fa fa-plus"></i>
-                                        @lang('messages.New')
+                                        <span class="btn-title">@lang('messages.New')</span>
                                     </a>
                                     <a href="{{route('workout-types.index')}}" class="btn btn-sm btn-danger dashboard-btn">
                                         <i class="fa fa-list"></i> 
-                                        @lang('messages.ViewAll')
+                                        <span class="btn-title">@lang('messages.ViewAll')</span>
                                 </a>
                                 </div>
                             </div>
-                            @if (isset($workoutTypes))
+                            @if (count($workoutTypes))
                             <table class="table table-hover table-dashboard">
                                 <thead>
                                     <tr>
@@ -209,15 +210,15 @@
                                 <div class="db-btn-group">
                                     <a href="{{route('exercise-techniques.create')}}" class="btn btn-sm btn-danger dashboard-btn">
                                          <i class="fa fa-plus"></i>
-                                        @lang('messages.New')
+                                        <span class="btn-title">@lang('messages.New')</span>
                                     </a>
                                     <a href="{{route('exercise-techniques.index')}}" class="btn btn-sm btn-danger dashboard-btn">
                                         <i class="fa fa-list"></i> 
-                                        @lang('messages.ViewAll')
+                                        <span class="btn-title">@lang('messages.ViewAll')</span>
                                     </a>
                                 </div>
                             </div>
-                            @if (isset($exerciseTechniques))
+                            @if (count($exerciseTechniques))
                             <table class="table table-hover table-dashboard">
                                 <thead>
                                     <tr>

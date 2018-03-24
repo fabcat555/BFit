@@ -89,7 +89,7 @@ class MembershipTypesController extends Controller
     {
         $membershipType->delete();
 
-        request()->session()->flash('status', __('messages.DisabledMembership'));
+        request()->session()->flash('status', __('messages.DeletedResource'));
         return response()->json(['status' => 'ok']);
     }
 }

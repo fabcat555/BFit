@@ -24,11 +24,11 @@
                                 <div class="db-btn-group">
                                     <a href="{{route('instructor.athletes.edit', ['instructor' => Auth::guard('instructor')->user(), 'athlete' => $athlete])}}" class="btn btn-primary btn-sm dashboard-btn">
                                         <i class="fa fa-pencil"></i>
-                                        @lang('messages.Edit')
+                                        <span class="btn-title">@lang('messages.Edit')</span>
                                     </a>
                                     <button data-toggle="modal" data-target="#confirm-delete-modal" class="btn btn-primary btn-sm dashboard-btn"> 
                                         <i class="fa fa-times"></i>
-                                        @lang('messages.Delete')
+                                        <span class="btn-title">@lang('messages.Delete')</span>
                                     </button>
                                 </div>
                             </div>
@@ -59,6 +59,10 @@
                                         <th scope="row">@lang('messages.MembershipStartDate')</th>
                                         <td>{{ $athlete->created_at->format('d/m/y') }}</td>
                                     </tr>
+                                    <tr>
+                                        <th scope="row">@lang('messages.Notes')</th>
+                                        <td>@if(!empty($athlete->notes)) {{ $athlete->notes }} @else - @endif</td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -68,9 +72,18 @@
                     <div class="col-lg-12">
                         <div class="grey-panel pn">
                             <div class="panel-header-black">
-                                <h5 class="panel-header">@lang('messages.AssignedWorkout')</h5>
+                                <h5 class="panel-header">{{ Str::upper(__('messages.AssignedWorkout')) }}</h5>
                                 <div class="db-btn-group">
-                                    <a href="{{route('workouts.create', $athlete->id)}}" type="button" class="btn btn-primary btn-sm dashboard-btn">@lang('messages.AssignWorkout')</a>
+                                    @if (isset($workout))
+                                        <a href="{{route('workouts.edit', $workout->id)}}" class="btn btn-primary btn-sm dashboard-btn">
+                                            <i class="fa fa-pencil"></i>
+                                            <span class="btn-title">@lang('messages.Edit')</span>
+                                        </a>
+                                    @endif
+                                    <a href="{{route('workouts.create', $athlete->id)}}" type="button" class="btn btn-primary btn-sm dashboard-btn">
+                                        <i class="fa fa-wrench"></i>
+                                        <span class="btn-title">@lang('messages.AssignWorkout')</span>
+                                    </a>
                                 </div>
                             </div>
                             @if (isset($workout))
@@ -131,6 +144,9 @@
                                             </a> @else - @endif
                                         </td>
                                         <td>
+                                            @if(!empty($woExercise->notes))
+                                                <button type="button" data-toggle="modal" data-target="#notes-modal" data-notes="{{$woExercise->notes}}" class="btn btn-primary btn-xs"><i class="fa fa-file-text-o"></i></button>
+                                            @endif
                                             <a href="{{ route('progress.show', ['exercise' => $woExercise->id]) }}" class="btn btn-warning btn-xs"><i class="fa fa-bar-chart-o"></i></a>
                                         </td>
                                     </tr>
@@ -167,7 +183,7 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <canvas id="myChart" width="800" height="200"></canvas>
-                                        <button class="btn btn-default btn-primary pull-right" id="toggle-bm-form" type="button">@lang('messages.NewBodyMeasurement')</button>
+                                        <button class="btn btn-default btn-danger pull-right" id="toggle-bm-form" type="button">@lang('messages.NewBodyMeasurement')</button>
                                     </div>
                                 </div>
                                 <div class="row mt">
@@ -221,7 +237,7 @@
         </div>
     </section>
 </section>
-<!-- Modal -->
+<!-- Modals -->
 <div id="confirm-delete-modal" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
@@ -236,6 +252,23 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">@lang('messages.CloseModal')</button>
                 <button id="modal-confirm" type="button" class="btn btn-danger">@lang('messages.ConfirmModal')</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="notes-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">@lang('messages.ExerciseNotes')</h4>
+            </div>
+            <div class="modal-body">
+                <p></p>
+            </div>
+             <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">@lang('messages.CloseModal')</button>
             </div>
         </div>
     </div>
@@ -333,6 +366,9 @@
                 window.location.replace('/instructor/{{Auth::guard('instructor')->user()->id}}/athletes');
             }
         });
+    });
+    $('#notes-modal').on('show.bs.modal', function(e) {
+        $('.modal-body p').text($(e.relatedTarget).data('notes'));
     });
 </script>
 @endpush

@@ -57,11 +57,11 @@
                                 <div class="db-btn-group">
                                     <a href="{{route('membership-types.create')}}" class="btn btn-primary btn-sm dashboard-btn">
                                         <i class="fa fa-plus"></i>
-                                        @lang('messages.New')
+                                        <span class="btn-title">@lang('messages.New')</span>
                                     </a>
                                     <a href="{{route('membership-types.index')}}" class="btn btn-primary btn-sm dashboard-btn">
                                         <i class="fa fa-list"></i> 
-                                        @lang('messages.ViewAll')
+                                        <span class="btn-title">@lang('messages.ViewAll')</span>
                                     </a>
                                 </div>
                             </div>
@@ -101,15 +101,15 @@
                                 <div class="db-btn-group">
                                     <a href="{{route('memberships.create')}}" class="btn btn-primary btn-sm dashboard-btn">
                                         <i class="fa fa-plus"></i>
-                                        @lang('messages.New')
+                                        <span class="btn-title">@lang('messages.New')</span>
                                     </a>
                                     <a href="{{route('memberships.index')}}" class="btn btn-primary btn-sm dashboard-btn">
                                         <i class="fa fa-list"></i> 
-                                        @lang('messages.ViewAll')
+                                        <span class="btn-title">@lang('messages.ViewAll')</span>
                                     </a>
                                     <a href="{{route('memberships.report.view')}}" class="btn btn-primary btn-sm dashboard-btn">
                                         <i class="fa fa-bar-chart-o"></i> 
-                                        @lang('messages.ViewReport')
+                                        <span class="btn-title">@lang('messages.ViewReport')</span>
                                     </a>
                                 </div>
                             </div>
@@ -151,11 +151,11 @@
                                 <div class="db-btn-group">
                                     <a href="{{route('athletes.create')}}" class="btn btn-primary btn-sm dashboard-btn">
                                         <i class="fa fa-plus"></i>
-                                        @lang('messages.New')
+                                        <span class="btn-title">@lang('messages.New')</span>
                                     </a>
                                     <a href="{{route('athletes.index')}}" class="btn btn-primary btn-sm dashboard-btn">
                                         <i class="fa fa-list"></i>
-                                        @lang('messages.ViewAll')
+                                        <span class="btn-title">@lang('messages.ViewAll')</span>
                                     </a>
                                 </div>
                             </div>
@@ -187,11 +187,11 @@
                                 <div class="db-btn-group">
                                     <a href="{{route('instructors.create')}}" class="btn btn-primary btn-sm dashboard-btn">
                                         <i class="fa fa-plus"></i>
-                                        @lang('messages.New')
+                                        <span class="btn-title">@lang('messages.New')</span>
                                     </a>
                                     <a href="{{route('instructors.index')}}" class="btn btn-primary btn-sm dashboard-btn">
                                         <i class="fa fa-list"></i> 
-                                        @lang('messages.ViewAll')
+                                        <span class="btn-title">@lang('messages.ViewAll')</span>
                                     </a>
                                 </div>
                             </div>

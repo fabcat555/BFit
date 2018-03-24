@@ -24,6 +24,7 @@
                     <h4 class="athlete-bm-heading">
                         <i class="fa fa-angle-right"></i> <span id="bm-heading-span"> {{ $exercise->name }}</span>
                     </h4>
+                    @if(Auth::guard('instructor')->check())
                     <div class="edit-btns">
                         <button data-toggle="modal" data-target="#confirm-delete-modal" data-resource-id="{{$exercise->id}}" data-item="exercise"
                             class="btn btn-danger btn-sm pull-right"> 
@@ -35,6 +36,7 @@
                             @lang('messages.Edit')
                         </a>
                     </div>
+                    @endif
                     <div class="panel-body">
                         <ol class="list-group exercise-desc">
                             @foreach ($exercise->exerciseSteps->sortBy('id') as $step)

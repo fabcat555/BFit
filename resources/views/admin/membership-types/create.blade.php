@@ -1,10 +1,13 @@
-@extends('layouts.master') 
+@extends('layouts.master')
+
 @section('sidebar')
     @include('admin.sidebar')
 @endsection
+
 @section('topbar')
     @include('admin.topbar')
 @endsection
+
 @section('title', __('messages.MembershipTypeCreate'))
 
 @section('content')
@@ -34,13 +37,13 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">@lang('messages.Validity')</label>
                                     <div class="col-sm-12">
-                                        <input name="validity" required type="number" class="form-control">
+                                        <input name="validity" required min="1" type="number" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">@lang('messages.Price')</label>
                                     <div class="col-sm-12">
-                                        <input name="price" required type="number" class="form-control">
+                                        <input name="price" required min="0" type="number" class="form-control">
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary pull-right">@lang('messages.Register')</button>

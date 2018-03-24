@@ -59,6 +59,17 @@
                                         <th scope="row">@lang('messages.MembershipStartDate')</th>
                                         <td>{{ $athlete->created_at->format('d/m/y') }}</td>
                                     </tr>
+                                    <tr>
+                                        <th scope="row">@lang('messages.Notes')</th>
+                                        <td>@if(!empty($athlete->notes)) {{ $athlete->notes }} @else - @endif</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">@lang('messages.Instructor')</th>
+                                        <td>
+                                            @if (isset($athlete->instructor)) {{ $athlete->instructor->first_name . ' ' . $athlete->instructor->last_name }} @else -
+                                            @endif
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>

@@ -34,13 +34,13 @@
                                         </div>
                                     </div>
                                     @foreach ($exercise->exerciseSteps as $key => $step)
-                                    <div class="form-group" id="step-{{$step->id}}">
-                                        <label class="step-label control-label">@lang('messages.Step') {{$key+1}}</label> 
+                                    <div class="form-group step-input" id="step-{{$step->id}}">
+                                        <label class="step-label control-label"><span class="step-key">@lang('messages.Step') {{$key+1}}</span></label> 
                                         <button type="button" data-toggle="modal" data-target="#confirm-delete-modal" data-resource-id="{{$step->id}}" class="btn btn-danger btn-xs"> 
                                             <i class="fa fa-times"></i>
                                         </button>
                                         <div class="col-sm-12">
-                                            <textarea name="{{ 'exerciseSteps[' . $step->id . '][description]'}}" class="form-control">{{ $step->description }}</textarea>
+                                            <textarea name="{{ 'exerciseSteps[' . $step->id . '][description]'}}" class="form-control" required>{{ $step->description }}</textarea>
                                         </div>
                                     </div>
                                     @endforeach
@@ -80,10 +80,12 @@
  
 @push('script')
 <script>
+    var steps = $('.step-label').length;
     $(function () {
         $('#add-step').on('click', function() {
+            steps++;
             $('#exercise-form fieldset').append(
-                '<div class="form-group"> <label class="col-sm-2 col-sm-2 control-label">@lang('messages.Step')</label> <div class="col-sm-12"> <textarea name="steps[]" class="form-control"></textarea></div></div>')
+                '<div class="form-group step-input"> <label class="step-label control-label">@lang('messages.Step') <span class="step-key">' + steps + '</span></label><button type="button" class="btn btn-danger btn-xs remove-item"> <i class="fa fa-times"></i> </button> <div class="col-sm-12"> <textarea name="steps[]" class="form-control" required></textarea></div></div>')
         });
         var modal = $('#confirm-delete-modal');
         modal.on('show.bs.modal', function(e) {
@@ -105,7 +107,14 @@
                     modal.modal('hide');
                 }
             });
-        });   
+        });
+        $(document).on('click', ".remove-item", function(e) {
+            steps--;
+            $(this).parent().nextAll('.step-input').find('.step-key').each(function(){
+               $(this).text(parseInt($(this).text())-1);
+           });
+           $(this).parent().fadeOut(1000, function() {$(this).remove()});
+        });
     });
 </script>
 @endpush

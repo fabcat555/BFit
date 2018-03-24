@@ -80,6 +80,9 @@
                                                         </a> @else - @endif
                                                 </td>
                                                 <td>
+                                                    @if(!empty($woExercise->notes))
+                                                        <button type="button" data-toggle="modal" data-target="#notes-modal" data-notes="{{$woExercise->notes}}" class="btn btn-primary btn-xs"><i class="fa fa-file-text-o"></i></button>
+                                                    @endif
                                                     <a href="{{ route('progress.show', ['exercise' => $woExercise->id]) }}" class="btn btn-warning btn-xs"><i class="fa fa-bar-chart-o"></i></a>
                                                 </td>
                                             </tr>
@@ -101,6 +104,24 @@
         </div>
     </section>
 </section>
+<!-- Modal -->
+<div id="notes-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">@lang('messages.ExerciseNotes')</h4>
+            </div>
+            <div class="modal-body">
+                <p></p>
+            </div>
+             <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">@lang('messages.CloseModal')</button>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
  
 @push('script')
@@ -117,6 +138,10 @@
             ]
         });
         workoutTable.buttons().container().appendTo( $('.col-sm-6:eq(1) ') );
+
+        $('#notes-modal').on('show.bs.modal', function(e) {
+            $('.modal-body p').text($(e.relatedTarget).data('notes'));
+        });
 });
 </script>
 @endpush

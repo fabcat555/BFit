@@ -1,13 +1,19 @@
 @extends('layouts.master') 
-@section('sidebar') @if(Auth::guard('instructor')->check())
-    @include('instructor.sidebar') @else
-    @include('athlete.sidebar') @endif
+
+@section('sidebar') 
+    @if(Auth::guard('instructor')->check())
+        @include('instructor.sidebar') 
+    @else
+        @include('athlete.sidebar') 
+    @endif
 @endsection
  
-@section('topbar') @if(Auth::guard('instructor')->check())
-    @include('instructor.topbar')
-@else
-    @include('athlete.topbar') @endif
+@section('topbar') 
+    @if(Auth::guard('instructor')->check())
+        @include('instructor.topbar')
+    @else
+        @include('athlete.topbar') 
+    @endif
 @endsection
  
 @section('title', __('messages.WorkoutTypeShow')) 
@@ -24,6 +30,7 @@
                     <h4 class="athlete-bm-heading">
                         <i class="fa fa-angle-right"></i> {{ $workoutType->name }}
                     </h4>
+                    @if(Auth::guard('instructor')->check())
                     <div class="edit-btns">
                         <button data-toggle="modal" data-target="#confirm-delete-modal" class="btn btn-danger btn-sm pull-right"> 
                                 <i class="fa fa-times"></i>
@@ -34,8 +41,9 @@
                             @lang('messages.Edit')
                         </a>
                     </div>
+                    @endif
                     <div class="panel-body">
-                        <p class="technique-description">
+                        <p class="resource-description">
                             {{ $workoutType->description }}
                         </p>
                     </div>

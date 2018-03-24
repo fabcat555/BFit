@@ -66,7 +66,9 @@ return [
 
     // Login
     'AppHeadline' => 'BFit - Gym Management System',
-    'LoginHeadline' => 'sign in now',
+    'AthleteLoginHeadline' => 'athlete login',
+    'InstructorLoginHeadline' => 'instructor login',
+    'AdminLoginHeadline' => 'admin login',
     'RememberMeLabel' => 'Remember Me?',
     'ForgotPasswordLabel' => 'Forgot Password?',
     'SignIn' => 'SIGN IN',
@@ -177,10 +179,12 @@ return [
 
     // Workout show
     'Day' => 'Day',
+    'Value' => 'Value',
     'WorkoutAssign' => 'Assign to athlete',
     'WorkoutAssignModalTitle' => 'Assign predefined workout to athlete',
     'WorkoutAssignModalBody' => 'Choose an athlete',
     'AssignedWorkoutMessage' => 'Successfully assigned a workout!',
+    'ExerciseNotes' => 'Exercise notes',
 
     // Workout history
     'NoWorkouts' => 'No previous workouts.',
@@ -202,7 +206,7 @@ return [
 
     // Membership create form
     'NewMembership' => 'New Membership',
-    'MembershipData' => 'MembershipData',
+    'MembershipData' => 'Membership Data',
 
     // Membership report
     'Week' => 'Week',
@@ -224,6 +228,9 @@ return [
 
     // Athlete show
     'AssignWorkout' => 'Assign new workout',
+
+    // Instructor show
+    'ViewAthletes' => 'View assigned athletes',
 
     // Exercise create form
     'Step' => 'Step',
@@ -253,6 +260,7 @@ return [
     // Exercise technique create form
     'NewExerciseTechnique' => 'New Exercise Technique',
     'ExerciseTechniqueData' => 'Exercise Technique Data',
+    'CreatedExerciseTechnique' => 'Successfully created a new exercise technique!',
 
      // Exercise progress
     'ExerciseProgress' => 'Exercise Progress',

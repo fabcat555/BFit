@@ -28,15 +28,15 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">@lang('messages.Athlete')</label>
                                     <div class="col-sm-6">
-                                        <select name="athlete_id" required class="selectpicker" data-live-search="true">
+                                        <select name="athlete_id" required class="selectpicker" data-live-search="true" data-width="auto">
                                             @foreach($athletes as $athlete)
-                                            <option value="{{$athlete->id}}">{{$athlete->first_name}} {{$athlete->last_name}}</option>
+                                                <option value="{{$athlete->id}}">{{$athlete->first_name}} {{$athlete->last_name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">@lang('messages.Exercise')</label>
+                                    <label class="col-sm-2 control-label">@lang('messages.Membership')</label>
                                     <div class="col-sm-6">
                                         <select name="type_id" required class="form-control">
                                             @foreach($membershipTypes as $membershipType)

@@ -3,30 +3,27 @@
     .custom-bar-chart {
         margin-bottom: 40px;
     }
-
 }
 
 @media (min-width: 768px) and (max-width: 979px) {
-
-    /*-----*/
     .custom-bar-chart {
         margin-bottom: 40px;
-    }
-
-
+    }    
 }
 
-@media (min-width: 1200px) {
-
-    .bm-weight-chart {
-        margin-top: 30px;
+@media (min-width: 1000px) and (max-width: 1200px) {
+    .bm-panel {
+        height: 550px;
     }
+}
 
-
+@media (min-width: 1200px) and (max-width: 1400px) {
+    .bm-weight-chart {
+        margin-top: 80px;
+    }
 }
 
 @media (max-width: 768px) {
-
     .header {
         position: absolute;
     }
@@ -235,7 +232,11 @@
 
 }
 
-
+@media (max-width: 500px) {
+    .bm-chart {
+        margin-top: 120px;
+    }
+}
 
 @media (max-width: 480px) {
 
@@ -297,6 +298,8 @@
 
 }
 
-
-
-
+@media (max-width:1400px) {
+    .btn-title {
+        display: none;
+    }
+}

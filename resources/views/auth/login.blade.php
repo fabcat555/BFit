@@ -25,7 +25,7 @@
         <div class="container">
             <form class="form-login" action="/login" method="POST">
                 @csrf
-                <h2 class="form-login-heading">@lang('messages.LoginHeadline')</h2>
+                <h2 class="form-login-heading">@lang('messages.AthleteLoginHeadline')</h2>
                 <div class="login-wrap">
                     <input type="email" id="email" name="email" class="form-control" placeholder="Email" value="{{ old('email') }}" autofocus>
                     <br>
@@ -38,14 +38,14 @@
 		                    <a data-toggle="modal" href="#myModal"> @lang('messages.ForgotPasswordLabel')</a>
 		                </span>
                     </label>
-                    <button class="btn btn-theme btn-block" href="index.html" type="submit"><i class="fa fa-lock"></i> @lang('messages.SignIn')</button>
+                    <button class="btn btn-login btn-block" href="index.html" type="submit"><i class="fa fa-lock"></i> @lang('messages.SignIn')</button>
                     @include('shared.errors')
                     <hr>
             </form>
             <div class="login-social-link centered">
                 <p>@lang('messages.AthleteAlternativeLoginHeadline')</p>
-                <a href="{{route('instructor.login')}}" class="btn btn-facebook" type="submit">@lang('messages.InstructorLogin')</a>
-                <a href="{{route('admin.login')}}" class="btn btn-twitter" type="submit">@lang('messages.AdminLogin')</a>
+                <a href="{{route('instructor.login')}}" class="btn btn-warning" type="submit">@lang('messages.InstructorLogin')</a>
+                <a href="{{route('admin.login')}}" class="btn btn-primary" type="submit">@lang('messages.AdminLogin')</a>
             </div>
             </div>
             <!-- Modal -->
@@ -73,7 +73,7 @@
         </div>
     </div>
     <!-- js placed at the end of the document so the pages load faster -->
-    <script src="{{asset('js/jquery.js')}}"></script>
+    <script src="{{asset('js/jquery-2.1.1.js')}}"></script>
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
     <!--BACKSTRETCH-->
     <!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->

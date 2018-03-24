@@ -10,6 +10,7 @@ use Auth;
 use App\Http\Requests\InstructorCreateForm;
 use App\Http\Requests\InstructorUpdateForm;
 use App\Instructor;
+use App\Athlete;
 
 class InstructorsController extends Controller
 {
@@ -109,5 +110,9 @@ class InstructorsController extends Controller
 
         request()->session()->flash('status', __('messages.DeletedResource'));
         return response()->json(['status' => 'ok']);
+    }
+
+    public function viewAthletes($instructor) {
+        return view('admin.athletes.index')->with('athletes', Athlete::where('instructor_id', '=', $instructor)->get());
     }
 }
