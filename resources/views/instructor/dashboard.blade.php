@@ -214,7 +214,13 @@
                                     </a>
                                     <a href="{{route('exercise-techniques.index')}}" class="btn btn-sm btn-danger dashboard-btn">
                                         <i class="fa fa-list"></i> 
-                                        <span class="btn-title">@lang('messages.ViewAll')</span>
+                                        <span class="btn-title">
+                                            @if(App::isLocale('it'))
+                                                @lang('messages.ViewAllF')
+                                            @else
+                                                @lang('messages.ViewAll')
+                                            @endif
+                                        </span>
                                     </a>
                                 </div>
                             </div>

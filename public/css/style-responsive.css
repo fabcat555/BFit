@@ -24,8 +24,24 @@
 }
 
 @media (max-width: 768px) {
+    .bm-panel {
+        height: 420px;
+    }
+
+    .workout-day .panel-body {
+        padding: 20px;
+    }
+
     .header {
         position: absolute;
+    }
+
+    .name-input {
+        margin-bottom: 10px;
+    }
+
+    .label-mt {
+        margin-top: 10px;
     }
 
     /*sidebar*/
@@ -236,9 +252,30 @@
     .bm-chart {
         margin-top: 120px;
     }
+    .dataTables_wrapper {
+        padding: 10px 20px;
+    }
 }
 
 @media (max-width: 480px) {
+    .bm-panel {
+        height: 300px;
+    }
+    .technique-column {
+        display: none;
+    }
+
+    .visible-xs {
+        display: initial;
+    }
+    
+    .hidden-xs {
+        display: none;
+    }
+    
+    .form-panel {
+        padding: 30px 25px;
+    }
 
     .notify-row, .search, .dont-show , .inbox-head .sr-input, .inbox-head .sr-btn{
         display: none;

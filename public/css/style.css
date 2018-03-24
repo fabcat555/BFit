@@ -2765,7 +2765,11 @@ table.dataTable {
 }
 
 .dt-buttons {
-    float: left;
+    float: right;
+}
+
+#toggle-bm-form {
+    margin-right: 20px;
 }
 
 #workout_wrapper .dt-buttons {

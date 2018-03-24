@@ -8,7 +8,7 @@
     @include('instructor.topbar')
 @endsection
  
-@section('title', __('messages.AthleteShow')) 
+@section('title', __('messages.Athletes') . '/' . $athlete->first_name . ' ' . $athlete->last_name)
 
 @section('content')
 <section id="main-content">
@@ -103,7 +103,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <table class="table table-hover table-dashboard">
+                            <table class="table table-hover table-workout">
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -167,7 +167,8 @@
                             <div class="panel-header-red">
                                 <h5 class="panel-header">@lang('messages.BodyMeasurementsHeading')</h5>
                             </div>
-                            <h4 class="athlete-bm-heading">
+                            <div class="panel-body">
+                                <h4 class="athlete-bm-heading">
                                 <i class="fa fa-angle-right"></i> <span id="bm-heading-span">@lang('messages.Weight')</span>
                             </h4>
                             <div class="btn-group pull-right athlete-bm-setting">
@@ -179,12 +180,9 @@
                                 <button id="calves" type="button" class="btn btn-default">@lang('messages.Calves')</button>
                                 <button id="biceps" type="button" class="btn btn-default">@lang('messages.Biceps')</button>
                             </div>
-                            <div class="panel-body">
                                 <div class="row">
-                                    <div class="col-lg-12">
-                                        <canvas id="myChart" width="800" height="200"></canvas>
+                                        <canvas id="myChart" width="600" height="200"></canvas>
                                         <button class="btn btn-default btn-danger pull-right" id="toggle-bm-form" type="button">@lang('messages.NewBodyMeasurement')</button>
-                                    </div>
                                 </div>
                                 <div class="row mt">
                                     <div id="bm-form" class="col-lg-12">
@@ -334,7 +332,7 @@
         };
         window.myChart = new Chart(ctx, config);
     }
-    initChart(@json(array_keys($weightMeasurements)), @json(array_values($weightMeasurements)), 'Weight');
+    initChart(@json(array_keys($weightMeasurements)), @json(array_values($weightMeasurements)), "@lang('messages.Weight')");
     $(".athlete-bm-setting button").on('click', function(e) {
         var measure = e.target.id;
         $(".btn.active").removeClass('active');
@@ -345,7 +343,8 @@
             url: '/getMeasurements/' + {{$athlete->id}} + '/' + measure,
             success: function(data) {
                 initChart(Object.keys(data), Object.values(data), capitalizeFirstLetter(measure));
-                $("#bm-heading-span").text(capitalizeFirstLetter(measure))
+                $("#bm-heading-span").text(capitalizeFirstLetter(measure));
+                window.scrollTo(0,document.body.scrollHeight);
             }
         });
     });
@@ -370,5 +369,19 @@
     $('#notes-modal').on('show.bs.modal', function(e) {
         $('.modal-body p').text($(e.relatedTarget).data('notes'));
     });
+    var workoutTable = $('.table-workout').DataTable( {
+        ordering: false,
+        info: false,
+        paging: false,
+        lengthChange: false,
+        searching: false,
+        responsive: true,
+        "scrollX": true,
+        autoWidth: false,
+        buttons: [
+            'copy', 'excel', 'pdf'
+        ]
+    });
+    workoutTable.buttons().container().appendTo($('.col-sm-6:eq(1) '));
 </script>
 @endpush

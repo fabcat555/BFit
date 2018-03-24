@@ -8,7 +8,7 @@
     @include('admin.topbar')
 @endsection
 
-@section('title', __('messages.InstructorShow'))
+@section('title', __('messages.Instructors') . '/' . $instructor->first_name . ' ' . $instructor->last_name)
 
 @section('content')
 <section id="main-content">

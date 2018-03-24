@@ -78,6 +78,7 @@
             },
             options: {
                 responsive: true,
+                maintainAspectRatio: false,
                 tooltips: {
                     mode: 'index',
                     intersect: false
@@ -91,14 +92,14 @@
                     display: true,
                     scaleLabel: {
                     display: true,
-                    labelString: 'Day'
+                    labelString: "@lang('messages.Day')"
                     }
                 }],
                 yAxes: [{
                     display: true,
                     scaleLabel: {
                     display: true,
-                    labelString: 'Value'
+                    labelString: "@lang('messages.Value')"
                     }
                 }]
                 }
@@ -106,7 +107,7 @@
         };
         window.myChart = new Chart(ctx, config);
     }
-    initChart(@json(array_keys($weightMeasurements)), @json(array_values($weightMeasurements)), 'Weight');
+    initChart(@json(array_keys($weightMeasurements)), @json(array_values($weightMeasurements)), "@lang('messages.Weight')");
     $(".bm-setting button").on('click', function(e) {
         var measure = e.target.id;
         $(".btn.active").removeClass('active');
@@ -116,8 +117,8 @@
         $.ajax({
             url: '/getMeasurements/' + measure,
             success: function(data) {
-                initChart(Object.keys(data), Object.values(data), capitalizeFirstLetter(measure));
-                $("#bm-heading-span").text(capitalizeFirstLetter(measure))
+                initChart(Object.keys(data), Object.values(data), $('.btn.active').text());
+                $("#bm-heading-span").text($('.btn.active').text())
             }
         });
     });

@@ -16,7 +16,7 @@
     @endif
 @endsection
 
-@section('title', __('messages.ExerciseTechniqueShow'))
+@section('title', __('messages.ExerciseTechniques') . '/' . $technique->name)
 
 @section('content')
 <section id="main-content">

@@ -5,6 +5,7 @@ return [
     'Athletes' => 'Atleti',
     'Instructor' => 'Istruttore',
     'Instructors' => 'Istruttori',
+    'Workouts' => 'Allenamenti',
     'Memberships' => 'Abbonamenti',
     'ExerciseTechnique' => 'Tecnica esercizio',
 
@@ -65,12 +66,12 @@ return [
     'RememberMeLabel' => 'Ricordami',
     'ForgotPasswordLabel' => 'Password dimenticata?',
     'SignIn' => 'ENTRA',
-    'AthleteAlternativeLoginHeadline' => 'o puoi entrare come Istruttore o Amministratore',
-    'InstructorAlternativeLoginHeadline' => 'o puoi entrare come Atleta o Amministratore',
+    'AthleteAlternativeLoginHeadline' => 'o puoi entrare come Istruttore o Admin',
+    'InstructorAlternativeLoginHeadline' => 'o puoi entrare come Atleta o Admin',
     'AdminAlternativeLoginHeadline' => 'o puoi entrare come Atleta Istruttore',
-    'AthleteLogin' => 'Login atleta',
+    'AthleteLogin' => 'Login Atleta',
     'InstructorLogin' => 'Login Istruttore',
-    'AdminLogin' => 'Login Amministratore',
+    'AdminLogin' => 'Login Admin',
     'ResetPasswordHeading' => 'Inserisci il tuo indirizzo email per resettare la tua password.',
     'CancelButton' => 'Annulla',
     'SubmitButton' => 'Reset',
@@ -88,7 +89,7 @@ return [
     // Instructor sidebar
     'NewWorkout' => 'Nuovo Allenamento',
     'PredefinedWorkouts' => 'Allenamenti predefiniti',
-    'ManageWOTypes' => 'Gestisci Categorie Allenamento',
+    'ManageWOTypes' => 'Gestisci Tipi Allenamento',
     'Athletes' => 'Atleti',
     'ViewAssignedAthletes' => 'Guarda Atleti Assegnati',
     'NewAthlete' => 'Nuovo Atleta',
@@ -96,7 +97,7 @@ return [
     'ExercisesHeading' => 'ESERCIZI',
     'ManageTechniques' => 'Gestisci Tecniche Esercizi',
     'ManageExercises' => 'Gestisci Esercizi',
-    'New Exercise' => 'Nuovo Esercizio',
+    'NewExercise' => 'Nuovo Esercizio',
 
     // Admin sidebar
     'ManageAthletes' => 'Gestisci Athleti',
@@ -113,24 +114,26 @@ return [
     'BirthDate' => 'Data di nascita',
     'Gender' => 'Sesso',
     'Height' => 'Altezza',
-    'Membership' => 'ABBONAMENTO',
+    'MembershipHeading' => 'ABBONAMENTO',
     'Type' => 'Tipo',
     'MembershipStatus' => 'Stato',
     'MembershipValidity' => 'Scadenza',
     'MembershipStartYear' => 'MEMBRO DAL',
     'MembershipCost' => 'COSTO ABBONAMENTO',
-    'AssignedWorkout' => 'ALLENAMENTO ASSEGNATO',
+    'AssignedWorkoutHeading' => 'ALLENAMENTO',
     'BodyMeasurementsHeading' => 'MISURAZIONI CORPOREE',
     'ViewHistory' => 'Vedi cronologia',
     'StartDate' => 'Data inizio',
     'EndDate' => 'Data fine',
     'Exercise' => 'Esercizio',
-    'Sets' => 'Set',
+    'Sets' => 'Serie',
     'Reps' => 'Ripetizioni',
     'Rest' => 'Riposo',
     'Technique' => 'Tecnica',
     'New' => 'Nuovo',
     'ViewAll' => 'Guarda tutti',
+    'ViewAllF' => 'Guarda tutte',
+    'View' => 'Guarda',
     'Active' => 'Attivo',
     'Expired' => 'Scaduto',
     'NoMembership' => 'Nessun abbonamento attivo!',
@@ -157,7 +160,7 @@ return [
     'Price' => 'Costo',
     'ViewReport' => 'Vedi report',
     'MembershipTypesHeading' => 'TIPI ABBONAMENTO',
-    'MembershipsHeading' => 'ABBONAMENTI',
+    'MembershipsHeading' => 'ISCRIZIONI',
     'AthletesHeading' => 'ATLETI',
     'InstructorsHeading' => 'ISTRUTTORI',
     'NoMembershipTypes' => 'Nessun tipo abbonamento trocato!',
@@ -219,7 +222,7 @@ return [
     'InstructorPersonals' => 'Dati anagrafici istruttore',
 
     // Athlete show
-    'AssignWorkout' => 'Assegnawe nuovo allenamento',
+    'AssignWorkout' => 'Assegnare nuovo allenamento',
 
     // Instructor show
     'ViewAthletes' => 'Vedi atleti assegnati',
@@ -256,6 +259,8 @@ return [
 
     // Exercise progress
     'ExerciseProgress' => 'Progresso esercizio',
+    'NewExerciseProgress' => 'Registra nuovo progresso',
+    'Register' => 'Registra',
 
     // Techniques
     'Techniques' => 'Tecniche di allenamento',

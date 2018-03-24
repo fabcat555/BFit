@@ -16,7 +16,7 @@
     @endif
 @endsection
  
-@section('title', __('messages.WorkoutTypeShow')) 
+@section('title', __('messages.WorkoutTypes') . '/' . $workoutType->name)
 @section('content')
 <section id="main-content">
     <section class="wrapper site-min-height">

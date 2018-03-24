@@ -8,7 +8,7 @@
     @include('admin.topbar')
 @endsection
  
-@section('title', __('messages.AthleteShow'))
+@section('title', __('messages.Athletes') . '/' . $athlete->first_name . ' ' . $athlete->last_name)
 
 @section('content')
 <section id="main-content">

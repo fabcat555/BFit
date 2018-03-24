@@ -20,7 +20,13 @@
                         <!-- WORKOUT PANEL -->
                         <div class="grey-panel pn">
                             <div class="panel-header-red">
-                                <h5 class="panel-header">@lang('messages.AssignedWorkout')</h5>
+                                <h5 class="panel-header">
+                                    @if(isset($workout->name))
+                                        {{Str::upper(__($workout->name))}}
+                                    @else
+                                        {{Str::upper(__('messages.AssignedWorkout'))}}
+                                    @endif
+                                </h5>
                             </div>
                             @if (isset($workout))
                             <table class="table table-borderless table-description">
@@ -133,6 +139,8 @@
             paging: false,
             lengthChange: false,
             searching: false,
+            responsive: true,
+            "scrollX": true,
             buttons: [
                 'copy', 'excel', 'pdf'
             ]

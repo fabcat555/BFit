@@ -93,6 +93,9 @@
     $(document).ready(function(){
         var table = $('#instructors').DataTable( {
             info: false,
+            language: {
+                url: "{{ App::isLocale('it') ? asset('js/datatables/i18n/Italian.json') : '' }}"
+            },
             buttons: [
                 'copy', 'excel', 'pdf'
             ],

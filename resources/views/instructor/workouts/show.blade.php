@@ -1,4 +1,5 @@
 @extends('layouts.master') 
+
 @section('sidebar')
     @include('instructor.sidebar')
 @endsection
@@ -7,7 +8,8 @@
     @include('instructor.topbar')
 @endsection
  
-@section('title', __('messages.WorkoutShow')) 
+@section('title', isset($workout->name) ? __('messages.Workouts') . '/' . $workout->name : __('messages.WorkoutShow'))
+
 @section('content')
 <section id="main-content">
     <section class="wrapper">

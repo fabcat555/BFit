@@ -79,7 +79,7 @@
                                 </tbody>
                             </table>
                             @else
-                            <h5>@lang('messages.NoMembership')</h5>
+                                <h5>@lang('messages.NoMembership')</h5>
                             @endif
                             <div class="row">
                                 <div class="col-md-6">
@@ -114,7 +114,7 @@
                                     </a>
                                     <a href="{{route('workout')}}" class="btn btn-danger btn-sm dashboard-btn">
                                         <i class="fa fa-list"></i>
-                                        <span class="btn-title">@lang('messages.ViewAll')</span>
+                                        <span class="btn-title">@lang('messages.View')</span>
                                     </a>
                                 </div>
                                 @endisset
@@ -137,14 +137,14 @@
                                 </tbody>
                             </table>
                             <h5>@lang('messages.Day') 1</h5>
-                            <table class="table table-hover table-dashboard">
+                            <table class="table table-responsive table-hover table-dashboard">
                                 <thead>
                                     <tr>
                                         <th>@lang('messages.Exercise')</th>
                                         <th>@lang('messages.Sets')</th>
                                         <th>@lang('messages.Reps')</th>
                                         <th>@lang('messages.Rest')</th>
-                                        <th>@lang('messages.Technique')</th>
+                                        <th class="technique-column">@lang('messages.Technique')</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -154,7 +154,7 @@
                                         <td>{{$woExercise->sets}}</td>
                                         <td>{{$woExercise->reps}}</td>
                                         <td>{{$woExercise->rest}}</td>
-                                        <td>
+                                        <td class="technique-column">
                                             @if (isset($woExercise->exerciseTechnique)) {{$woExercise->exerciseTechnique->name}} @else - @endif
                                         </td>
                                     </tr>
@@ -175,8 +175,8 @@
                                 <h5 class="panel-header">@lang('messages.BodyMeasurementsHeading')</h5>
                                 <div class="db-btn-group">
                                     <a href="{{route('bodymeasurements')}}" class="btn btn-danger btn-sm dashboard-btn">
-                                        <i class="fa fa-list"></i>
-                                        <span class="btn-title">@lang('messages.ViewAll')</span>
+                                        <i class="fa fa-eye"></i>
+                                        <span class="btn-title">@lang('messages.View')</span>
                                     </a>
                                 </div>
                             </div>

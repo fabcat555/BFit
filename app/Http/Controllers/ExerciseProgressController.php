@@ -44,7 +44,7 @@ class ExerciseProgressController extends Controller
     {
         $progress = [];
         foreach ($exerciseProgresses as $ep) {
-            $progress[$ep->created_at->format('d-m-y h:m:s')] = $ep->weight;
+            $progress[$ep->created_at->format('d-m-y h:i:s')] = $ep->weight;
         }
         return $progress;
     }
@@ -53,8 +53,7 @@ class ExerciseProgressController extends Controller
     {
         $ep = ExerciseProgress::create([
             'workout_exercise_id' => $exercise,
-            'weight' => $request->get('weight'),
-            'notes' => $request->get('notes')
+            'weight' => $request->get('weight')
         ]);
         $ep->save();
 

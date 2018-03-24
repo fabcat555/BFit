@@ -1,4 +1,5 @@
 @extends('layouts.master') 
+
 @section('sidebar') @if(Auth::guard('instructor')->check())
     @include('instructor.sidebar') @else
     @include('athlete.sidebar') @endif
@@ -10,7 +11,8 @@
     @include('athlete.topbar') @endif
 @endsection
  
-@section('title', __('messages.ExerciseShow')) 
+@section('title', __('messages.Exercises') . '/' . $exercise->name)
+
 @section('content')
 <section id="main-content">
     <section class="wrapper site-min-height">

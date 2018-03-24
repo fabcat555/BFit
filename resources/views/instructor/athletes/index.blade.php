@@ -105,6 +105,7 @@
             buttons: [
                 'copy', 'excel', 'pdf'
             ],
+            responsive: true,
             initComplete: function () {
                 setTimeout( function () {
                      table.buttons().container().appendTo( $('.col-sm-5', table.table().container() ) );

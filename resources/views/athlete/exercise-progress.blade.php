@@ -34,16 +34,12 @@
             <div class="col-lg-12">
                 <div class="form-panel ep-form">
                     <h4 class="bm-heading"><i class="fa fa-angle-right"></i> @lang('messages.NewExerciseProgress')</h4>
+                    @include('shared.errors')
                     <form class="form-horizontal style-form" method="post">
                         {{ csrf_field() }}
-                        <div class="form-group">\
-                            <div class="col-sm-2">
-                                <input name="weight" required placeholder="Weight" type="text" class="form-control">
-                            </div>
-                        </div>
                         <div class="form-group">
-                            <div class="col-sm-12">
-                                <textarea name="notes" placeholder="Notes" class="form-control"></textarea>
+                            <div class="col-sm-2">
+                                <input name="weight" type="number" min="0" required placeholder="@lang('messages.Weight')" type="text" class="form-control">
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary">@lang('messages.Register')</button>
@@ -88,6 +84,7 @@
             },
             options: {
                 responsive: true,
+                maintainAspectRatio: false,
                 tooltips: {
                     mode: 'index',
                     intersect: false

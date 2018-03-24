@@ -56,13 +56,13 @@ var Script = function () {
             $('#sidebar').css({
                 'margin-left': '-210px'
             });
-            $('#sidebar > ul').hide();
+            $('#sidebar > ul').slideUp();
             $("#container").addClass("sidebar-closed");
         } else {
             $('#main-content').css({
                 'margin-left': '210px'
             });
-            $('#sidebar > ul').show();
+            $('#sidebar > ul').slideToggle();
             $('#sidebar').css({
                 'margin-left': '0'
             });

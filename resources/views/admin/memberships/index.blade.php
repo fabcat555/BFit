@@ -19,7 +19,7 @@
                         <!-- WHITE PANEL - TOP USER -->
                         <div class="white-panel pn">
                             <div class="panel-header-red">
-                                <h5 class="panel-header">@lang('messages.Memberships')</h5>
+                                <h5 class="panel-header">@lang('messages.MembershipsHeading')</h5>
                                 <div class="db-btn-group">
                                     <a href="{{route('memberships.create')}}" class="btn btn-primary btn-sm dashboard-btn">
                                          <i class="fa fa-plus"></i>
@@ -95,6 +95,9 @@
     $(document).ready(function(){
         var table = $('#memberships').DataTable( {
             info: false,
+            language: {
+                url: "{{ App::isLocale('it') ? asset('js/datatables/i18n/Italian.json') : '' }}"
+            },
             buttons: [
                 'copy', 'excel', 'pdf'
             ],

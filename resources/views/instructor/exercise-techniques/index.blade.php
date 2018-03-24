@@ -23,7 +23,7 @@
                                 <div class="db-btn-group">
                                     <a href="{{route('exercise-techniques.create')}}" class="btn btn-primary btn-sm dashboard-btn">
                                         <i class="fa fa-plus"></i>
-                                        @lang('messages.New')
+                                        <span class="btn-title">@lang('messages.New')</span>
                                     </a>
                                 </div>
                             </div>

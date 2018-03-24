@@ -22,7 +22,13 @@
                             <!-- WORKOUT PANEL -->
                             <div class="grey-panel pn">
                             <div class="{{$woKey%2 ? 'panel-header-black' : 'panel-header-red'}}">
-                                    <h5 class="panel-header">{{$wo->name}}</h5>
+                                    <h5 class="panel-header">
+                                        @if(isset($wo->name))
+                                            {{Str::upper(__($wo->name))}}
+                                        @else
+                                            {{Str::upper(__('messages.Workout'))}}
+                                        @endif
+                                    </h5>
                                 </div>
                                 <table class="table table-borderless table-description">
                                     <tbody>
@@ -40,7 +46,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <table id="workout-{{$woKey+1}}" class="table table-hover table-workout">
+                                <table id="workout-{{$woKey+1}}" class="table table-hover table-responsive table-workout">
                                     <thead>
                                         <tr>
                                             <th>#</th>
@@ -110,6 +116,9 @@
             paging: false,
             lengthChange: false,
             searching: false,
+            responsive: true,
+            "scrollX": true,
+            autoWidth: false,
             buttons: [
                 'copy', 'excel', 'pdf'
             ],
