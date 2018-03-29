@@ -83,7 +83,8 @@ return [
     'CancelButton' => 'Cancel',
     'SubmitButton' => 'Submit',
     'WrongPassword' => 'Wrong password. Retry.',
-
+    'WorkoutShow' => 'View workout',
+    
     // Athlete sidebar
     'Dashboard' => 'Dashboard',
     'Workout' => 'Workout',
@@ -178,6 +179,10 @@ return [
     'DeleteConfirmModalBody' => 'Are you sure you want to delete the selected resource?',
     'CloseModal' => 'Close',
     'ConfirmModal' => 'Confirm',
+
+    // Workouts index
+    'AssignedWorkoutsHeading' => 'Assigned workouts',
+    'AssignedTo' => 'Assigned to',
 
     // Workout show
     'Day' => 'Day',
@@ -280,4 +285,10 @@ return [
     'Thighs' => 'Thighs',
     'Calves' => 'Calves',
     'Biceps' => 'Biceps',
+
+    // Reset passwords
+    'InstructorResetHeadline' => 'Instructor - Reset password',
+    'AdminResetHeadline' => 'Admin - Reset password',
+    'AthleteResetHeadline' => 'Athlete - Reset password',
+    'Reset' => 'Reset'
 ];

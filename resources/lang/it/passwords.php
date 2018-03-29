@@ -14,9 +14,9 @@ return [
     */
 
     'password' => 'La password deve avere almeno sei caratteri e corrispondere al campo Conferma password.',
-    'reset' => 'La tua password &egrave; stata resettata!',
+    'reset' => 'La tua password è stata resettata!',
     'sent' => 'Abbiamo mandato alla email fornita un link per resettare la password!',
-    'token' => 'Il token per il reset della password &egrave; errato.',
+    'token' => 'Il token per il reset della password è errato.',
     'user' => "Impossibile trovare un utente con l'indirizzo email fornito.",
 
 ];

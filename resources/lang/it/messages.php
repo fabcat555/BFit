@@ -76,6 +76,7 @@ return [
     'CancelButton' => 'Annulla',
     'SubmitButton' => 'Reset',
     'WrongPassword' => 'Password errata. Riprova.',
+    'ResetPasswordLabel' => 'Inserisci la tua email',
 
     // Athlete sidebar
     'Dashboard' => 'Dashboard',
@@ -145,6 +146,7 @@ return [
     'MembershipStartDate' => 'Membro dal',
     'AssignedAthletes' => 'ATLETI ASSEGNATI',
     'PredefinedWorkoutsHeading' => 'ALLENAMENTI PREDEFINITI',
+    'WorkoutsHeading' => 'ALLENAMENTI',
     'WorkoutTypesHeading' => 'TIPI ALLENAMENTO',
     'ExerciseTechniques' => 'TECNICHE ESERCIZI',
     'WorkoutType' => 'Tipo Allenamento',
@@ -181,6 +183,10 @@ return [
     'WorkoutAssignModalBody' => 'Scegli un atleta',
     'AssignedWorkoutMessage' => 'Hai assegnato correttamente un allenamento!',
     'ExerciseNotes' => 'Note esercizio',
+
+    // Workouts index
+    'AssignedWorkoutsHeading' => 'Allenamenti assegnati',
+    'AssignedTo' => 'Assegnato a',
 
     // Workout history
     'NoWorkouts' => 'Nessun workout precedente.',
@@ -273,4 +279,10 @@ return [
     'Thighs' => 'Coscia',
     'Calves' => 'Polpaccio',
     'Biceps' => 'Bicipite',
+
+    // Reset passwords
+    'InstructorResetHeadline' => 'Istruttore - Reimposta password',
+    'AdminResetHeadline' => 'Admin - Reimposta password',
+    'AthleteResetHeadline' => 'Atleta - Reimposta password',
+    'Reset' => 'Reset'
 ];

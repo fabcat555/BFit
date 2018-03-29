@@ -28,7 +28,10 @@ class WorkoutsController extends Controller
      */
     public function index()
     {
-        return view('instructor.workouts.index')->with('workouts', Workout::predefinedWorkouts()->get());
+        return view('instructor.workouts.index')->with([
+            'predefinedWorkouts' => Workout::predefinedWorkouts()->get(),
+            'assignedWorkouts' => Workout::assignedWorkouts()->get()
+        ]);
     }
 
     /**

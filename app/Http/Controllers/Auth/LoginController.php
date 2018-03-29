@@ -39,6 +39,12 @@ class LoginController extends Controller
         $this->middleware('guest:athlete')->except('logout');
     }
 
+    public function showLoginForm(Request $request) {
+        $request->session()->put('url.intended', url()->previous());
+
+        return view('auth.login');
+    }
+
     public function logout()
     {
         Auth::guard('athlete')->logout();

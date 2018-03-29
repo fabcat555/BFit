@@ -192,35 +192,35 @@
                                             <div class="form-group">
                                                 <label class="col-sm-1 control-label">@lang('messages.Weight')</label>
                                                 <div class="col-sm-2">
-                                                    <input name="weight" type="text" class="form-control">
+                                                    <input name="weight" required type="numeric" class="form-control">
                                                 </div>
                                                 <label class="col-sm-1 control-label">@lang('messages.Chest')</label>
                                                 <div class="col-sm-2">
-                                                    <input name="chest" type="text" class="form-control">
+                                                    <input name="chest" required type="numeric" class="form-control">
                                                 </div>
                                                 <label class="col-sm-1 control-label">@lang('messages.Waist')</label>
                                                 <div class="col-sm-2">
-                                                    <input name="waist" type="text" class="form-control">
+                                                    <input name="waist" required type="numeric" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-1 control-label">@lang('messages.Hips')</label>
                                                 <div class="col-sm-2">
-                                                    <input name="hips" type="text" class="form-control">
+                                                    <input name="hips" required type="numeric" class="form-control">
                                                 </div>
                                                 <label class="col-sm-1 control-label">@lang('messages.Thighs')</label>
                                                 <div class="col-sm-2">
-                                                    <input name="thighs" type="text" class="form-control">
+                                                    <input name="thighs" required type="numeric" class="form-control">
                                                 </div>
                                                 <label class="col-sm-1 control-label">@lang('messages.Calves')</label>
                                                 <div class="col-sm-2">
-                                                    <input name="calves" type="text" class="form-control">
+                                                    <input name="calves" required type="numeric" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-1 control-label">@lang('messages.Biceps')</label>
                                                 <div class="col-sm-2">
-                                                    <input name="biceps" type="text" class="form-control">
+                                                    <input name="biceps" required type="numeric" class="form-control">
                                                 </div>
                                             </div>
                                             <button type="submit" class="btn btn-primary pull-right">@lang('messages.Register')</button>
@@ -244,7 +244,7 @@
 <script src="{{ asset('js/util.js') }}"></script>
 <script src="{{ asset('js/chart-helper.js') }}"></script>
 <script>
-     var chartConfig = {
+    var chartConfig = {
         'labels': @json(array_keys($weightMeasurements)),
         'data': @json(array_values($weightMeasurements)),
         'title': "@lang('messages.Weight')",
@@ -262,8 +262,16 @@
         $.ajax({
             url: '/getMeasurements/' + {{$athlete->id}} + '/' + measure,
             success: function(data) {
-                initChart(Object.keys(data), Object.values(data), capitalizeFirstLetter(measure));
-                $("#bm-heading-span").text(capitalizeFirstLetter(measure));
+                var newConfig = {
+                    'labels': Object.keys(data),
+                    'data': Object.values(data),
+                    'title': $('.btn.active').text(),
+                    'xAxesLabel': "@lang('messages.Day')",
+                    'yAxesLabel': "@lang('messages.Weight')",
+                    'ratio': true
+                };
+                initChart(newConfig);
+                $("#bm-heading-span").text($('.btn.active').text());
                 window.scrollTo(0,document.body.scrollHeight);
             }
         });

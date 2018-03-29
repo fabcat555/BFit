@@ -12,7 +12,7 @@ use App\Http\Requests\ExerciseCreateForm;
 class ExercisesController extends Controller
 {
     public function __construct() {
-        $this->middleware('auth:instructor,athlete', ['except' => 'show']);
+        $this->middleware('auth:instructor,athlete');
     }    
 
     /**
@@ -21,7 +21,7 @@ class ExercisesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
         return view('instructor.exercises.index')->with('exercises', Exercise::all());
     }
 

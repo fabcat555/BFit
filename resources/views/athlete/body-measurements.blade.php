@@ -68,7 +68,14 @@
         $.ajax({
             url: '/getMeasurements/' + measure,
             success: function(data) {
-                initChart(Object.keys(data), Object.values(data), $('.btn.active').text());
+                var newConfig = {
+                    'labels': Object.keys(data),
+                    'data': Object.values(data),
+                    'title': $('.btn.active').text(),
+                    'xAxesLabel': "@lang('messages.Day')",
+                    'yAxesLabel': "@lang('messages.Weight')"
+                };
+                initChart(newConfig);
                 $("#bm-heading-span").text($('.btn.active').text())
             }
         });

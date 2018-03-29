@@ -2677,6 +2677,7 @@ label {
 
 .btn-login, .btn-login-blue, .btn-login-yellow {
     color: white;
+    margin-bottom: 10px;
 }
 
 .btn-login:hover, .btn-login-blue:hover, .btn-login-yellow:hover {
@@ -2849,4 +2850,10 @@ table.dataTable {
 .pagination>.active>span:hover {
     background-color: #cc4e4e;
     border-color: #a71d1d;
+}
+
+/* Reset password */
+
+#reset-submit {
+    margin-top: 30px;
 }

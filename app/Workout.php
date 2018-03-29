@@ -32,4 +32,8 @@ class Workout extends Model
     public static function predefinedWorkouts() {
         return static::whereNull('athlete_id');
     }
+
+    public static function assignedWorkouts() {
+        return static::whereNotNull('athlete_id');
+    }
 }

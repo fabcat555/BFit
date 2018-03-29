@@ -23,6 +23,12 @@
     }
 }
 
+@media (min-width: 600px) and (max-width: 768px) {
+    .bm-weight-chart {
+        margin-top: 20px;
+    }
+}
+
 @media (max-width: 768px) {
     .bm-panel {
         height: 420px;

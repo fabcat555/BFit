@@ -40,6 +40,11 @@
                     </label>
                     <button class="btn btn-login-yellow btn-block" href="index.html" type="submit"><i class="fa fa-lock"></i> @lang('messages.SignIn')</button>
                     @include('shared.errors')
+                    @if(session('status'))
+                        <div class="alert alert-success alert-created" role="alert">
+                            <strong>{{ session('status') }}</strong>
+                        </div>
+                    @endif
                     <hr>
             </form>
             <div class="login-social-link centered">
@@ -56,14 +61,15 @@
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                             <h4 class="modal-title">@lang('messages.ForgotPasswordLabel')</h4>
                         </div>
-                        <form action="" method="post">
+                        <form action="{{ route('instructor.password.email') }}" method="post">
+                            @csrf
                             <div class="modal-body">
                                 <p>@lang('messages.ResetPasswordLabel')</p>
-                                <input type="text" name="email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
+                                <input type="email" name="email" placeholder="Email" required class="form-control placeholder-no-fix">
                             </div>
                             <div class="modal-footer">
                                 <button data-dismiss="modal" class="btn btn-default" type="button">@lang('messages.CancelButton')</button>
-                                <button class="btn btn-theme" type="button">@lang('messages.SubmitButton')</button>
+                                <button class="btn btn-danger" type="submit">@lang('messages.SubmitButton')</button>
                             </div>
                         </form>
                     </div>
@@ -79,7 +85,7 @@
     <!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->
     <script type="text/javascript" src="{{asset('js/jquery.backstretch.min.js')}}"></script>
     <script>
-        $.backstretch("{{asset('/img/login-bg.jpg')}}", {speed: 500});
+        $.backstretch("{{asset('/img/gym-bg.jpg')}}", {speed: 500});
     </script>
 </body>
 </html>
