@@ -59,63 +59,15 @@
  
 @push('script')
 <script src="{{ asset('js/util.js') }}"></script>
+<script src="{{ asset('js/chart-helper.js') }}"></script>
 <script>
-    function initChart(labels, data, title) {
-        var ctx = document.getElementById("myChart").getContext('2d');
-        Chart.defaults.global.defaultFontColor = 'black';
-        Chart.defaults.global.defaultFontFamily = 'Ruda';
-        window.chartColors = [
-            'rgb(255, 99, 132)',
-            'rgb(255, 159, 64)',
-            'rgb(255, 205, 86)',
-            'rgb(75, 192, 192)',
-            'rgb(54, 162, 235)',
-            'rgb(153, 102, 255)',
-            'rgb(101, 75, 12)'
-        ];
-        var color = window.chartColors[getRandom(0,6)]
-        var config = {
-            type: 'line',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: title,
-                    backgroundColor: color,
-                    borderColor: color,
-                    data: data,
-                    fill: false,
-                }]
-            },
-            options: {
-                responsive: true,
-                tooltips: {
-                    mode: 'index',
-                    intersect: false
-                },
-                hover: {
-                    mode: 'nearest',
-                    intersect: true
-                },
-                scales: {
-                xAxes: [{
-                    display: true,
-                    scaleLabel: {
-                        display: true,
-                    labelString: "{{__('messages.Day')}}"
-                    }
-                }],
-                yAxes: [{
-                    display: true,
-                    scaleLabel: {
-                        display: true,
-                    labelString: "{{__('messages.Value')}}"
-                    }
-                }]
-                }
-            }
-        };
-        window.myChart = new Chart(ctx, config);
-    }
-    initChart(@json(array_keys($progress)), @json(array_values($progress)), "{{__('messages.Weight')}}");
+     var chartConfig = {
+        'labels': @json(array_keys($progress)),
+        'data': @json(array_values($progress)),
+        'title': "@lang('messages.Weight')",
+        'xAxesLabel': "@lang('messages.Day')",
+        'yAxesLabel': "@lang('messages.Weight')"
+    };
+    initChart(chartConfig);
 </script>
 @endpush

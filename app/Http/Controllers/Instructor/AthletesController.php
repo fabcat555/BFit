@@ -24,7 +24,7 @@ class AthletesController extends Controller
      */
     public function index()
     {
-        return view('instructor.athletes.index');
+        return view('instructor.athletes.index')->with('athletes', Auth::guard('instructor')->user()->athletes);
     }
 
     /**

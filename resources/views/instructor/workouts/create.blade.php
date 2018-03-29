@@ -27,8 +27,8 @@
                             </div>
                             <div class="panel-body">
                                 <div class="form-group">
-                                     <label class="col-lg-2 col-md-1 control-label">@lang('messages.Athlete')</label>
-                                    <div class="col-lg-3 col-md-2">
+                                    <label class="col-lg-2 col-md-1 control-label">@lang('messages.Athlete')</label>
+                                    <div class="col-lg-3">
                                         <select id="athlete-select" @if($athleteId!='0') disabled @endisset class="selectpicker" data-live-search="true" name="athlete_id" data-width="100%">
                                             <option label=" "></option>
                                             @foreach($athletes as $athlete)
@@ -38,15 +38,17 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    @if(!$athleteId)
                                     <div class="name-input">
                                         <label class="col-lg-2 col-md-1 control-label">@lang('messages.Name')</label>
-                                        <div class="col-lg-3 col-md-2">
+                                        <div class="col-lg-3">
                                             <input name="name" type="text" required class="form-control">
                                         </div>
                                     </div>
-                                    <label class="col-lg-2 col-md-2 control-label">@lang('messages.WorkoutType')</label>
-                                    <div class="col-lg-3 col-md-2">
-                                        <select name="type_id" class="selectpicker" data-live-search="true" data-width="100%"
+                                    @endif
+                                    <label class="col-lg-2 control-label">@lang('messages.WorkoutType')</label>
+                                    <div class="col-lg-3">
+                                        <select name="type_id" class="selectpicker" data-live-search="true" data-width="100%">
                                             <option label=" "></option>
                                             @foreach($workoutTypes as $wt)
                                                 <option value="{{$wt->id}}">{{$wt->name}}</option>
@@ -55,12 +57,12 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-2 col-md-1 control-label">@lang('messages.StartDate')</label>
-                                    <div class="col-lg-3 col-md-3">
+                                    <label class="col-lg-2 col-md-3 control-label">@lang('messages.StartDate')</label>
+                                    <div class="col-lg-3 col-md-12">
                                         <input id="start-date" name="start_date" type="date" class="form-control">
                                     </div>
-                                    <label class="col-lg-2 col-md-1 control-label label-mt">@lang('messages.EndDate')</label>
-                                    <div class="col-lg-3 col-md-3">
+                                    <label class="col-lg-2 col-md-3 control-label label-mt">@lang('messages.EndDate')</label>
+                                    <div class="col-lg-3 col-md-12">
                                         <input id="end-date" name="end_date" type="date" class="form-control">
                                     </div>
                                 </div>
@@ -90,16 +92,16 @@
                                     </div>
                                     <div class="panel-body">
                                         <div class="form-group">
-                                            <label class="col-lg-2 col-md-1 control-label">@lang('messages.Exercise')</label>
-                                            <div class="col-md-4">
+                                            <label class="col-lg-1 control-label">@lang('messages.Exercise')</label>
+                                            <div class="col-lg-4">
                                                 <select name="workoutExercises[1][0][exercise_id]" class="selectpicker" data-live-search="true" data-width="100%">
                                                     @foreach($exercises as $exercise)
                                                         <option value="{{$exercise->id}}">{{$exercise->name}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
-                                            <label class="col-lg-2 col-md-1 control-label label-mt">@lang('messages.Technique')</label>
-                                            <div class="col-md-4">
+                                            <label class="col-lg-1 control-label label-mt">@lang('messages.Technique')</label>
+                                            <div class="col-lg-4">
                                                 <select name="workoutExercises[1][0][exercise_technique_id]" class="selectpicker" data-live-search="true" data-width="100%">
                                                     <option label=" "></option>
                                                     @foreach($exerciseTechniques as $technique)
@@ -109,22 +111,22 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-lg-2 col-md-1 control-label">@lang('messages.Sets')</label>
-                                            <div class="col-lg-3 col-md-2">
+                                            <label class="col-lg-1 col-md-1 control-label">@lang('messages.Sets')</label>
+                                            <div class="col-lg-2 col-md-2">
                                                 <input name="workoutExercises[1][0][sets]" type="text" class="form-control">
                                             </div>
-                                            <label class="col-lg-2 col-md-1 control-label label-mt">@lang('messages.Reps')</label>
-                                            <div class="col-lg-3 col-md-2">
+                                            <label class="col-lg-1 col-md-2 control-label label-mt">@lang('messages.Reps')</label>
+                                            <div class="col-lg-2 col-md-2">
                                                 <input name="workoutExercises[1][0][reps]" type="text" class="form-control">
                                             </div>
-                                            <label class="col-lg-2 col-md-1 control-label label-mt">@lang('messages.Rest')</label>
-                                            <div class="col-lg-3 col-md-2">
+                                            <label class="col-lg-1 col-md-1 control-label label-mt">@lang('messages.Rest')</label>
+                                            <div class="col-lg-2 col-md-2">
                                                 <input name="workoutExercises[1][0][rest]" type="text" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-lg-3 col-md-2 control-label">@lang('messages.Notes')</label>
-                                            <div class="col-lg-2 col-md-12">
+                                            <label class="col-lg-1 col-md-2 control-label">@lang('messages.Notes')</label>
+                                            <div class="col-lg-6 col-md-12">
                                                 <textarea name="workoutExercises[1][0][notes]" class="form-control"></textarea>
                                             </div>
                                         </div>
@@ -177,7 +179,7 @@
             var exercise = $(this).parent().children('.exercise-panel').length;
             if (!exercise) exercise = 0;
             exercise++;
-            $('<div class="panel panel-default exercise-panel" data-exercise="' + exercise + '"><div class="panel-heading">@lang('messages.Exercise') <span class="exercise-key">' + exercise + '</span> <button type="button" class="btn btn-danger btn-xs remove-item"><i class="fa fa-times"></i></button></div><div class="panel-body"><div class="form-group"><label class="col-lg-2 col-md-1 control-label">@lang('messages.Exercise')</label> <div class="col-md-4"> <select name="workoutExercises[' + day + '][' + exercise + '][exercise_id]" class="selectpicker" data-live-search="true" data-width="100%"> @foreach($exercises as $exercise) <option value="{{$exercise->id}}">{{$exercise->name}}</option> @endforeach </select> </div><label class="col-lg-2 col-md-1 control-label label-mt">@lang('messages.Technique')</label> <div class="col-md-4"> <select name="workoutExercises[' + day + '][' + exercise + '][exercise_technique_id]" class="selectpicker" data-live-search="true" data-width="100%"><option label=" "></option>@foreach($exerciseTechniques as $technique) <option value="{{$technique->id}}">{{$technique->name}}</option> @endforeach </select> </div></div><div class="form-group"> <label class="col-lg-2 col-md-1 control-label">@lang('messages.Sets')</label> <div class="col-lg-3 col-md-2"> <input name="workoutExercises[' + day + '][' + exercise + '][sets]" type="text" class="form-control"> </div><label class="col-lg-2 col-md-1 control-label label-mt">@lang('messages.Reps')</label> <div class="col-lg-3 col-md-2"> <input name="workoutExercises[' + day + '][' + exercise + '][reps]" type="text" class="form-control"> </div><label class="col-lg-2 col-md-1 control-label label-mt">@lang('messages.Rest')</label> <div class="col-lg-3 col-md-2"> <input name="workoutExercises[' + day + '][' + exercise + '][rest]" type="text" class="form-control"> </div></div><div class="form-group"> <label class="col-lg-3 col-md-2 control-label">@lang('messages.Notes')</label> <div class="col-lg-2 col-md-12"> <textarea name="workoutExercises[' + day + '][' + exercise + '][notes]" class="form-control"></textarea> </div></div></div></div>')
+            $('<div class="panel panel-default exercise-panel" data-exercise="' + exercise + '"><div class="panel-heading">@lang('messages.Exercise') <span class="exercise-key">' + exercise + '</span> <button type="button" class="btn btn-danger btn-xs remove-item"><i class="fa fa-times"></i></button></div><div class="panel-body"><div class="form-group"><label class="col-lg-1 control-label">@lang('messages.Exercise')</label> <div class="col-lg-4"> <select name="workoutExercises[' + day + '][' + exercise + '][exercise_id]" class="selectpicker" data-live-search="true" data-width="100%"> @foreach($exercises as $exercise) <option value="{{$exercise->id}}">{{$exercise->name}}</option> @endforeach </select> </div><label class="col-lg-1 control-label label-mt">@lang('messages.Technique')</label> <div class="col-lg-4"> <select name="workoutExercises[' + day + '][' + exercise + '][exercise_technique_id]" class="selectpicker" data-live-search="true" data-width="100%"><option label=" "></option>@foreach($exerciseTechniques as $technique) <option value="{{$technique->id}}">{{$technique->name}}</option> @endforeach </select> </div></div><div class="form-group"> <label class="col-lg-1 col-md-1 control-label">@lang('messages.Sets')</label> <div class="col-lg-2 col-md-2"> <input name="workoutExercises[' + day + '][' + exercise + '][sets]" type="text" class="form-control"> </div><label class="col-lg-1 col-md-2 control-label label-mt">@lang('messages.Reps')</label> <div class="col-lg-2 col-md-2"> <input name="workoutExercises[' + day + '][' + exercise + '][reps]" type="text" class="form-control"> </div><label class="col-lg-1 col-md-1 control-label label-mt">@lang('messages.Rest')</label> <div class="col-lg-2 col-md-2"> <input name="workoutExercises[' + day + '][' + exercise + '][rest]" type="text" class="form-control"> </div></div><div class="form-group"> <label class="col-lg-1 col-md-2 control-label">@lang('messages.Notes')</label> <div class="col-lg-6 col-md-12"> <textarea name="workoutExercises[' + day + '][' + exercise + '][notes]" class="form-control"></textarea> </div></div></div></div>')
                 .insertBefore($(this));
             $('select').selectpicker({
                 language: "{{ App::getLocale() }}"
@@ -185,7 +187,7 @@
         });
         $('#add-day').on('click', function() {
             days++;
-            $('<div class="panel panel-danger workout-day mt"> <div class="panel-heading"> @lang('messages.Day') ' + days + '</div><div class="panel-body" data-day="' + days + '"> <div class="panel panel-default exercise-panel" data-exercise="1"> <div class="panel-heading">@lang('messages.Exercise') <span class="exercise-key">1 </span><button type="button" class="btn btn-danger btn-xs remove-item"><i class="fa fa-times"></i></button></div><div class="panel-body"> <div class="form-group"> <label class="col-lg-2 col-md-1 control-label">@lang('messages.Exercise')</label> <div class="col-md-4"> <select name="workoutExercises[' + days + '][0][exercise_id]" class="selectpicker" data-live-search="true" data-width="100%"> @foreach($exercises as $exercise) <option value="{{$exercise->id}}">{{$exercise->name}}</option> @endforeach </select> </div><label class="col-lg-2 col-md-1 control-label label-mt">@lang('messages.Technique')</label> <div class="col-md-4"> <select name="workoutExercises[' + days + '][0][exercise_technique_id]" class="selectpicker" data-live-search="true" data-width="100%"><option label=" "></option>@foreach($exerciseTechniques as $technique) <option value="{{$technique->id}}">{{$technique->name}}</option> @endforeach </select> </div></div><div class="form-group"> <label class="col-lg-2 col-md-1 control-label">@lang('messages.Sets')</label> <div class="col-lg-3 col-md-2"> <input name="workoutExercises[' + days + '][0][sets]" type="text" class="form-control"> </div><label class="col-lg-2 col-md-1 control-label label-mt">@lang('messages.Reps')</label> <div class="col-lg-3 col-md-2"> <input name="workoutExercises[' + days + '][0][reps]" type="text" class="form-control"> </div><label class="col-lg-2 col-md-1 control-label label-mt">@lang('messages.Rest')</label> <div class="col-lg-3 col-md-2"> <input name="workoutExercises[' + days + '][0][rest]" type="text" class="form-control"> </div></div><div class="form-group"> <label class="col-lg-3 col-md-2 control-label">@lang('messages.Notes')</label> <div class="col-lg-2 col-md-12"> <textarea name="workoutExercises[' + days + '][0][notes]" class="form-control"></textarea> </div></div></div></div><button type="button" class="btn btn-default pull-right add-exercise">@lang('messages.AddExercise')</button> </div></div>')
+            $('<div class="panel panel-danger workout-day mt"> <div class="panel-heading"> @lang('messages.Day') ' + days + '</div><div class="panel-body" data-day="' + days + '"> <div class="panel panel-default exercise-panel" data-exercise="1"> <div class="panel-heading">@lang('messages.Exercise') <span class="exercise-key">1 </span><button type="button" class="btn btn-danger btn-xs remove-item"><i class="fa fa-times"></i></button></div><div class="panel-body"> <div class="form-group"> <label class="col-lg-1 control-label">@lang('messages.Exercise')</label> <div class="col-lg-4"> <select name="workoutExercises[' + days + '][0][exercise_id]" class="selectpicker" data-live-search="true" data-width="100%"> @foreach($exercises as $exercise) <option value="{{$exercise->id}}">{{$exercise->name}}</option> @endforeach </select> </div><label class="col-lg-1 control-label label-mt">@lang('messages.Technique')</label> <div class="col-lg-4"> <select name="workoutExercises[' + days + '][0][exercise_technique_id]" class="selectpicker" data-live-search="true" data-width="100%"><option label=" "></option>@foreach($exerciseTechniques as $technique) <option value="{{$technique->id}}">{{$technique->name}}</option> @endforeach </select> </div></div><div class="form-group"> <label class="col-lg-1 col-md-1 control-label">@lang('messages.Sets')</label> <div class="col-lg-2 col-md-2"> <input name="workoutExercises[' + days + '][0][sets]" type="text" class="form-control"> </div><label class="col-lg-1 col-md-2 control-label label-mt">@lang('messages.Reps')</label> <div class="col-lg-2 col-md-2"> <input name="workoutExercises[' + days + '][0][reps]" type="text" class="form-control"> </div><label class="col-lg-1 col-md-1 control-label label-mt">@lang('messages.Rest')</label> <div class="col-lg-2 col-md-2"> <input name="workoutExercises[' + days + '][0][rest]" type="text" class="form-control"> </div></div><div class="form-group"> <label class="col-lg-1 col-md-2 control-label">@lang('messages.Notes')</label> <div class="col-lg-6 col-md-12"> <textarea name="workoutExercises[' + days + '][0][notes]" class="form-control"></textarea> </div></div></div></div><button type="button" class="btn btn-default pull-right add-exercise">@lang('messages.AddExercise')</button> </div></div>')
                 .insertBefore($('#predefined-workout'));
             $('select').selectpicker({
                 language: "{{ App::getLocale() }}"

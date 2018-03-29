@@ -26,7 +26,7 @@ return [
     'between'              => [
         'numeric' => 'Il campo :attribute must be between :min and :max.',
         'file'    => 'Il campo :attribute must be between :min and :max kilobytes.',
-        'string'  => 'Il campo :attribute must be between :min and :max characters.',
+        'string'  => 'Il campo :attribute must be between :min and :max caratteri.',
         'array'   => 'Il campo :attribute must have between :min and :max items.',
     ],
     'boolean'              => 'Il campo :attribute deve essere vero o falso.',
@@ -61,7 +61,7 @@ return [
     'min'                  => [
         'numeric' => 'Il campo :attribute deve essere almeno pari a :min.',
         'file'    => 'La dimensione del campo :attribute deve essere almeno pari a :min kilobytes.',
-        'string'  => 'Il campo :attribute deve avere almeno :min characters.',
+        'string'  => 'Il campo :attribute deve avere almeno :min caratteri.',
         'array'   => 'Il campo :attribute deve avere almeno :min elementi.',
     ],
     'not_in'               => 'Il campo selezionato :attribute non è valido.',

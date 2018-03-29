@@ -33,7 +33,7 @@
                                 <tbody>
                                     <tr>
                                         <th scope="row">@lang('messages.Type')</th>
-                                        <td>{{ $workout->type->name }}</td>
+                                        <td>@if(isset($workout->type)) {{$workout->type->name}} @else - @endif</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">@lang('messages.StartDate')</th>
@@ -45,7 +45,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <table id="workout-table" class="table table-hover table-workout">
+                            <table id="workout" class="table table-hover table-workout">
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -111,23 +111,7 @@
     </section>
 </section>
 <!-- Modal -->
-<div id="notes-modal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">@lang('messages.ExerciseNotes')</h4>
-            </div>
-            <div class="modal-body">
-                <p></p>
-            </div>
-             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">@lang('messages.CloseModal')</button>
-            </div>
-        </div>
-    </div>
-</div>
+@include('shared.modals.notes')
 @endsection
  
 @push('script')
@@ -140,7 +124,7 @@
             lengthChange: false,
             searching: false,
             responsive: true,
-            "scrollX": true,
+            "scrollY": true,
             buttons: [
                 'copy', 'excel', 'pdf'
             ]

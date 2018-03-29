@@ -74,7 +74,7 @@
                             <div class="panel-header-black">
                                 <h5 class="panel-header">{{ Str::upper(__('messages.AssignedWorkout')) }}</h5>
                                 <div class="db-btn-group">
-                                    @if (isset($workout))
+                                    @if(isset($workout))
                                         <a href="{{route('workouts.edit', $workout->id)}}" class="btn btn-primary btn-sm dashboard-btn">
                                             <i class="fa fa-pencil"></i>
                                             <span class="btn-title">@lang('messages.Edit')</span>
@@ -103,7 +103,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <table class="table table-hover table-workout">
+                            <table id="workout" class="table table-hover table-workout">
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -236,103 +236,23 @@
     </section>
 </section>
 <!-- Modals -->
-<div id="confirm-delete-modal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">@lang('messages.DeleteConfirmModalHeader')</h4>
-            </div>
-            <div class="modal-body">
-                <p>@lang('messages.DeleteConfirmModalBody')</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">@lang('messages.CloseModal')</button>
-                <button id="modal-confirm" type="button" class="btn btn-danger">@lang('messages.ConfirmModal')</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div id="notes-modal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">@lang('messages.ExerciseNotes')</h4>
-            </div>
-            <div class="modal-body">
-                <p></p>
-            </div>
-             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">@lang('messages.CloseModal')</button>
-            </div>
-        </div>
-    </div>
-</div>
+@include('shared.modals.confirm-delete')
+@include('shared.modals.notes')
 @endsection
  
 @push('script')
 <script src="{{ asset('js/util.js') }}"></script>
+<script src="{{ asset('js/chart-helper.js') }}"></script>
 <script>
-    function initChart(labels, data, title) {
-        var ctx = document.getElementById("myChart").getContext('2d');
-        Chart.defaults.global.defaultFontColor = 'black';
-        Chart.defaults.global.defaultFontFamily = 'Ruda';
-        window.chartColors = [
-            'rgb(255, 99, 132)',
-            'rgb(255, 159, 64)',
-            'rgb(255, 205, 86)',
-            'rgb(75, 192, 192)',
-            'rgb(54, 162, 235)',
-            'rgb(153, 102, 255)',
-            'rgb(101, 75, 12)'
-        ];
-        var color = window.chartColors[getRandom(0,6)]
-        var config = {
-            type: 'line',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: title,
-                    backgroundColor: color,
-                    borderColor: color,
-                    data: data,
-                    fill: false,
-                }]
-            },
-            options: {
-                responsive: true,
-                tooltips: {
-                    mode: 'index',
-                    intersect: false
-                },
-                hover: {
-                    mode: 'nearest',
-                    intersect: true
-                },
-                scales: {
-                xAxes: [{
-                    display: true,
-                    scaleLabel: {
-                    display: true,
-                    labelString: 'Day'
-                    }
-                }],
-                yAxes: [{
-                    display: true,
-                    scaleLabel: {
-                    display: true,
-                    labelString: 'Value'
-                    }
-                }]
-                }
-            }
-        };
-        window.myChart = new Chart(ctx, config);
-    }
-    initChart(@json(array_keys($weightMeasurements)), @json(array_values($weightMeasurements)), "@lang('messages.Weight')");
+     var chartConfig = {
+        'labels': @json(array_keys($weightMeasurements)),
+        'data': @json(array_values($weightMeasurements)),
+        'title': "@lang('messages.Weight')",
+        'xAxesLabel': "@lang('messages.Day')",
+        'yAxesLabel': "@lang('messages.Weight')",
+        'ratio': true
+    };
+    initChart(chartConfig);
     $(".athlete-bm-setting button").on('click', function(e) {
         var measure = e.target.id;
         $(".btn.active").removeClass('active');

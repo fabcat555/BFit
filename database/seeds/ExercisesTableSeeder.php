@@ -16,16 +16,19 @@ class ExercisesTableSeeder extends Seeder
             'name' => 'Squat'
         ]);
         Exercise::create([
-            'name' => 'Bench press'
+            'name' => 'Panca piana'
         ]);
         Exercise::create([
             'name' => 'Stacchi'
         ]);
         Exercise::create([
-            'name' => 'Iperestensioni'
+            'name' => 'Curl manubri'
         ]);
         Exercise::create([
-            'name' => 'Addominali'
+            'name' => 'Tricipiti push down'
+        ]);
+        Exercise::create([
+            'name' => 'Lento avanti'
         ]);
     }
 }

@@ -2559,6 +2559,10 @@ div[id*='workout-'][id$='_wrapper'] .dt-buttons {
     float: right;
 }
 
+.no-workouts-message {
+    margin-left: 20px;
+}
+
 /* Body measurement */
 
 .bm-heading {
@@ -2765,7 +2769,7 @@ table.dataTable {
 }
 
 .dt-buttons {
-    float: right;
+    float: left;
 }
 
 #toggle-bm-form {

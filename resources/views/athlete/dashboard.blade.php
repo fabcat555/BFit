@@ -63,7 +63,8 @@
                                     <tr>
                                         <th scope="row">@lang('messages.MembershipStatus')</th>
                                         <td>{{ $membership->end_date > Carbon\Carbon::now() ? __('messages.Active') : __('messages.Expired')
-                                            }}</td>
+                                            }}
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th scope="row">@lang('messages.MembershipValidity')</th>
@@ -78,9 +79,6 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            @else
-                                <h5>@lang('messages.NoMembership')</h5>
-                            @endif
                             <div class="row">
                                 <div class="col-md-6">
                                     <p class="small mt">@lang('messages.MembershipStartYear')</p>
@@ -93,6 +91,9 @@
                                     </p>
                                 </div>
                             </div>
+                            @else
+                            <h5>@lang('messages.NoMembership')</h5>
+                            @endif
                         </div>
                     </div>
                     <!-- /col-md-6 -->
@@ -124,7 +125,7 @@
                                 <tbody>
                                     <tr>
                                         <th scope="row">@lang('messages.Type')</th>
-                                        <td>{{ $workout->type->name }}</td>
+                                        <td>@if(isset($workout->type)) {{$workout->type->name}} @else - @endif</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">@lang('messages.StartDate')</th>
@@ -197,51 +198,18 @@
 @endsection
  
 @push('script')
+<script src="js/util.js"></script>
+<script src="js/chart-helper.js"></script>
 <script>
-    var ctx = document.getElementById("myChart").getContext('2d');
-    Chart.defaults.global.defaultFontColor = 'white';
-    Chart.defaults.global.defaultFontFamily = 'Ruda';
-    
-    var config = {
-        type: 'line',
-        data: {
-            labels: @json(array_keys($weightMeasurements)),
-            datasets: [{
-                label: "{{ __('messages.Weight') }}" ,
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgb(255, 99, 132)',
-                data: @json(array_values($weightMeasurements)),
-                fill: false,
-            }]
-        },
-        options: {
-            responsive: true,
-            tooltips: {
-            mode: 'index',
-            intersect: false
-            },
-            hover: {
-            mode: 'nearest',
-            intersect: true
-            },
-            scales: {
-            xAxes: [{
-                display: true,
-                scaleLabel: {
-                display: true,
-                labelString: 'Month'
-                }
-            }],
-            yAxes: [{
-                display: true,
-                scaleLabel: {
-                display: true,
-                labelString: 'Value'
-                }
-            }]
-            }
-        }
+     var chartConfig = {
+        'labels': @json(array_keys($weightMeasurements)),
+        'data': @json(array_values($weightMeasurements)),
+        'title': "@lang('messages.Weight')",
+        'xAxesLabel': "@lang('messages.Day')",
+        'yAxesLabel': "@lang('messages.Weight')",
+        'fontColor': 'white',
+        'ratio': true
     };
-    var myChart = new Chart(ctx, config);
+    initChart(chartConfig);
 </script>
 @endpush

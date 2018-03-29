@@ -34,7 +34,7 @@
                                     <tbody>
                                         <tr>
                                             <th scope="row">@lang('messages.Type')</th>
-                                            <td>{{ $wo->type->name }}</td>
+                                            <td>@if(isset($workout->type)) {{$workout->type->name}} @else - @endif</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">@lang('messages.StartDate')</th>
@@ -93,7 +93,7 @@
                         </div>
                         @endforeach
                     @else
-                        <h5>@lang('messages.NoWorkouts')</h5>
+                        <h5 class="no-workouts-message">@lang('messages.NoWorkouts')</h5>
                     @endif
                     <!-- /col-md-12 -->
                 </div>
@@ -110,14 +110,12 @@
     var workouts = {{count($workouts)}};
 
     $(document).ready(function() {
-        var workoutTable = $('.table-workout').DataTable( {
+        $('.table-workout').DataTable( {
             ordering: false,
             info: false,
             paging: false,
             lengthChange: false,
             searching: false,
-            responsive: true,
-            "scrollX": true,
             autoWidth: false,
             buttons: [
                 'copy', 'excel', 'pdf'

@@ -194,9 +194,11 @@ class WorkoutsController extends Controller
 
     public function viewAthletes($workoutId) {
         $workout = Workout::findOrFail($workoutId);
-        return view('instructor.athletes.index')->with('athletes', Auth::guard('instructor')->user()->athletes
+        $athletesAssigned = Auth::guard('instructor')->user()->athletes
             ->filter(function($athlete) use ($workout) {
-                return $athlete->currentWorkout()->name == $workout->name;
-            }));
+                return ($athlete->currentWorkout()) ? $athlete->currentWorkout()->name == $workout->name : false;
+        });
+        
+        return view('instructor.athletes.index')->with('athletes', $athletesAssigned);
     }
 }

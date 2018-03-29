@@ -151,7 +151,7 @@ return [
     'NoAthletesAssigned' => 'Nessun atleta assegnato!',
     'NoExercises' => 'Nessun esercizio trovato!',
     'NoPredefinedWorkouts' => 'Nessun allenamento predefinito trovato!',
-    'NoWorkoutTypes' => 'Nessun tipo workout!',
+    'NoWorkoutTypes' => 'Nessun tipo allenamento trovato!',
     'NoTechniques' => 'Nessuna tecnica esercizio trovata!',
 
     // Admin Dashboard

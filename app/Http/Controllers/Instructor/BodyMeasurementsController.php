@@ -28,7 +28,8 @@ class BodyMeasurementsController extends Controller
     public function getAthleteMeasurements($athleteId, $measure = 'weight')
     {
         $athlete = Athlete::findOrFail($athleteId);
-    
+        $measurements = [];
+        
         if (Auth::guard('instructor')->user()->can('view', $athlete)) {
             foreach ($athlete->bodyMeasurements->sortBy('created_at')->all() as $bm) {
                 $measurements[$bm->created_at->format('d-m-y')] = $bm->$measure;

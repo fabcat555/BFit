@@ -69,43 +69,16 @@
 </section>
 
 <!-- Modal -->
-<div id="confirm-delete-modal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">@lang('messages.DeleteConfirmModalHeader')</h4>
-            </div>
-            <div class="modal-body">
-                <p>@lang('messages.DeleteConfirmModalBody')</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">@lang('messages.CloseModal')</button>
-                <button id="modal-confirm" type="button" class="btn btn-danger">@lang('messages.ConfirmModal')</button>
-            </div>
-        </div>
-    </div>
-</div>
+@include('shared.modals.confirm-delete')
 @endsection
  
 @push('script')
+<script src="{{asset('js/datatables-helper.js')}}"></script>
 <script>
     $(document).ready(function(){
-        var table = $('#exercise-techniques').DataTable( {
-            info: false,
-            language: {
-                url: "{{ App::isLocale('it') ? asset('js/datatables/i18n/Italian.json') : '' }}"
-            },
-            buttons: [
-                'copy', 'excel', 'pdf'
-            ],
-            initComplete: function () {
-                setTimeout( function () {
-                     table.buttons().container().appendTo( $('.col-sm-5', table.table().container() ) );
-                }, 10 );
-            }
-        });
+        var languageUrl = "{{ App::isLocale('it') ? asset('js/datatables/i18n/Italian.json') : '' }}";
+        var table = indexTable('#exercise-techniques', languageUrl);
+
         $('#confirm-delete-modal').on('show.bs.modal', function(e) {
             $('#modal-confirm').data('resource-id', $(e.relatedTarget).data('resource-id'));
         });
