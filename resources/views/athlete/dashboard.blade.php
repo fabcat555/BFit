@@ -162,11 +162,12 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                        </div>
+                        
                         @else
                         <h5>@lang('messages.NoWorkout')</h5>
                         @endif
                         <br>
+                    </div>
                     </div>
                     <!-- /col-md-6 -->
                     <div class="col-md-12 col-lg-6 mb">
@@ -191,7 +192,7 @@
                 </div>
                 <!-- /row -->
             </div>
-            <!-- /col-lg-12 END SECTION MIDDLE -->
+            <!-- /col-lg-12 -->
         </div>
     </section>
 </section>

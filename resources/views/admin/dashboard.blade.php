@@ -65,7 +65,7 @@
                                     </a>
                                 </div>
                             </div>
-                            @if (isset($membershipTypes))
+                            @if (count($membershipTypes))
                             <table class="table table-hover table-dashboard">
                                 <thead>
                                     <tr>
@@ -113,7 +113,7 @@
                                     </a>
                                 </div>
                             </div>
-                            @if (isset($memberships))
+                            @if (count($memberships))
                             <table class="table table-hover table-dashboard">
                                 <thead>
                                     <tr>
@@ -159,7 +159,7 @@
                                     </a>
                                 </div>
                             </div>
-                            @if (isset($athletes))
+                            @if (count($athletes))
                             <table class="table table-hover table-dashboard">
                                 <thead>
                                     <tr>
@@ -195,7 +195,7 @@
                                     </a>
                                 </div>
                             </div>
-                            @if (isset($instructors))
+                            @if (count($instructors))
                             <table class="table table-hover table-dashboard">
                                 <thead>
                                     <tr>

@@ -24,11 +24,23 @@
                     <form class="form-horizontal style-form" method="post" action="{{route('workouts.update', $workout->id)}}">
                         @csrf {{ method_field('put') }}
                         <div class="form-group">
-                            <label class="col-md-1 control-label">@lang('messages.Name')</label>
+                            <label class="col-lg-2 col-md-3 control-label">@lang('messages.Name')</label>
                             <div class="col-md-4">
                                 <input name="name" required value="{{$workout->name}}" type="text" class="form-control">
                             </div>
                         </div>
+                        @isset($workout->athlete)
+                        <div class="form-group">
+                            <label class="col-lg-2 col-md-3 control-label">@lang('messages.StartDate')</label>
+                            <div class="col-lg-3 col-md-12">
+                                <input id="start-date" name="start_date" type="date" class="form-control" value="{{$workout->start_date->format('Y-m-d')}}">
+                            </div>
+                            <label class="col-lg-2 col-md-3 control-label label-mt">@lang('messages.EndDate')</label>
+                            <div class="col-lg-3 col-md-12">
+                                <input id="end-date" name="end_date" type="date" class="form-control" value="{{$workout->end_date->format('Y-m-d')}}">
+                            </div>
+                        </div>
+                        @endisset
                         @foreach($workout->workoutExercises->groupBy('day') as $day => $workoutExercises)
                         <div class="panel panel-danger workout-day mt">
                             <div class="panel-heading">

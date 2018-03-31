@@ -23,7 +23,7 @@
                                 <div class="db-btn-group">
                                     <a href="{{route('workouts.create')}}" class="btn btn-primary btn-sm dashboard-btn">
                                         <i class="fa fa-plus"></i>
-                                        @lang('messages.New')
+                                        <span class="btn-title">@lang('messages.New')</span>
                                     </a>
                                 </div>
                             </div>
@@ -74,7 +74,7 @@
                                 <div class="db-btn-group">
                                     <a href="{{route('workouts.create')}}" class="btn btn-primary btn-sm dashboard-btn">
                                             <i class="fa fa-plus"></i>
-                                            @lang('messages.New')
+                                            <span class="btn-title">@lang('messages.New')</span>
                                         </a>
                                 </div>
                             </div>
@@ -141,6 +141,7 @@
             buttons: [
                 'copy', 'excel', 'pdf'
             ],
+            "scrollY": true,
             initComplete: function () {
                 setTimeout( function () {
                     $.each($('.table-workout'), function () {

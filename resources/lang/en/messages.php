@@ -158,6 +158,7 @@ return [
     'NoAthletesAssigned' => 'No athletes assigned!',
     'NoExercises' => 'No exercises found!',
     'NoPredefinedWorkouts' => 'No predefined workouts found!',
+    'NoWorkouts' => 'No workouts found!',
     'NoWorkoutTypes' => 'No workout types found!',
     'NoTechniques' => 'No exercise techniques found!',
 
@@ -194,7 +195,7 @@ return [
     'ExerciseNotes' => 'Exercise notes',
 
     // Workout history
-    'NoWorkouts' => 'No previous workouts.',
+    'NoWorkoutHistory' => 'No previous workouts.',
 
     // Membership Types index
     'MembershipTypes' => 'Membership Types',
@@ -290,5 +291,7 @@ return [
     'InstructorResetHeadline' => 'Instructor - Reset password',
     'AdminResetHeadline' => 'Admin - Reset password',
     'AthleteResetHeadline' => 'Athlete - Reset password',
-    'Reset' => 'Reset'
+    'Reset' => 'Reset',
+
+    '401Message' => 'You are not authorized to see this resource',
 ];

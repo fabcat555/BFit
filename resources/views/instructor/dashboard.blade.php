@@ -129,7 +129,7 @@
                         <!-- PREDEFINED WORKOUTS PANEL -->
                         <div class="white-panel pn membership-panel">
                             <div class="panel-header-red">
-                                <h5 class="panel-header">@lang('messages.PredefinedWorkoutsHeading')</h5>
+                                <h5 class="panel-header">{{Str::upper(__('messages.Workouts'))}}</h5>
                                 <div class="db-btn-group">
                                     <a href="{{route('workouts.create')}}" class="btn btn-sm btn-danger dashboard-btn">
                                         <i class="fa fa-plus"></i>
@@ -157,7 +157,7 @@
                                 </tbody>
                             </table>
                             @else
-                                <h5>@lang('messages.NoPredefinedWorkouts')</h5>
+                                <h5>@lang('messages.NoWorkouts')</h5>
                             @endif
                         </div>
                     </div>

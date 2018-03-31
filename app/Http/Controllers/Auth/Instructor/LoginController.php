@@ -39,10 +39,8 @@ class LoginController extends Controller
         $this->middleware('guest:instructor')->except('logout');
     }
 
-    public function showLoginForm(Request $request)
-    {
-        $request->session()->put('url.intended', url()->previous());
-
+    public function showLoginForm()
+    {  
         return view('auth.instructor.login');
     }
 
@@ -54,7 +52,7 @@ class LoginController extends Controller
         ]);
         
         if (Auth::guard('instructor')->attempt(['email' => $request->get('email'), 'password' => $request->get('password')], $request->get('remember'))) {
-            return redirect()->intended(route('instructor.dashboard'));
+            return redirect(route('instructor.dashboard'));
         }
 
         return redirect()->back()->withInput($request->only('email', 'remember'))->withErrors(__('messages.WrongPassword'));

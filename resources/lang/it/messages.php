@@ -61,7 +61,7 @@ return [
     // Login
     'LoginHeadline' => 'LOG IN',
     'AthleteLoginHeadline' => 'login atleta',
-    'InstructorHeadline' => 'login istruttore',
+    'InstructorLoginHeadline' => 'login istruttore',
     'AdminLoginHeadline' => 'login admin',
     'RememberMeLabel' => 'Ricordami',
     'ForgotPasswordLabel' => 'Password dimenticata?',
@@ -153,6 +153,7 @@ return [
     'NoAthletesAssigned' => 'Nessun atleta assegnato!',
     'NoExercises' => 'Nessun esercizio trovato!',
     'NoPredefinedWorkouts' => 'Nessun allenamento predefinito trovato!',
+    'NoWorkouts' => 'Nessun allenamento trovato!',
     'NoWorkoutTypes' => 'Nessun tipo allenamento trovato!',
     'NoTechniques' => 'Nessuna tecnica esercizio trovata!',
 
@@ -165,7 +166,7 @@ return [
     'MembershipsHeading' => 'ISCRIZIONI',
     'AthletesHeading' => 'ATLETI',
     'InstructorsHeading' => 'ISTRUTTORI',
-    'NoMembershipTypes' => 'Nessun tipo abbonamento trocato!',
+    'NoMembershipTypes' => 'Nessun tipo abbonamento trovato!',
     'NoMemberships' => 'Nessun abbonamento sottoscritto!',
     'NoInstructors' => 'Nessun istruttore trovato!',
 
@@ -189,7 +190,7 @@ return [
     'AssignedTo' => 'Assegnato a',
 
     // Workout history
-    'NoWorkouts' => 'Nessun workout precedente.',
+    'NoWorkoutHistory' => 'Nessun workout precedente.',
 
     // Membership Types index
     'MembershipTypes' => 'Tipi di abbonamento',
@@ -284,5 +285,7 @@ return [
     'InstructorResetHeadline' => 'Istruttore - Reimposta password',
     'AdminResetHeadline' => 'Admin - Reimposta password',
     'AthleteResetHeadline' => 'Atleta - Reimposta password',
-    'Reset' => 'Reset'
+    'Reset' => 'Reset',
+
+    '401Message' => 'Non sei autorizzato a vedere la risorsa selezionata',
 ];

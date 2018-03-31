@@ -31,7 +31,7 @@ class ExerciseProgressController extends Controller
                 $view = 'instructor.athletes.exercise-progress';
             }
         } else {
-            // redirect to unauthorized page
+           return view('shared.401');
         }
 
         return view($view)->with([

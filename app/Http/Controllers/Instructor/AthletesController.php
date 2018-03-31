@@ -84,7 +84,7 @@ class AthletesController extends Controller
             ]);
         }
         else {
-           return 'non sei autorizzato';
+           return view('shared.401');
         }
     }
 
@@ -101,7 +101,7 @@ class AthletesController extends Controller
             return view('instructor.athletes.edit')->with('athlete', $athlete);
         }
         else {
-            return 'non sei autorizzato';
+            return view('shared.401');
         }
     }
 
@@ -138,7 +138,7 @@ class AthletesController extends Controller
             return response()->json(['status' => 'ok']);
         }
         else {
-            return 'non sei autorizzato';
+            return view('shared.401');
         }
     }
 }

@@ -33,10 +33,8 @@ class LoginController extends Controller
         $this->middleware('guest:admin')->except('logout');
     }
 
-    public function showLoginForm(Request $request)
+    public function showLoginForm()
     {
-        $request->session()->put('url.intended',url()->previous());
-
         return view('auth.admin.login');
     }
 
@@ -48,7 +46,7 @@ class LoginController extends Controller
         ]);
 
         if (Auth::guard('admin')->attempt(['email' => $request->get('email'), 'password' => $request->get('password')], $request->get('remember'))) {
-            return redirect()->intended(route('admin.dashboard'));
+            return redirect(route('admin.dashboard'));
         }
 
         return redirect()->back()->withInput($request->only('email', 'remember'));

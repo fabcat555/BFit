@@ -29,6 +29,7 @@
                                     <label class="col-sm-2 control-label">@lang('messages.Athlete')</label>
                                     <div class="col-sm-6">
                                         <select name="athlete_id" required class="selectpicker" data-live-search="true" data-width="auto">
+                                            <option label=" "></option>
                                             @foreach($athletes as $athlete)
                                                 <option value="{{$athlete->id}}">{{$athlete->first_name}} {{$athlete->last_name}}</option>
                                             @endforeach
