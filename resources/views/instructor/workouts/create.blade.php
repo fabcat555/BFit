@@ -59,11 +59,11 @@
                                 <div class="form-group dates-control">
                                     <label class="col-lg-2 col-md-3 control-label">@lang('messages.StartDate')</label>
                                     <div class="col-lg-3 col-md-12">
-                                        <input id="start-date" name="start_date" type="date" required class="form-control">
+                                        <input id="start-date" name="start_date" type="date" class="form-control">
                                     </div>
                                     <label class="col-lg-2 col-md-3 control-label label-mt">@lang('messages.EndDate')</label>
                                     <div class="col-lg-3 col-md-12">
-                                        <input id="end-date" name="end_date" type="date" required class="form-control">
+                                        <input id="end-date" name="end_date" type="date" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -171,6 +171,9 @@
         if ($('#athlete-select').children('option:selected').val() === '') {
             $('.dates-control').hide();
         }
+        else {
+            $('.dates-control input').prop('required', true);
+        }
         $('select').selectpicker({
             language: "{{ App::getLocale() }}"
         });
@@ -204,12 +207,12 @@
             $("#add-day").hide();
             if ($(this).hasClass('active')) {
                 $("#workout-create-submit").show();
-                $('#athlete-select, #start-date, #end-date, #workout-select').prop('required', true);
+                $('#athlete-select, #workout-select').prop('required', true);
                 $('input[name="sets"], input[name="reps"], input[name="rest"]').prop('required', false);
             }
             else {
                 $("#workout-create-submit").hide();
-                $('#athlete-select, #start-date, #end-date, #workout-select').prop('required', false);
+                $('#athlete-select, #workout-select').prop('required', false);
             }
         });
         $(".nw-toggle").on('click', function() {
@@ -220,7 +223,7 @@
             if ($(this).hasClass('active')) {
                 $("#workout-create-submit").show();
                 $('input[name*="sets"], input[name*="reps"], input[name*="rest"]').prop('required', true);
-                $('#athlete-select, #start-date, #end-date, #workout-select').prop('required', false);
+                $('#athlete-select, #workout-select').prop('required', false);
             }
             else {
                 $("#workout-create-submit").hide();
@@ -237,11 +240,13 @@
             if ($(this).children('option:selected').val() !== '') {
                 $('.name-input').hide();
                 $('input[name="name"]').prop('required', false);
+                $('.dates-control input').prop('required', true);
                 $('.dates-control').show();
             }
             else {
                 $('.name-input').show();
                 $('input[name="name"]').prop('required', true);
+                $('.dates-control input').prop('required', false);
                 $('.dates-control').hide();
             }
         });
