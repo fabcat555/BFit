@@ -85,7 +85,10 @@ class WorkoutsController extends Controller
                 }
             }
 
-            return redirect(route('workouts.index'))->with('status', __('messages.CreatedWorkout'));
+            return redirect(route('workouts.index'))->with([
+                'status' => __('messages.CreatedWorkout'),
+                'type' => isset($athleteId) ? 'assigned' : 'predefined'
+            ]);
         }
     }
 
@@ -170,7 +173,7 @@ class WorkoutsController extends Controller
     {
         Workout::destroy($id);
 
-        request()->session()->flash('status', __('messages.DeletedResource'));
+        request()->session()->flash('statusDelete', __('messages.DeletedResource'));
         return response()->json(['status' => 'ok']);
     }
 

@@ -112,7 +112,7 @@ class AthletesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(AthleteUpdateForm $request, $athleteId)
+    public function update(AthleteUpdateForm $request, $instructorId, $athleteId)
     {
         $athlete = Athlete::findOrFail($athleteId);
         $athlete->fill($request->except('athlete_id'))->save();

@@ -27,9 +27,14 @@
                                     </a>
                                 </div>
                             </div>
-                            @if(session('status'))
+                            @if(session('status') && session('type') == 'predefined')
                             <div class="alert alert-success alert-created" role="alert">
                                 <strong>{{ session('status') }}</strong>
+                            </div>
+                            @endif
+                            @if(session('statusDelete'))
+                            <div class="alert alert-success alert-created" role="alert">
+                                <strong>{{ session('statusDelete') }}</strong>
                             </div>
                             @endif
                             <table class="table table-hover table-workout">
@@ -78,7 +83,7 @@
                                         </a>
                                 </div>
                             </div>
-                            @if(session('status'))
+                            @if(session('status') && session('type') == 'assigned')
                             <div class="alert alert-success alert-created" role="alert">
                                 <strong>{{ session('status') }}</strong>
                             </div>
@@ -97,9 +102,12 @@
                                 <tbody>
                                     @foreach ($assignedWorkouts as $workout)
                                     <tr>
-                                        <td>{{$workout->name}}</td>
+                                        <td>
+                                            @if(isset($workout->name)) {{$workout->name}} @else - @endif
+                                        </td>
                                         <td>{{$workout->athlete->first_name . ' ' . $workout->athlete->last_name}}</td>
-                                        <td>{{$workout->start_date->format('d/m/y')}}</td>
+                                        <td>{{$workout->start_date->format('d/m/y')
+                                        }}</td>
                                         <td>{{$workout->end_date->format('d/m/y')}}</td>
                                         <td>@if(isset($workout->type)) {{$workout->type->name}} @else - @endif</td>
                                         <td>

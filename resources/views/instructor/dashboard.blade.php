@@ -157,7 +157,7 @@
                                 </tbody>
                             </table>
                             @else
-                                <h5>@lang('messages.NoWorkouts')</h5>
+                                <h5>@lang('messages.NoPredefinedWorkouts')</h5>
                             @endif
                         </div>
                     </div>

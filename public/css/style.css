@@ -2765,6 +2765,10 @@ label {
     padding: 10px 60px;
 }
 
+.dataTables_scroll {
+    margin-bottom: 5px;
+}
+
 table.dataTable {
     border-collapse: collapse !important;
 }

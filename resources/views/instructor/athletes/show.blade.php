@@ -52,6 +52,10 @@
                                         <td>{{ $athlete->birth_date->format('d/m/y') }}</td>
                                     </tr>
                                     <tr>
+                                        <th scope="row">@lang('messages.Gender')</th>
+                                        <td>{{ $athlete->gender }}</td>
+                                    </tr>
+                                    <tr>
                                         <th scope="row">@lang('messages.Email')</th>
                                         <td>{{ $athlete->email }}</td>
                                     </tr>

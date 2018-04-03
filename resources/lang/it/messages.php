@@ -250,7 +250,7 @@ return [
     'Name' => 'Nome',
     'Description' => 'Descrizione',
     'NewWorkout' => 'Nuovo Allenamento',
-    'CreatedWorkout' => 'Hai creato un nuovo workout!',
+    'CreatedWorkout' => 'Hai creato un nuovo allenamento!',
     'WorkoutData' => 'Dati Allenamento',
     'AssignPredefinedWorkout' => 'Assegna allenamento predefinito',
     'ChoosePredefinedWorkout' => 'Scegli un allenamento predefinito',

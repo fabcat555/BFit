@@ -56,14 +56,14 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group dates-control">
                                     <label class="col-lg-2 col-md-3 control-label">@lang('messages.StartDate')</label>
                                     <div class="col-lg-3 col-md-12">
-                                        <input id="start-date" name="start_date" type="date" class="form-control">
+                                        <input id="start-date" name="start_date" type="date" required class="form-control">
                                     </div>
                                     <label class="col-lg-2 col-md-3 control-label label-mt">@lang('messages.EndDate')</label>
                                     <div class="col-lg-3 col-md-12">
-                                        <input id="end-date" name="end_date" type="date" class="form-control">
+                                        <input id="end-date" name="end_date" type="date" required class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -168,6 +168,9 @@
     var days = 1;
 
     $(function () {
+        if ($('#athlete-select').children('option:selected').val() === '') {
+            $('.dates-control').hide();
+        }
         $('select').selectpicker({
             language: "{{ App::getLocale() }}"
         });
@@ -197,17 +200,15 @@
             $(this).toggleClass('active');
             $('.nw-toggle').removeClass('active');
             $("#predefined-workout").slideToggle();
-            $("#workout-day-1").hide();
-            if ($(this).hasClass('active'))
-                $("#workout-create-submit").show();
-            else 
-                $("#workout-create-submit").hide();
+            $("#workout-day-1").hide();     
             $("#add-day").hide();
             if ($(this).hasClass('active')) {
+                $("#workout-create-submit").show();
                 $('#athlete-select, #start-date, #end-date, #workout-select').prop('required', true);
                 $('input[name="sets"], input[name="reps"], input[name="rest"]').prop('required', false);
             }
             else {
+                $("#workout-create-submit").hide();
                 $('#athlete-select, #start-date, #end-date, #workout-select').prop('required', false);
             }
         });
@@ -216,17 +217,13 @@
             $('.pw-toggle').removeClass('active');
             $("#workout-day-1").slideToggle();
             $("#predefined-workout").hide();
-            if ($(this).hasClass('active'))
-                $("#workout-create-submit").show();
-            else 
-                $("#workout-create-submit").hide();
-            $("#add-day").slideToggle()
-            
             if ($(this).hasClass('active')) {
+                $("#workout-create-submit").show();
                 $('input[name*="sets"], input[name*="reps"], input[name*="rest"]').prop('required', true);
                 $('#athlete-select, #start-date, #end-date, #workout-select').prop('required', false);
             }
             else {
+                $("#workout-create-submit").hide();
                 $('input[name="sets"], input[name="reps"], input[name="rest"]').prop('required', false);
             }
         });
@@ -239,11 +236,13 @@
         $('#athlete-select').on('change', function(e) {
             if ($(this).children('option:selected').val() !== '') {
                 $('.name-input').hide();
-                $('input[name="name"').prop('required', false);
+                $('input[name="name"]').prop('required', false);
+                $('.dates-control').show();
             }
             else {
                 $('.name-input').show();
-                $('input[name="name"').prop('required', true);
+                $('input[name="name"]').prop('required', true);
+                $('.dates-control').hide();
             }
         });
     });

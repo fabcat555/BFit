@@ -2,7 +2,7 @@
     <div id="sidebar" class="nav-collapse">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
-        <p class="centered"><a href="{{route('admin.dashboard')}}"><img src="{{ asset('img/ui-sam.jpg') }}" class="img-circle" width="60"></a></p>
+        <p class="centered"><a href="{{route('admin.dashboard')}}"><img src="{{ asset('img/admin.png') }}" class="img-circle" width="60"></a></p>
             <h5 class="centered">{{ Auth::guard('admin')->user()->first_name }} {{ Auth::guard('admin')->user()->last_name }}</h5>
             <h6 class="centered">@lang('messages.Admin')</h6>
             <li class="mt">

@@ -28,14 +28,16 @@
                                     @endif
                                 </h5>
                                 <div class="db-btn-group">
-                                    <button class="btn btn-primary btn-sm dashboard-btn" data-toggle="modal" data-target="#assign-workout-modal">
-                                        <i class="fa fa-child"></i>
-                                        <span class="btn-title">@lang('messages.WorkoutAssign')</span>
-                                    </button>
-                                    <a href="{{route('workout-athletes', $workout->id)}}" class="btn btn-primary btn-sm dashboard-btn">
-                                        <i class="fa fa-list-ol"></i>
-                                        <span class="btn-title">@lang('messages.ViewAthletes')</span>
-                                    </a>
+                                    @if(!isset($workout->athlete))
+                                        <button class="btn btn-primary btn-sm dashboard-btn" data-toggle="modal" data-target="#assign-workout-modal">
+                                            <i class="fa fa-child"></i>
+                                            <span class="btn-title">@lang('messages.WorkoutAssign')</span>
+                                        </button>
+                                        <a href="{{route('workout-athletes', $workout->id)}}" class="btn btn-primary btn-sm dashboard-btn">
+                                            <i class="fa fa-list-ol"></i>
+                                            <span class="btn-title">@lang('messages.ViewAthletes')</span>
+                                        </a>
+                                    @endif
                                     <a href="{{route('workouts.edit', $workout->id)}}" class="btn btn-primary btn-sm dashboard-btn">
                                         <i class="fa fa-pencil"></i>
                                         <span class="btn-title">@lang('messages.Edit')</span>
