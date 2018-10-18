@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Auth;
+use Carbon\Carbon;
 
 use App\Http\Requests\AthleteCreateForm;
 use App\Http\Requests\AthleteUpdateForm;
@@ -48,7 +49,7 @@ class AthletesController extends Controller
         Athlete::create([
             'first_name' => $request->get('first_name'),
             'last_name' => $request->get('last_name'),
-            'birth_date' => $request->get('birth_date'),
+            'birth_date' => Carbon::createFromFormat('d/m/Y', $request->get('birth_date')),
             'email' => $request->get('email'),
             'password' => Hash::make($request->get('password')),
             'gender' => $request->get('gender'),

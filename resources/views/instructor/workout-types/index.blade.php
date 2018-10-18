@@ -51,8 +51,8 @@
                                                 <i class="fa fa-pencil"></i>
                                             </a>
                                             <button data-toggle="modal" data-target="#confirm-delete-modal" data-resource-id="{{$wt->id}}" class="btn btn-danger btn-xs"> 
-                                                    <i class="fa fa-times"></i>
-                                                </button>
+                                                <i class="fa fa-times"></i>
+                                            </button>
                                         </td>
                                     </tr>
                                     @endforeach
