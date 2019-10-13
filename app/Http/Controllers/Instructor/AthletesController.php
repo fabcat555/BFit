@@ -75,7 +75,7 @@ class AthletesController extends Controller
         if (Auth::guard('instructor')->user()->can('view', $athlete)) {
             $weightMeasurements = [];
             foreach ($athlete->bodyMeasurements->sortBy('created_at')->all() as $bm) {
-                $weightMeasurements[$bm->created_at->format('d-m-y')] = $bm->weight;
+                $weightMeasurements[$bm->created_at->format('d-m-y h:m:s')] = $bm->weight;
             }
             
             return view('instructor.athletes.show')->with([

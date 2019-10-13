@@ -23,7 +23,7 @@
 <body>
     <div id="login-page">
         <div class="container">
-            <form class="form-login" action="/login" method="POST">
+            <form class="form-login" method="POST">
                 @csrf
                 <h2 class="form-login-heading">@lang('messages.AthleteLoginHeadline')</h2>
                 <div class="login-wrap">

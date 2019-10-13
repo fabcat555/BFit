@@ -264,7 +264,7 @@
         
         myChart.destroy();
         $.ajax({
-            url: '/getMeasurements/' + {{$athlete->id}} + '/' + measure,
+            url: '/BFit/public/getMeasurements/' + {{$athlete->id}} + '/' + measure,
             success: function(data) {
                 var newConfig = {
                     'labels': Object.keys(data),

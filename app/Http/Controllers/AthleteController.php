@@ -34,7 +34,7 @@ class AthleteController extends Controller
             $workoutDays = $currentWorkout->workoutExercises->groupBy('day');
 
         foreach($athlete->bodyMeasurements->sortBy('created_at')->all() as $bm) {
-            $weightMeasurements[$bm->created_at->format('d-m-y')] = $bm->weight;
+            $weightMeasurements[$bm->created_at->format('d-m-y h:m:s')] = $bm->weight;
         }
         
         return view('athlete.dashboard')->with([

@@ -32,7 +32,7 @@ class BodyMeasurementsController extends Controller
         
         if (Auth::guard('instructor')->user()->can('view', $athlete)) {
             foreach ($athlete->bodyMeasurements->sortBy('created_at')->all() as $bm) {
-                $measurements[$bm->created_at->format('d-m-y')] = $bm->$measure;
+                $measurements[$bm->created_at->format('d-m-y h:m:s')] = $bm->$measure;
             }
             return $measurements;
         }

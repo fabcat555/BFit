@@ -23,7 +23,7 @@ class AthleteBodyMeasurementsController extends Controller
         $weightMeasurements = [];
         
         foreach(Auth::guard('athlete')->user()->bodyMeasurements->sortBy('created_at')->all() as $bm) {
-            $weightMeasurements[$bm->created_at->format('d-m-y')] = $bm->weight;
+            $weightMeasurements[$bm->created_at->format('d-m-y h:m:s')] = $bm->weight;
         }
 
         return view('athlete.body-measurements')->with(['weightMeasurements' => $weightMeasurements]);
@@ -31,7 +31,7 @@ class AthleteBodyMeasurementsController extends Controller
 
     public function getMeasurements($measure = 'weight') {
         foreach(Auth::guard('athlete')->user()->bodyMeasurements->sortBy('created_at')->all() as $bm) {
-            $measurements[$bm->created_at->format('d-m-y')] = $bm->$measure;
+            $measurements[$bm->created_at->format('d-m-y h:m:s')] = $bm->$measure;
         }
 
         return $measurements;

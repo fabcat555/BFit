@@ -66,7 +66,7 @@
         
         myChart.destroy();
         $.ajax({
-            url: '/getMeasurements/' + measure,
+            url: '/BFit/public/getMeasurements/' + measure,
             success: function(data) {
                 var newConfig = {
                     'labels': Object.keys(data),
